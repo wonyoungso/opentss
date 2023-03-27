@@ -1,15 +1,29 @@
-import {defineConfig} from 'vite'
-import FullReload from "vite-plugin-full-reload"
-import RubyPlugin from 'vite-plugin-ruby'
-import StimulusHMR from 'vite-plugin-stimulus-hmr'
+import { defineConfig } from "vite";
+import * as path from "path";
+import FullReload from "vite-plugin-full-reload";
+import RubyPlugin from "vite-plugin-ruby";
+import ViteReact from "@vitejs/plugin-react-refresh";
 
 export default defineConfig({
-      clearScreen: false,
-      plugins: [
-          RubyPlugin(), 
-          StimulusHMR(), 
-          FullReload(["config/routes.rb", "app/views/**/*"], {delay: 300}),
-      ],
-
-    }
-)
+  plugins: [
+    ViteReact(),
+    RubyPlugin(),
+    FullReload(["config/routes.rb", "app/views/**/*"], { delay: 250 }),
+  ],
+  resolve: {
+    alias: [
+      {
+        find: "@/lib",
+        replacement: path.resolve(__dirname, "./app/javascript/components/lib/")
+      },
+      {
+        find: "@/components",
+        replacement: path.resolve(__dirname, "./app/javascript/components/")
+      },
+      {
+        find: "@/entrypoints",
+        replacement: path.resolve(__dirname, "./app/javascript/entrypoints")
+      }
+    ]
+  },
+})

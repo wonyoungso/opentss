@@ -1,0 +1,75 @@
+import * as React from "react";
+import { useContext, useEffect } from "react";
+import { Link } from "react-router-dom";
+import _ from 'lodash';
+import saferent_01 from "../assets/saferent_03.png";
+import saferent_score_01 from "../assets/saferent_score_01.png";
+import saferent_score_02 from "../assets/saferent_score_02.png";
+import transunion_01 from "../assets/transunion_01.png";
+
+const heroImages = [
+  {
+    img_url: saferent_01,
+    width: 250,
+    description: <>MyRental Sample Report.</>
+  },
+  {
+    img_url: saferent_score_01,
+    width: 400,
+    description: <>SafeRent Score.</>
+  },
+  {
+    img_url: saferent_score_02,
+    width: 400,
+    description: <>List of data that SafeRent collects.</>
+  },
+  {
+    img_url: transunion_01,
+    width: 300,
+    description: <>TransUnion ResidentScore.</>
+  }
+]
+
+export default function Hero(){
+  return (  
+    <>
+      <div className="container mx-auto max-w-7xl mt-2 mb-2 px-12">
+        <div className="mt-5"></div>
+        Have you ever <br/> 
+        screened by
+      </div>
+      <div className="p-0 overflow-hidden">
+        <div className="w-[2500px] h-[500px] flex items-end pb-5 px-12">
+          
+          {
+            _.map(heroImages, heroImage => {
+              return (
+                <div className={`mr-5 last:mr-0`} style={{width: heroImage.width}} key={heroImage.img_url}>
+                  <div>
+                    <img src={heroImage.img_url} alt="SafeRent Score" />
+                  </div>
+                  <div className="text-sm text-white-op-50 mt-1">
+                    { heroImage.description}
+                  </div>
+                </div>
+              )
+            })
+          }
+          
+        </div>
+      </div>  
+
+      <div className="container mx-auto max-w-7xl mt-2 mb-2 px-12">
+        <div className="mt-5"></div>
+        
+        <div className="font-bold text-9xl leading-none">
+          tenant screening <br/>services?
+        </div>
+
+        <div className="mt-4 mb-6">
+          We need to audit them.
+        </div>
+      </div>
+    </>
+  )
+}

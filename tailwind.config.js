@@ -4,17 +4,24 @@ const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
   content: [
-    './app/helpers/**/*.rb',
-    './app/assets/stylesheets/**/*.css',
     './app/views/**/*.{html,html.erb,erb}',
-    './app/javascript/components/**/*.js',
+    './app/views/devise/**/*.{html,html.erb,erb}',
+    './app/javascript/components/**/*.{vue,js,ts,jsx,tsx}',
+    './app/javascript/**/*.{vue,js,ts,jsx,tsx}',
+    './app/**/*.{vue,js,ts,jsx,tsx}',
   ],
   theme: {
+    colors: {
+      'dark-blue-bg': '#2C2E38',
+      'white': '#FFFFFF',
+      'white-op-50': '#95969b',
+      'white-op-10': '#95969b22',
+      'light-blue': '#BEC2DA',
+      'black': '#000000',
+      'dark-blue-txt': '#202B62'
+    },
     fontFamily: {
-      'sans': ["BlinkMacSystemFont", "Avenir Next", "Avenir",
-        "Nimbus Sans L", "Roboto", "Noto Sans", "Segoe UI", "Arial", "Helvetica",
-        "Helvetica Neue", "sans-serif"],
-      'mono': ["Consolas", "Menlo", "Monaco", "Andale Mono", "Ubuntu Mono", "monospace"]
+      'sans': ["Sohne", "sans-serif"],
     },
     extend: {
     },

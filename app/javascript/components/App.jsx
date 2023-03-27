@@ -3,10 +3,11 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-
+import { store, TSSProvider } from "../providers/TSSProvider";
 import Welcome from "../routes/welcome";
 import CompaniesIndex from "../routes/companies-index";
 import ErrorPage from "../routes/error-page";
+import Container from '../components/Container'
 
 const router = createBrowserRouter([
   {
@@ -24,15 +25,19 @@ const router = createBrowserRouter([
     //     { signal: request.signal }
     //   );
     // },
-    errorElement: <ErrorPage />,
-  },
+    errorElement: <ErrorPage />
+  }
 ]);
 
 
 const App = () => {
   return (
     <React.StrictMode>
-      <RouterProvider router={router} />
+      <TSSProvider>
+        <Container>
+          <RouterProvider router={router} />
+        </Container>
+      </TSSProvider>
     </React.StrictMode>
   )
 };
