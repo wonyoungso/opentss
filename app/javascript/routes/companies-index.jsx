@@ -8,13 +8,14 @@ import Footer from "../components/Footer";
 
 const ComapniesIndex = () => {
 
-  const { windowWidth } = useContext(store);
+  const { setMenuOpen } = useContext(store);
   const navigate = useNavigate();
 
 
   useEffect(() => {
     document.title = "Tenant Screening Services Lookup Tool | OpenTSS: Countering Tenant Screening";
     document.body.className = "bg-white-bg text-dark-blue";
+    setMenuOpen(false);
   }, []);
 
   return (

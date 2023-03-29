@@ -15,11 +15,13 @@ module.exports = {
       'dark-blue-bg': '#2C2E38',
       'white-bg': '#FAFBFD',
       'white': '#FFFFFF',
+      'white-op-70': '#777777',
       'white-op-50': '#999999',
       'white-op-10': '#99999922',
       'light-blue': '#DCE0F8',
       'black': '#000000',
-      'dark-blue': '#202B62'
+      'dark-blue': '#202B62',
+      'dark-blue-op-20': '#202B6222'
     },
     fontFamily: {
       'sans': ["Sohne", "sans-serif"],

@@ -8,12 +8,13 @@ import Footer from "../components/Footer";
 
 const About = () => {
 
-  const { windowWidth } = useContext(store);
+  const { setMenuOpen } = useContext(store);
   const navigate = useNavigate();
 
   useEffect(() => {
     document.title = "About This Project | OpenTSS: Countering Tenant Screening";
     document.body.className = "bg-black text-white";
+    setMenuOpen(false);
   }, []);
   
 
