@@ -6,14 +6,14 @@ import { store } from "../providers/TSSProvider";
 import {useNavigate} from 'react-router-dom';
 import Footer from "../components/Footer";
 
-const ComapniesIndex = () => {
+const SubmissionsIndex = () => {
 
   const { windowWidth } = useContext(store);
   const navigate = useNavigate();
 
 
   useEffect(() => {
-    document.title = "Tenant Screening Services Lookup Tool | OpenTSS: Countering Tenant Screening";
+    document.title = "Retrieve Your Submission | OpenTSS: Countering Tenant Screening";
     document.body.className = "bg-white-bg text-dark-blue";
   }, []);
 
@@ -25,4 +25,4 @@ const ComapniesIndex = () => {
   );
 };
 
-export default ComapniesIndex;
+export default SubmissionsIndex;

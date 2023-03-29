@@ -13,12 +13,13 @@ module.exports = {
   theme: {
     colors: {
       'dark-blue-bg': '#2C2E38',
+      'white-bg': '#FAFBFD',
       'white': '#FFFFFF',
-      'white-op-50': '#95969b',
-      'white-op-10': '#95969b22',
-      'light-blue': '#BEC2DA',
+      'white-op-50': '#999999',
+      'white-op-10': '#99999922',
+      'light-blue': '#DCE0F8',
       'black': '#000000',
-      'dark-blue-txt': '#202B62'
+      'dark-blue': '#202B62'
     },
     fontFamily: {
       'sans': ["Sohne", "sans-serif"],

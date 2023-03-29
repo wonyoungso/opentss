@@ -6,8 +6,12 @@ Rails.application.routes.draw do
     resources :companies
   end
 
-  get '/tss-companies', to: 'welcome#index', as: 'tss-comapnies'
-  get '/tss-companies/:id', to: 'welcome#index', as: 'tss-company'
+  resources :companies
+  resources :submissions
+
+  get "/how-tss-works", to: "welcome#how_tss_works", as: "how-tss-works"
+  get "/request-copy", to: "welcome#request_copy", as: "request-copy"
+  get "/about", to: "welcome#about", as: "about"
 
   root "welcome#index"
   

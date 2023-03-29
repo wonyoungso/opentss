@@ -6,23 +6,22 @@ import { store } from "../providers/TSSProvider";
 import {useNavigate} from 'react-router-dom';
 import Footer from "../components/Footer";
 
-const ComapniesIndex = () => {
+const About = () => {
 
   const { windowWidth } = useContext(store);
   const navigate = useNavigate();
 
-
   useEffect(() => {
-    document.title = "Tenant Screening Services Lookup Tool | OpenTSS: Countering Tenant Screening";
-    document.body.className = "bg-white-bg text-dark-blue";
+    document.title = "About This Project | OpenTSS: Countering Tenant Screening";
+    document.body.className = "bg-black text-white";
   }, []);
+  
 
   return (
     <>
-      <Header bg="bright" />
-      <Footer bg="bright" />
+      <Header bg="black" />
     </>
   );
 };
 
-export default ComapniesIndex;
+export default About;

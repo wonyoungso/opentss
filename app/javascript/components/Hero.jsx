@@ -27,24 +27,64 @@ const heroImages = [
     img_url: transunion_01,
     width: 300,
     description: <>TransUnion ResidentScore.</>
+  },
+  {
+    img_url: saferent_01,
+    width: 250,
+    description: <>MyRental Sample Report.</>
+  },
+  {
+    img_url: saferent_score_01,
+    width: 400,
+    description: <>SafeRent Score.</>
+  },
+  {
+    img_url: saferent_score_02,
+    width: 400,
+    description: <>List of data that SafeRent collects.</>
+  },
+  {
+    img_url: transunion_01,
+    width: 300,
+    description: <>TransUnion ResidentScore.</>
+  },
+  {
+    img_url: saferent_01,
+    width: 250,
+    description: <>MyRental Sample Report.</>
+  },
+  {
+    img_url: saferent_score_01,
+    width: 400,
+    description: <>SafeRent Score.</>
+  },
+  {
+    img_url: saferent_score_02,
+    width: 400,
+    description: <>List of data that SafeRent collects.</>
+  },
+  {
+    img_url: transunion_01,
+    width: 300,
+    description: <>TransUnion ResidentScore.</>
   }
 ]
 
 export default function Hero(){
   return (  
     <>
-      <div className="container mx-auto max-w-7xl mt-2 mb-2 px-12">
+      <div className="container mx-auto px-5">
         <div className="mt-5"></div>
         Have you ever <br/> 
-        screened by
+        been screened by...
       </div>
       <div className="p-0 overflow-hidden">
-        <div className="w-[2500px] h-[500px] flex items-end pb-5 px-12">
+        <div className="h-[400px] flex items-end pb-5" style={{width: 10000 }}>
           
           {
             _.map(heroImages, heroImage => {
               return (
-                <div className={`mr-5 last:mr-0`} style={{width: heroImage.width}} key={heroImage.img_url}>
+                <div className="mr-5 last:mr-0" style={{width: heroImage.width}} key={heroImage.img_url}>
                   <div>
                     <img src={heroImage.img_url} alt="SafeRent Score" />
                   </div>
@@ -59,10 +99,10 @@ export default function Hero(){
         </div>
       </div>  
 
-      <div className="container mx-auto max-w-7xl mt-2 mb-2 px-12">
+      <div className="container mx-auto px-5">
         <div className="mt-5"></div>
         
-        <div className="font-bold text-9xl leading-none">
+        <div className="font-bold text-6xl md:text-7xl lg:text-9xl leading-none">
           tenant screening <br/>services?
         </div>
 
