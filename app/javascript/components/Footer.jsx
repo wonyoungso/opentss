@@ -19,7 +19,7 @@ const Footer = (props) => {
               Who are we?
             </h3>
             <p className="text-white-op-50">
-              We are researchers at MIT who want to address the challenges of knowing inner algorithms and representations and bias of tenant screening algorithms. 
+              We are MIT researchers who address the challenges related to gaining insight into the internal algorithms, representations, and biases of tenant screening algorithms.
             </p>
 
             <div className="pt-5">
@@ -32,7 +32,7 @@ const Footer = (props) => {
               Who supports this project?
             </h3>
             <p className="text-white-op-50">
-              This study is supported by <a className="underline" href="https://foundation.mozilla.org/en/what-we-fund/awards/mozilla-technology-fund-mtf/" target="_blank">the Mozilla Technology Fund</a>, with special thanks to <a href="https://idss.mit.edu/" target="_blank" className="underline">MIT IDSS</a> and <a href="https://dataplusfeminism.mit.edu" target="_blank" className="underline">the Data + Feminism Lab at MIT</a>.
+              This project is made possible by the generous support of <a className="underline" href="https://foundation.mozilla.org/en/what-we-fund/awards/mozilla-technology-fund-mtf/" target="_blank">the Mozilla Technology Fund</a>, and we extend our gratitude to <a href="https://idss.mit.edu/" target="_blank" className="underline">MIT IDSS</a> and <a href="https://dataplusfeminism.mit.edu" target="_blank" className="underline">the Data + Feminism Lab at MIT</a>.
             </p>
           
             <div className="mt-5 flex items-center">

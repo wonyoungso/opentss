@@ -11,6 +11,7 @@ import ErrorPage from "../routes/error-page";
 import HowTSSWorks from "../routes/how-tss-works";
 import RequestCopy from "../routes/request-copy";
 import RequestCopyNew from "../routes/request-copy-new";
+import RequestCopyResult from "../routes/request-copy-result";
 import SubmissionsIndex from "../routes/submissions-index";
 import SubmissionsNew from '../routes/submissions-new';
 import About from '../routes/about';
@@ -44,6 +45,21 @@ const router = createBrowserRouter([
       const response = await fetch(`/api/companies.json`);
       const companies = await response.json();
       return { companies };
+    },
+    errorElement: <ErrorPage />
+  },
+  {
+    path: "/request-copy/:type/:arg",
+    element: <RequestCopyResult />,
+    loader: async ({ request, params }) => {
+      if (params.type === "companies") {
+        const response = await fetch(`/api/companies/${params.arg}/request-copy.json`);
+        const result = await response.json();
+        return result;
+      } else {
+        return {};
+      }
+
     },
     errorElement: <ErrorPage />
   },

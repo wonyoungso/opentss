@@ -9,61 +9,73 @@ import transunion_01 from "../assets/transunion_01.png";
 
 const heroImages = [
   {
+    id: 1,
     img_url: saferent_01,
     width: 250,
     description: <>MyRental Sample Report.</>
   },
   {
+    id: 2,
     img_url: saferent_score_01,
     width: 400,
     description: <>SafeRent Score.</>
   },
   {
+    id: 3,
     img_url: saferent_score_02,
     width: 400,
     description: <>List of data that SafeRent collects.</>
   },
   {
+    id: 4,
     img_url: transunion_01,
     width: 300,
     description: <>TransUnion ResidentScore.</>
   },
   {
+    id: 5,
     img_url: saferent_01,
     width: 250,
     description: <>MyRental Sample Report.</>
   },
   {
+    id: 6,
     img_url: saferent_score_01,
     width: 400,
     description: <>SafeRent Score.</>
   },
   {
+    id: 7,
     img_url: saferent_score_02,
     width: 400,
     description: <>List of data that SafeRent collects.</>
   },
   {
+    id: 8,
     img_url: transunion_01,
     width: 300,
     description: <>TransUnion ResidentScore.</>
   },
   {
+    id: 9,
     img_url: saferent_01,
     width: 250,
     description: <>MyRental Sample Report.</>
   },
   {
+    id: 10,
     img_url: saferent_score_01,
     width: 400,
     description: <>SafeRent Score.</>
   },
   {
+    id: 11,
     img_url: saferent_score_02,
     width: 400,
     description: <>List of data that SafeRent collects.</>
   },
   {
+    id: 12,
     img_url: transunion_01,
     width: 300,
     description: <>TransUnion ResidentScore.</>
@@ -84,7 +96,7 @@ export default function Hero(){
           {
             _.map(heroImages, heroImage => {
               return (
-                <div className="mr-5 last:mr-0" style={{width: heroImage.width}} key={heroImage.img_url}>
+                <div className="mr-5 last:mr-0" style={{width: heroImage.width}} key={heroImage.id}>
                   <div>
                     <img src={heroImage.img_url} alt="SafeRent Score" />
                   </div>

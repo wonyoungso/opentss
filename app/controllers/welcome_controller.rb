@@ -19,6 +19,11 @@ class WelcomeController < ApplicationController
     render layout: 'application', template: "welcome/index"
   end
 
+  def request_result
+    @title = "Request a Copy of Tenant Screening Report | OpenTSS: Countering Tenant Screening"
+    render layout: 'application', template: "welcome/index"
+  end
+
   def about
     @title = "About This Project | OpenTSS: Countering Tenant Screening"
     render layout: 'application', template: "welcome/index"

@@ -18,6 +18,7 @@ import _ from 'lodash';
 const RequestCopyNew = () => {
 
   const { setMenuOpen } = useContext(store);
+  const navigate = useNavigate();
   const { companies } = useLoaderData();
   const [findNameStatus, setFindNameStatus] = useState(false);
   const [companyName, setCompanyName] = useState('');
@@ -47,9 +48,17 @@ const RequestCopyNew = () => {
       // user should choose
       return _.isNull(selectedCompany);
     }
+  };
 
-    return true;
-  }
+  const goToNextStep = () => {
+    if (findNameStatus) {
+      navigate(`/request-copy/custom-form/${companyName}`);
+    } else {
+      navigate(`/request-copy/companies/${selectedCompany.id}`);
+    }
+  };
+
+
 
   return (
     <>
@@ -57,11 +66,11 @@ const RequestCopyNew = () => {
       <div className="container mx-auto px-5">
         <div className="lg:grid lg:grid-cols-6 lg:gap-5">
           <div>
-            Identify the tenant screening service
+            Step 1. Identify the tenant screening service
           </div>
           <div className="lg:col-span-3">
             <h2 className="font-bold text-4xl">
-              Which is the tenant screening company you are screened?
+              Which is the tenant screening company you were screened?
             </h2>
             <p className="my-2">
               This is a tool that guides you through a process of requesting a letter to tenant screening services.
@@ -80,14 +89,14 @@ const RequestCopyNew = () => {
               findNameStatus ?
               <FormControl>
                 <FormLabel>Enter the name of the tenant screening company</FormLabel>
-                <Input value={companyName} onChange={(e) => { setCompanyName(e.target.value)}} />
+                <Input value={companyName} placeholder="e.g., TransUnion" onChange={(e) => { setCompanyName(e.target.value)}} />
                 <div className="h-5"></div>
               </FormControl>
               : null
             }
             
             <FormControl>
-              <Button disabled={checkStatus()} size="lg">
+              <Button disabled={checkStatus()} onClick={goToNextStep} size="lg">
                 Next
               </Button>  
             </FormControl>
