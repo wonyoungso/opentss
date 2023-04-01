@@ -93,6 +93,23 @@ const theme = extendTheme({
     body: 'Sohne, sans-serif',
   },
   components: {
+    JoyInput: {
+      styleOverrides: {
+        root: ({ ownerState, theme }) => ({
+          ...(ownerState.color === 'primary' && {
+            color: "#202B62",
+            backgroundColor: "#FFFFFF",
+            borderColor: "#202B6222",
+            "&:disabled":{
+              backgroundColor: "#DDDDDD",
+            },
+            "&:hover": {
+              backgroundColor: "#FFFFFF",
+            }
+          }),
+        }),
+      },
+    },
     JoyButton: {
       styleOverrides: {
         root: ({ ownerState, theme }) => ({

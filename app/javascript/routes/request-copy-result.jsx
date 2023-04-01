@@ -6,11 +6,12 @@ import { store } from "../providers/TSSProvider";
 import {useNavigate, useLoaderData } from 'react-router-dom';
 import Footer from "../components/Footer";
 import Autocomplete from '@mui/joy/Autocomplete';
-import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import Checkbox from '@mui/joy/Checkbox';
+import FormControl from '@mui/joy/FormControl';
 import FormHelperText from '@mui/joy/FormHelperText';
 import Input from '@mui/joy/Input';
+import PDFFillingForm from "../components/PDFFillingForm";
 import { Button } from "@mui/joy";
 import _ from 'lodash';
 
@@ -56,7 +57,7 @@ const RequestCopyResult = () => {
                 </FormControl>
               </>:
               <>
-
+                <PDFFillingForm company={company} />
               </>
             }
           </div>

@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   resources :submissions
 
   get "/how-tss-works", to: "welcome#how_tss_works", as: "how-tss-works"
-  get "/request-copy", to: "welcome#request_copy", as: "request-copy"
+  get "/request-copy", to: "welcome#request_copy", as: "request-copy-get"
   get "/request-copy/new", to: "welcome#request_copy_new", as: "request-copy-new"
   get "/request-copy/:type/:arg", to: "welcome#request_result", as: "request-copy-result"
   get "/about", to: "welcome#about", as: "about"

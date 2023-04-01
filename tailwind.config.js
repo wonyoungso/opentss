@@ -21,7 +21,8 @@ module.exports = {
       'light-blue': '#DCE0F8',
       'black': '#000000',
       'dark-blue': '#202B62',
-      'dark-blue-op-20': '#202B6222'
+      'dark-blue-op-20': '#202B6222',
+      'red': '#FF0000'
     },
     fontFamily: {
       'sans': ["Sohne", "sans-serif"],
