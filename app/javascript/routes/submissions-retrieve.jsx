@@ -6,7 +6,7 @@ import { store } from "../providers/TSSProvider";
 import {useNavigate} from 'react-router-dom';
 import Footer from "../components/Footer";
 
-const SubmissionsIndex = () => {
+const SubmissionsRetrieve = () => {
 
   const { setMenuOpen } = useContext(store);
   const navigate = useNavigate();
@@ -26,4 +26,4 @@ const SubmissionsIndex = () => {
   );
 };
 
-export default SubmissionsIndex;
+export default SubmissionsRetrieve;

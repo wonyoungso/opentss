@@ -1,16 +1,14 @@
 import * as React from "react";
 import { useContext, useEffect } from "react";
-import { Link } from "react-router-dom";
 import Header from "../components/Header";
+import ConsentForm from "../components/ConsentForm";
 import { store } from "../providers/TSSProvider";
-import {useNavigate} from 'react-router-dom';
-import Footer from "../components/Footer";
+import UploadReport from "../components/UploadReport";
+import TenantDemographics from "../components/TenantDemographics";
 
 const SubmissionsNew = () => {
 
-  const { setMenuOpen } = useContext(store);
-  const navigate = useNavigate();
-
+  const { setMenuOpen, submissionStep } = useContext(store);
 
   useEffect(() => {
     document.title = "Submit Your Report | OpenTSS: Countering Tenant Screening";
@@ -18,10 +16,25 @@ const SubmissionsNew = () => {
     setMenuOpen(false);
   }, []);
 
+  const renderStep = () => {
+    if (submissionStep == 1) {
+      return <ConsentForm />;
+    } else if (submissionStep == 2) {
+      return <UploadReport />;
+    } else if (submissionStep == 3) {
+      return <TenantDemographics />;
+    } else {
+      return <></>;
+    }
+  }
+
+
   return (
     <>
       <Header bg="bright" />
-      <Footer bg="bright" />
+      {
+        renderStep()
+      }
     </>
   );
 };

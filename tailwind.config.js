@@ -15,13 +15,14 @@ module.exports = {
       'dark-blue-bg': '#2C2E38',
       'white-bg': '#FAFBFD',
       'white': '#FFFFFF',
-      'white-op-70': '#777777',
+      'white-op-70': '#666666',
       'white-op-50': '#999999',
       'white-op-10': '#99999922',
       'light-blue': '#DCE0F8',
       'black': '#000000',
       'dark-blue': '#202B62',
       'dark-blue-op-20': '#202B6222',
+      'dark-blue-op-10': '#202B6210',
       'red': '#FF0000'
     },
     fontFamily: {

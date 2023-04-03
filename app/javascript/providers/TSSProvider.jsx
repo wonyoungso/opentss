@@ -3,12 +3,17 @@ import React, {createContext, useReducer} from 'react';
 const initialState = {
   windowWidth: 1024,
   windowHeight: 768,
+  submissionStep: 1,
+  submission: null,
   menuOpen: false
 }
 
 const actions = {
   SET_WINDOW_DIMENSION: "SET_WINDOW_DIMENSION",
-  SET_MENU_OPEN: "SET_MENU_OPEN"
+  SET_MENU_OPEN: "SET_MENU_OPEN",
+  SET_SUBMISSION_STEP: "SET_SUBMISSION_STEP",
+  SET_SUBMISSION: "SET_SUBMISSION"
+
 }
 
 const reducer = (state, action) => {
@@ -23,6 +28,16 @@ const reducer = (state, action) => {
       return {
         ...state,
         menuOpen: action.menuOpen
+      }
+    case actions.SET_SUBMISSION_STEP:
+      return {
+        ...state,
+        submissionStep: action.submissionStep
+      }
+    case actions.SET_SUBMISSION:
+      return {
+        ...state,
+        submission: action.submission
       }
     default:
       return state;
@@ -39,6 +54,8 @@ const TSSProvider = ({ children }) => {
     windowWidth: state.windowWidth,
     windowHeight: state.windowHeight,
     menuOpen: state.menuOpen,
+    submission: state.submission,
+    submissionStep: state.submissionStep,
     setWindowDimension: (value) => {
       dispatch({ 
         type: actions.SET_WINDOW_DIMENSION, 
@@ -50,6 +67,18 @@ const TSSProvider = ({ children }) => {
       dispatch({
         type: actions.SET_MENU_OPEN,
         menuOpen: menuOpen
+      })
+    },
+    setSubmissionStep: (submissionStep) => {
+      dispatch({
+        type: actions.SET_SUBMISSION_STEP,
+        submissionStep: submissionStep
+      })
+    },
+    setSubmission: (submission) => {
+      dispatch({
+        type: actions.SET_SUBMISSION,
+        submission: submission
       })
     }
   }

@@ -60,7 +60,7 @@ export default function Header(props) {
                 </div>
 
                 <div className="mt-5">
-                  <Link to="/submissions/new" className="text-lg leading-none">
+                  <Link to="/submissions" className="text-lg leading-none">
                     Submit your <span className="font-bold">tenant screening report</span> <br/>
                     for research
                   </Link>
@@ -70,7 +70,7 @@ export default function Header(props) {
               </div>
               <div className="col-span-2 lg:col-span-3">
                 <div>     
-                  <Link to="/submissions" className="text-sm">
+                  <Link to="/submissions/retrieve" className="text-sm">
                     Retrieve your submission
                   </Link><br/>
                   <Link to="/about" className="text-sm">
@@ -105,7 +105,7 @@ export default function Header(props) {
                 Request a copy
               </Link>
 
-              <Link to="/submissions/new" className="hidden lg:block">
+              <Link to="/submissions" className="hidden lg:block">
                 Submit your report
               </Link>
               

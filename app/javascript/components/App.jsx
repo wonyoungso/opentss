@@ -12,8 +12,9 @@ import HowTSSWorks from "../routes/how-tss-works";
 import RequestCopy from "../routes/request-copy";
 import RequestCopyNew from "../routes/request-copy-new";
 import RequestCopyResult from "../routes/request-copy-result";
-import SubmissionsIndex from "../routes/submissions-index";
-import SubmissionsNew from '../routes/submissions-new';
+import SubmissionsRetrieve from "../routes/submissions-retrieve";
+import Submissions from '../routes/submissions';
+import SubmissionsNew from "../routes/submissions-new";
 import About from '../routes/about';
 import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
 
@@ -64,13 +65,18 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />
   },
   {
+    path: "/submissions",
+    element: <Submissions />,
+    errorElement: <ErrorPage />
+  },
+  {
     path: "/submissions/new",
     element: <SubmissionsNew />,
     errorElement: <ErrorPage />
   },
   {
-    path: "/submissions",
-    element: <SubmissionsIndex />,
+    path: "/submissions/retrieve",
+    element: <SubmissionsRetrieve />,
     errorElement: <ErrorPage />
   },
   {
@@ -93,6 +99,22 @@ const theme = extendTheme({
     body: 'Sohne, sans-serif',
   },
   components: {
+    JoyRadio: {
+      styleOverrides: {
+        root: ({ ownerState, theme }) => ({
+          ...(ownerState.color === 'primary' && {
+            outlineColor: "#202B62",
+            borderColor: "#202B6222",
+            "&:checked": {
+              color: "#202B62"
+            },
+            "&:disabled":{
+              backgroundColor: "#DDDDDD",
+            }
+          }),
+        }),
+      },
+    },
     JoyInput: {
       styleOverrides: {
         root: ({ ownerState, theme }) => ({
