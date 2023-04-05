@@ -2,10 +2,13 @@ const defaultSubmission = {
   consented: true,
   consented_at: new Date(),
   files: [],
-  gender: '',
-  genderFreeform: '',
-  ethnicity: '',
-  race: ''
+  gender: "",
+  is_hispanic_or_latino: "",
+  race: "",
+  age: "",
+  partner: "",
+  dependents: "",
+  income: ""
 }
 
 export default defaultSubmission;

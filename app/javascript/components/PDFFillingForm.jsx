@@ -29,7 +29,7 @@ const PDFFillingForm = (props) => {
     });
 
     const pdfBytes = await pdfDoc.save();
-    saveAs(new Blob([pdfBytes], {type: "application/pdf"}), `amrent_request_form.pdf`);
+    saveAs(new Blob([pdfBytes], {type: "application/pdf"}), `${company.name}_request_form.pdf`);
   }
 
   return (
@@ -57,7 +57,7 @@ const PDFFillingForm = (props) => {
                     )
                   } 
                   placeholder={field.placeholder} />
-                <FormHelperText>
+                 <FormHelperText>
                   {
                     errors[field.label] ? 
                     <span className="text-red">{errors[field.label].message}</span> : 
