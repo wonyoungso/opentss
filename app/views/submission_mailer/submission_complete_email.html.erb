@@ -1,44 +1,126 @@
-<h1>
-  <%= link_to "OpenTSS: Countering Tenant Screening", root_url %>
-</h1>
-<h2>Your submission of your tenant screening report is complete.</h2>
-
-<p>
-  Thank you very much! We will send a $50 visa gift card as soon as we check your record is complete.
-</p>
-
-
-<h2>
-  What's next?
-</h2>
-
-<p>
-  You will be receiving a $50 visa gift card to your email (<%= @submission.email %>). Check your inbox in 1-2 days.
-</p>
-
-<p>
-  In the email, you can choose either you receive digital gift card or physical gift card. If you choose to receive the physical card, you will be asked to enter your address.
-</p>
-
-
-<h2>
-  How can I check the status of my submission?
-</h2>
-
-<p>
-  Using <%= link_to "this link", submissions_retrieve_url %> to check your submission status. You will be asked to enter your email, then we will send a secure link to retrieve the status of your submission.
-</p>
-
-
-<h2>
-  How can I reach out to you?
-</h2>
-
-<p>
-  Just reply to this email! we will respond as soon as we have your email.
-</p>
-
-
-<p>
-  <%= link_to "OpenTSS: Countering Tenant Screening", root_url %>
-</p>
+<!DOCTYPE html>
+<html lang="en" xmlns:v="urn:schemas-microsoft-com:vml">
+<head>
+  <meta charset="utf-8">
+  <meta name="x-apple-disable-message-reformatting">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="format-detection" content="telephone=no, date=no, address=no, email=no, url=no">
+  <meta name="color-scheme" content="light dark">
+  <meta name="supported-color-schemes" content="light dark">
+  <!--[if mso]>
+  <noscript>
+    <xml>
+      <o:OfficeDocumentSettings xmlns:o="urn:schemas-microsoft-com:office:office">
+        <o:PixelsPerInch>96</o:PixelsPerInch>
+      </o:OfficeDocumentSettings>
+    </xml>
+  </noscript>
+  <style>
+    td,th,div,p,a,h1,h2,h3,h4,h5,h6 {font-family: "Segoe UI", sans-serif; mso-line-height-rule: exactly;}
+  </style>
+  <![endif]-->
+  <title>Your submission of tenant screening reports is completed :: OpenTSS: Countering Tenant Screening</title>
+  <style>
+    .hover-important-text-decoration-underline:hover {
+      text-decoration: underline !important
+    }
+    @media (max-width: 600px) {
+      .sm-my-8 {
+        margin-top: 32px !important;
+        margin-bottom: 32px !important
+      }
+      .sm-px-4 {
+        padding-left: 16px !important;
+        padding-right: 16px !important
+      }
+      .sm-px-6 {
+        padding-left: 24px !important;
+        padding-right: 24px !important
+      }
+      .sm-leading-8 {
+        line-height: 32px !important
+      }
+    }
+  </style>
+</head>
+<body style="margin: 0; width: 100%; background-color: #FAFBFD; padding: 0; -webkit-font-smoothing: antialiased; word-break: break-word">
+  <div role="article" aria-roledescription="email" aria-label="Your submission of tenant screening reports is complete :: OpenTSS: Countering Tenant Screening" lang="en">
+    <div class="sm-px-4" style="background-color: #FAFBFD; font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif">
+      <table align="center" cellpadding="0" cellspacing="0" role="presentation">
+        <tr>
+          <td style="width: 552px; max-width: 100%">
+            <div class="sm-my-8" style="margin-top: 48px; margin-bottom: 48px; text-align: left">
+              <a href="<%= root_url %>">
+                <img src="<%= image_url("opentss_logo.png") %>" width="75" alt="OpenTSS: Countering Tenant Screening" style="max-width: 100%; vertical-align: middle; line-height: 1; border: 0">
+              </a>
+            </div>
+            <table style="width: 100%;" cellpadding="0" cellspacing="0" role="presentation">
+              <tr>
+                <td class="sm-px-6" style="border-radius: 4px; background-color: #FFFFFF; padding: 48px; font-size: 16px; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05)">
+                  <h1 class="sm-leading-8" style="margin: 0 0 24px; font-size: 24px; font-weight: 600; color: #202B62">
+                    Please confirm your email address to ensure that this email address belongs to you.
+                  </h1>
+                  <p style="margin: 0; line-height: 24px; color: #666666">
+                    Thank you very much! We have received and processed your tenant screening report. In the meantime, please confirm your email address.
+                  </p>
+                  <div role="separator" style="line-height: 24px">&zwj;</div>
+                  <div>
+                    <a href="https://maizzle.com" style="display: inline-block; border-radius: 4px; background-color: #202B6222; padding: 16px 24px; font-size: 16px; font-weight: 600; line-height: 1; color: #202B62; text-decoration: none">
+                      <!--[if mso]>
+      <i style="mso-font-width: -100%; letter-spacing: 32px; mso-text-raise: 30px" hidden>&nbsp;</i>
+    <![endif]-->
+                      <span style="mso-text-raise: 16px">
+                  Confirm email address &rarr;
+                </span>
+                      <!--[if mso]>
+      <i style="mso-font-width: -100%; letter-spacing: 32px;" hidden>&nbsp;</i>
+    <![endif]-->
+                    </a>
+                  </div>
+                  <div role="separator" style="height: 1px; line-height: 1px; margin: 24px 0">&zwj;</div>
+                  <h2 class="sm-leading-8" style="margin: 0 0 12px; font-size: 20px; font-weight: 600; color: #202B62">
+                    What's next?
+                  </h2>
+                  <p style="margin: 0; color: #666666;">
+                    You will be receiving a $50 visa gift card to your email (<%= @submission.email %>). Check your inbox in 1-2 days. Please note that we manually check individual records to check each submission.<br><br>
+                    In the email, you can choose either you receive digital gift card or physical gift card. If you choose to receive the physical card, you will be asked to enter your address.
+                  </p>
+                  <div role="separator" style="line-height: 24px">&zwj;</div>
+                  <h2 class="sm-leading-8" style="margin: 0 0 12px; font-size: 20px; font-weight: 600; color: #202B62">
+                    How can I check the status of my submission?
+                  </h2>
+                  <p style="margin: 0; color: #666666;">
+                    To check the status of your submission, use the following <a href="#" style="color: #202B62; text-decoration: underline">link</a>. You will be prompted to enter your email address, and then we will send a secure link to retrieve the status of your submission.
+                  </p>
+                  <div role="separator" style="line-height: 24px">&zwj;</div>
+                  <h2 class="sm-leading-8" style="margin: 0 0 12px; font-size: 20px; font-weight: 600; color: #202B62">
+                    How can I reach out to you?
+                  </h2>
+                  <p style="margin: 0; color: #666666;">
+                    Just reply to <a href="mailto:contact@opentss.net" class="hover-important-text-decoration-underline" style="color: #202B62; text-decoration: underline;">this email</a>! we will respond as soon as we have your email.
+                  </p>
+                </td>
+              </tr>
+              <tr role="separator">
+                <td style="line-height: 48px">&zwj;</td>
+              </tr>
+              <tr>
+                <td style="padding-left: 24px; padding-right: 24px; text-align: left; font-size: 12px">
+                  <p style="margin: 0 0 16px; text-transform: uppercase">
+                    OpenTSS: Countering Tenant Screening
+                  </p>
+                  <p style="cursor: default">
+                    <a href="<%= about_url %>" class="hover-important-text-decoration-underline" style="color: #202B62; text-decoration: underline;">About this project</a>
+                    &bull;
+                    <a href="mailto:contact@opentss.net" class="hover-important-text-decoration-underline" style="color: #202B62; text-decoration: underline;">Email us</a>
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</body>
+</html>

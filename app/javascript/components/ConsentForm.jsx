@@ -15,7 +15,7 @@ import FormHelperText from '@mui/joy/FormHelperText';
 const ConsentForm = () => {
 
   const { submission, setSubmission, setSubmissionStep } = useContext(store);
-  const { register, handleSubmit, formState: { isValid, isDirty, errors } } = useForm({ 
+  const { register, handleSubmit, watch, formState: { isValid, isDirty, errors } } = useForm({ 
     mode: "onChange",
     defaultValues: submission
   });
@@ -36,6 +36,13 @@ const ConsentForm = () => {
   }
 
   const goBack = () => {
+    const printedNameValue = watch("printed_name");
+
+    setSubmission({
+      ...submission,
+      printed_name: printedNameValue
+    });
+
     window.scrollTo(0, 0);
     navigate("/submissions");
   }

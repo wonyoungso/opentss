@@ -4,7 +4,7 @@ import defaultSubmission from "./default_submission";
 const initialState = {
   windowWidth: 1024,
   windowHeight: 768,
-  submissionStep: 1,
+  submissionStep: 5,
   submission: defaultSubmission,
   menuOpen: false
 }

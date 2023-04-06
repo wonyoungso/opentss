@@ -19,6 +19,7 @@ const UploadReport = () => {
   }
   const goBack = () => {
     window.scrollTo(0, 0);
+    
     setSubmissionStep(1);
   }
 

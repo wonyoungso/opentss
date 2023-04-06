@@ -184,9 +184,23 @@ const FinalStep = () => {
             <h2 className="font-bold text-4xl">
               Thank you very much! We will send a gift card as soon as we check your submission is complete.
             </h2>
-            <div className="py-5">
-              We have sent a confirmation email for your submission. You can check the status of your gift card delivery through the email. You will receive a $50 gift card via email, so please check your inbox in 1-2 days.
+            <div className="py-3">
+              <span className="font-bold">Please confirm your email address:</span> We have received and processed your tenant screening report. In the meantime, please confirm your email address through the email we just sent.
             </div>
+
+            <div className="py-3">
+              <span className="font-bold">What's next?</span> You will be receiving a $50 visa gift card to your email ({submission.email}). Check your inbox in 1-2 days. Please note that we manually check individual records to check each submission. In the email, you can choose either you receive digital gift card or physical gift card. If you choose to receive the physical card, you will be asked to enter your address.
+            </div>
+
+            <div className="py-3">
+              <span className="font-bold">How can I check the status of my submission?</span> To check the status of your submission, use the following <a href="#">link</a>. You will be prompted to enter your email address, and then we will send a secure link to retrieve the status of your submission.
+            </div>
+
+
+            <div className="py-3">
+              <span className="font-bold">How can I reach out to you?</span> Please send an email to <a href="mailto:contact@opentss.net">contact@opentss.net</a>! we will respond as soon as we have your email.
+            </div>
+
 
             <FormControl>
               <Button onClick={() => { navigate("/")}}>Go to First Page</Button>
