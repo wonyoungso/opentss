@@ -24,6 +24,7 @@ const ConsentForm = () => {
   
   const goToNextStep = (data) => {
 
+    window.scrollTo(0, 0);
     setSubmission({
       ...submission,
       consented: true,
@@ -35,6 +36,7 @@ const ConsentForm = () => {
   }
 
   const goBack = () => {
+    window.scrollTo(0, 0);
     navigate("/submissions");
   }
 

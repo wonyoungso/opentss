@@ -27,10 +27,12 @@ const ApplicationChars = () => {
   const [voucherShow, setVoucherShow] = useState(false);
 
   const goBack = () => {
+    window.scrollTo(0, 0);
     setSubmissionStep(3);
   }
 
   const onSubmit = (data) => {
+    window.scrollTo(0, 0);
     setSubmission({
       ...submission,
       accepted: data.accepted,
@@ -44,6 +46,7 @@ const ApplicationChars = () => {
       property_address: data.property_address,
       property_address_city: data.property_address_city,
       property_address_state: data.property_address_state,
+      property_address_zipcode: data.property_address_zipcode,
       experience_freeform: data.experience_freeform,
       interview_possible: data.interview_possible
     })
@@ -355,7 +358,7 @@ const ApplicationChars = () => {
                     {
                       errors["property_address_city"] ? 
                       <span className="text-red">{errors["property_address_city"].message}</span> : 
-                      <>Required.. </>
+                      <>Required. </>
                     }
                   </FormHelperText>
                 </FormControl>

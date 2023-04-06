@@ -102,12 +102,7 @@ const FinalStep = () => {
                       ...register("email", 
                         { 
                           required: {value: true, message: "This field is required." },
-                          pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: "This field only allows email address (e.g., john@doe.com)"},
-                          validate: (val) => {
-                            if (watch('email_confirm') != val) {
-                              return "Your email does not match.";
-                            }
-                          }
+                          pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: "This field only allows email address (e.g., john@doe.com)"}
                         }
                       )
                     }  />

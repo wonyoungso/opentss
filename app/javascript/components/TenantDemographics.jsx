@@ -23,10 +23,12 @@ const TenantDemographics = () => {
   });
 
   const goBack = () => {
+    window.scrollTo(0, 0);
     setSubmissionStep(2);
   }
 
   const onSubmit = (data) => {
+    window.scrollTo(0, 0);
     setSubmission({
       ...submission,
       gender: data.gender,

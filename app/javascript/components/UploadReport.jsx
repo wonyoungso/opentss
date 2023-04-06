@@ -14,9 +14,11 @@ const UploadReport = () => {
   const { submission, setSubmission, setSubmissionStep } = useContext(store);
   
   const goToNextStep = () => {
+    window.scrollTo(0, 0);
     setSubmissionStep(3);
   }
   const goBack = () => {
+    window.scrollTo(0, 0);
     setSubmissionStep(1);
   }
 
@@ -94,6 +96,9 @@ const UploadReport = () => {
                   )
                 })
               }
+              
+              <div className="h-60"></div>
+
 
 
             </div>
