@@ -19,6 +19,10 @@ gem "puma", "~> 5.0"
 gem "vite_rails"
 gem "vite_ruby"
 
+gem "devise"
+gem "cancancan"
+
+gem 'dotenv-rails'
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails"
 gem 'rails_admin', '~> 3.0'

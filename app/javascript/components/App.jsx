@@ -99,6 +99,23 @@ const theme = extendTheme({
     body: 'Sohne, sans-serif',
   },
   components: {
+    JoySelect: {
+      styleOverrides: {
+        root: ({ ownerState, theme }) => ({
+          ...(ownerState.color === 'primary' && {
+            color: "#202B62",
+            outlineColor: "#202B62",
+            borderColor: "#202B6222",
+            "&:checked": {
+              color: "#202B62"
+            },
+            "&:disabled":{
+              backgroundColor: "#DDDDDD",
+            }
+          }),
+        }),
+      },
+    },
     JoyRadio: {
       styleOverrides: {
         root: ({ ownerState, theme }) => ({
@@ -132,6 +149,23 @@ const theme = extendTheme({
         }),
       },
     },
+    JoyTextarea: {
+      styleOverrides: {
+        root: ({ ownerState, theme }) => ({
+          ...(ownerState.color === 'primary' && {
+            color: "#202B62",
+            backgroundColor: "#FFFFFF",
+            borderColor: "#202B6222",
+            "&:disabled":{
+              backgroundColor: "#DDDDDD",
+            },
+            "&:hover": {
+              backgroundColor: "#FFFFFF",
+            }
+          }),
+        }),
+      },
+    },
     JoyButton: {
       styleOverrides: {
         root: ({ ownerState, theme }) => ({
@@ -140,7 +174,8 @@ const theme = extendTheme({
             backgroundColor: "#202B6222",
             borderColor: "#202B6222",
             "&:disabled":{
-              backgroundColor: "#DDDDDD",
+              backgroundColor: "#eceef3",
+              color: "#d1d4df"
             },
             "&:hover": {
               backgroundColor: "#202B6222",

@@ -28,4 +28,8 @@ class WelcomeController < ApplicationController
     @title = "About This Project | OpenTSS: Countering Tenant Screening"
     render layout: 'application', template: "welcome/index"
   end
+
+  def admin_home
+    render layout: 'admin_home'
+  end
 end

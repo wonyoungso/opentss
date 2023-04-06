@@ -6,6 +6,7 @@ import { store } from "../providers/TSSProvider";
 import UploadReport from "../components/UploadReport";
 import TenantDemographics from "../components/TenantDemographics";
 import ApplicationChars from "../components/ApplicationChars";
+import FinalStep from "../components/FinalStep";
 
 const SubmissionsNew = () => {
 
@@ -26,8 +27,8 @@ const SubmissionsNew = () => {
       return <TenantDemographics />;
     } else if (submissionStep === 4) {
       return <ApplicationChars />;
-    } else {
-      return <></>;
+    } else if (submissionStep === 5) {
+      return <FinalStep />;
     }
   }
 

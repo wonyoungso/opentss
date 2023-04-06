@@ -1,10 +1,11 @@
 import React, {createContext, useReducer} from 'react';
+import defaultSubmission from "./default_submission";
 
 const initialState = {
   windowWidth: 1024,
   windowHeight: 768,
   submissionStep: 1,
-  submission: null,
+  submission: defaultSubmission,
   menuOpen: false
 }
 

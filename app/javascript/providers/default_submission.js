@@ -1,14 +1,31 @@
 const defaultSubmission = {
   consented: true,
   consented_at: new Date(),
+  printed_name: "Wonyoung So",
   files: [],
-  gender: "",
-  is_hispanic_or_latino: "",
-  race: "",
-  age: "",
-  partner: "",
-  dependents: "",
-  income: ""
+  gender: "male",
+  is_hispanic_or_latino: "no",
+  race: "asian",
+  age: "30-39",
+  partner: "yes",
+  dependents: "0",
+  income: "3300",
+  accepted: "accepted",
+  security_deposit: "3300",
+  rent: "5000",
+  bedrooms: "1",
+  house_type: "single_family",
+  voucher: "yes",
+  minimum_rent: "30",
+  landlord_name: "David Robinson",
+  property_address: "45 Hayward St APT 1929",
+  property_address_city: "Cambridge",
+  property_address_state: "Massachusetts",
+  property_address_zipcode: "02142",
+  experience_freeform: "It was bad.",
+  interview_possible: "no",
+  email: "mail@wonyoung.so",
+  email_confirm: "mail@wonyoung.so"
 }
 
 export default defaultSubmission;

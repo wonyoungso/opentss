@@ -25,6 +25,22 @@ Rails.application.configure do
   # Apache or NGINX already handles this.
   config.public_file_server.enabled = ENV["RAILS_SERVE_STATIC_FILES"].present?
 
+  config.action_mailer.smtp_settings = {
+    user_name: ENV['SMTP_USER_NAME'],
+    password: ENV['SMTP_PASSWORD'],
+    address: ENV['SMTP_ADDRESS'],
+    domain: "localhost",
+    port: 587,
+    authentication: :login,
+    enable_starttls_auto: true
+  }
+
+  config.action_mailer.asset_host = "https://opentss.net"
+
+  config.action_mailer.default_url_options = { host: 'opentss.net', port: 443 }
+  Rails.application.routes.default_url_options[:host] = "opentss.net"
+  Rails.application.routes.default_url_options[:port] = 443
+  
   # Compress CSS using a preprocessor.
   # config.assets.css_compressor = :sass
 

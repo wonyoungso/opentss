@@ -61,11 +61,8 @@ const UploadReport = () => {
             </p>
 
             <div className="pt-5">
-              <h3 className="font-bold">
-                Upload the tenant screening report
-              </h3>
               <p className="pt-1">
-                <span className="font-bold">If you have your physical report on you:</span> First, take photos of each page. Then, upload all the photos here.
+                <span className="font-bold">If you have your physical report on you:</span> First, take photos of each page of the report. Then, upload all the photos here.
               </p>
               <p className="pt-3">
               <span className="font-bold">If you have a PDF file that you received from the tenant screening company:</span> please attach the PDF file here.

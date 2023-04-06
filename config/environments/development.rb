@@ -38,6 +38,17 @@ Rails.application.configure do
   Rails.application.routes.default_url_options[:host] = "localhost"
   Rails.application.routes.default_url_options[:port] = 5100
   
+  config.action_mailer.smtp_settings = {
+    user_name: ENV['SMTP_USER_NAME'],
+    password: ENV['SMTP_PASSWORD'],
+    address: ENV['SMTP_ADDRESS'],
+    domain: "localhost",
+    port: 587,
+    authentication: :login,
+    enable_starttls_auto: true
+  }
+
+  
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
 

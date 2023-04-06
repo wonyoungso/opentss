@@ -253,7 +253,14 @@ const TenantDemographics = () => {
                   How much is your monthly income before tax?
                 </h3>
                 <FormControl>
-                  <Input color={errors["income"] ? "danger" : "primary"} type="number" {...register("income", { required: {value: true, message: "This field is required." } } )} startDecorator="$" />
+                  <Input color={errors["income"] ? "danger" : "primary"} 
+                    {...register("income", 
+                      { 
+                        required: {value: true, message: "This field is required." },
+                        pattern: { value: /^[0-9]+$/, message: "This field only accepts numbers." }  
+                      } 
+                    )} 
+                  startDecorator="$" />
 
                   <FormHelperText>
                     {

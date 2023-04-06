@@ -1,27 +1,35 @@
 import * as React from "react";
 import { useContext, useEffect } from "react";
 import { store } from "../providers/TSSProvider";
-import FormControl from '@mui/joy/FormControl';
 import Button from "@mui/joy/Button";
 import _ from 'lodash';
-import defaultSubmission from "../providers/default_submission";
 import { ArrowBack } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
+import Input from "@mui/joy/Input";
+import FormControl from '@mui/joy/FormControl';
+import FormLabel from '@mui/joy/FormLabel';
+import { useForm } from "react-hook-form";
+import FormHelperText from '@mui/joy/FormHelperText';
+
 
 const ConsentForm = () => {
 
-  const { setSubmission, setSubmissionStep } = useContext(store);
+  const { submission, setSubmission, setSubmissionStep } = useContext(store);
+  const { register, handleSubmit, formState: { isValid, isDirty, errors } } = useForm({ 
+    mode: "onChange",
+    defaultValues: submission
+  });
+
   const navigate = useNavigate();
   
-  const goToNextStep = () => {
-    let newSubmission = {
-      ...defaultSubmission
-    }
+  const goToNextStep = (data) => {
 
-    newSubmission.consented = true;
-    newSubmission.consented_at = new Date();
-
-    setSubmission(newSubmission);
+    setSubmission({
+      ...submission,
+      consented: true,
+      consented_at: new Date().toISOString(),
+      printed_name: data.printed_name
+    });
 
     setSubmissionStep(2);
   }
@@ -180,7 +188,7 @@ const ConsentForm = () => {
               You are not waiving any legal claims, rights or remedies because of your participation in this research study. If you feel you have been treated unfairly, or you have questions regarding your rights as a research subject, you may contact the Chairman of the Committee on the Use of Humans as Experimental Subjects, M.I.T., Room E25-143B, 77 Massachusetts Ave, Cambridge, MA 02139, phone 1-617-253 6787.
             </p>
 
-            <div className="h-48"></div>
+            <div className="h-60"></div>
           </div>
           <div className="lg:col-span-2"></div>
         </div>
@@ -191,12 +199,30 @@ const ConsentForm = () => {
           <div className="lg:grid lg:grid-cols-6 lg:gap-5">
             <div className="hidden lg:block"></div>
             <div className="lg:col-span-3">
-              <div className="pb-3 font-bold">
+              <div className="font-bold">
                 BY CLICKING THIS BUTTON, I WILLINGLY AGREE TO PARTICIPATE IN THE RESEARCH IT DESCRIBES.
               </div>
-              <FormControl>
-                <Button onClick={goToNextStep}>I AGREE TO PARTICIPATE</Button>
-              </FormControl>
+            </div>
+            <div className="hidden lg:block lg:col-span-2"></div>
+            <div className="hidden lg:block"></div>
+            <div className="lg:col-span-3">
+              <form onSubmit={handleSubmit(goToNextStep)}>
+                <FormControl>
+                  <FormLabel>Name</FormLabel>
+                  <Input {...register("printed_name", { required: { value: true, message: "This field is required."} })} />
+                  <FormHelperText>
+                    {
+                      errors["printed_name"] ? 
+                      <span className="text-red">{errors["printed_name"].message}</span> : 
+                      <>Required. </>
+                    }
+                  </FormHelperText>
+                </FormControl>  
+                <div className="p-1"></div>
+                <FormControl>
+                  <Button disabled={!isValid} type="submit">I AGREE TO PARTICIPATE</Button>
+                </FormControl>
+              </form>
             </div>
           </div>
         </div>

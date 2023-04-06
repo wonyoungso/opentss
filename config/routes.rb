@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -23,6 +24,7 @@ Rails.application.routes.draw do
   get "/request-copy/:type/:arg", to: "welcome#request_result", as: "request-copy-result"
   get "/about", to: "welcome#about", as: "about"
 
+  get "/admin_home", to: "welcome#admin_home", as: "admin_home"
   root "welcome#index"
   
 end

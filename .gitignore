@@ -36,6 +36,7 @@
 
 /node_modules
 
+.env
 # Vite Ruby
 /public/vite*
 node_modules
