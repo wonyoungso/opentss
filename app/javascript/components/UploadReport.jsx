@@ -11,7 +11,7 @@ import { ArrowBack } from "@mui/icons-material";
 
 const UploadReport = () => {
 
-  const { submission, setSubmission, setSubmissionStep } = useContext(store);
+  const { submission, setSubmission, setSubmissionStep, setHeaderMode } = useContext(store);
   
   const goToNextStep = () => {
     window.scrollTo(0, 0);
@@ -46,6 +46,16 @@ const UploadReport = () => {
     setSubmission(newSubmission);
   }
 
+  useEffect(() => {
+
+    setHeaderMode("focus");
+
+    return () => {
+
+      setHeaderMode("normal");
+    };
+  }, [])
+
   return (
     <>
        <div className="container mx-auto px-5">
@@ -75,7 +85,7 @@ const UploadReport = () => {
                 <FormControl>
                   <Button variant="contained" component="label" startDecorator={<PhotoCamera />}>
                     Choose File...
-                    <input hidden accept="image/*, application/pdf, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/msword" multiple type="file" onChange={changeHandler} />
+                    <input hidden accept="image/heic, image/heif, image/*, application/pdf, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/msword" multiple type="file" onChange={changeHandler} />
                   </Button>
                 </FormControl>
               </div>

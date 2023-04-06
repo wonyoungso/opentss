@@ -21,6 +21,8 @@ gem "vite_ruby"
 
 gem "devise"
 gem "cancancan"
+gem 'active_storage_validations'
+
 
 gem 'dotenv-rails'
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useContext, useState } from "react";
+import { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { store } from "../providers/TSSProvider";
 import Button from "@mui/joy/Button";
@@ -16,14 +16,24 @@ import { useForm, Controller } from "react-hook-form";
 
 const TenantDemographics = () => {
 
-  const { submission, setSubmission, setSubmissionStep } = useContext(store);
-  const { register, control, handleSubmit, formState: { isValid, isDirty, errors } } = useForm({ 
+  const { submission, setSubmission, setSubmissionStep, revisitedSubmission, setRevisitedSubmission, setHeaderMode} = useContext(store);
+  const { trigger, register, watch, control, handleSubmit, formState: { isValid, isDirty, errors } } = useForm({ 
     mode: "onChange",
     defaultValues: submission
   });
 
   const goBack = () => {
     window.scrollTo(0, 0);
+    setSubmission({
+      ...submission,
+      gender: watch("gender"),
+      race: watch("race"),
+      is_hispanic_or_latino: watch("is_hispanic_or_latino"),
+      age: watch("age"),
+      partner: watch("partner"),
+      dependents: watch("dependents"),
+      income: watch("income")
+    })
     setSubmissionStep(2);
   }
 
@@ -42,9 +52,31 @@ const TenantDemographics = () => {
     setSubmissionStep(4);
   };
 
+  const checkKeyDown = (e) => {
+    if (e.key === 'Enter') e.preventDefault();
+  };
+
+  useEffect(() => {
+    setHeaderMode("focus");
+    if (revisitedSubmission[3]) {
+      trigger();
+    }
+    
+    setRevisitedSubmission({
+      ...revisitedSubmission,
+      3: true
+    });
+
+    return () => {
+      setHeaderMode("normal");
+    };
+  }, []);
+
+
+
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} onKeyDown={(e) => checkKeyDown(e)}>
         <div className="container mx-auto px-5">
           <div className="lg:grid lg:grid-cols-6 lg:gap-5">
             <div>

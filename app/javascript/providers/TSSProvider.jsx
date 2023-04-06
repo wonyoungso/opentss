@@ -4,16 +4,27 @@ import defaultSubmission from "./default_submission";
 const initialState = {
   windowWidth: 1024,
   windowHeight: 768,
-  submissionStep: 5,
+  submissionStep: 1,
   submission: defaultSubmission,
-  menuOpen: false
+  menuOpen: false,
+  revisitedSubmission: {
+    1: false,
+    2: false,
+    3: false, 
+    4: false,
+    5: false
+  },
+  headerMode: "normal"
 }
 
 const actions = {
   SET_WINDOW_DIMENSION: "SET_WINDOW_DIMENSION",
   SET_MENU_OPEN: "SET_MENU_OPEN",
   SET_SUBMISSION_STEP: "SET_SUBMISSION_STEP",
-  SET_SUBMISSION: "SET_SUBMISSION"
+  SET_SUBMISSION: "SET_SUBMISSION",
+  SET_REVISITED_SUBMISSION: "SET_REVISITED_SUBMISSSION",
+  RESET_SUBMISSION: "RESET_SUBMISSION",
+  SET_HEADER_MODE: "SET_HEADER_MODE"
 
 }
 
@@ -40,6 +51,28 @@ const reducer = (state, action) => {
         ...state,
         submission: action.submission
       }
+    case actions.SET_REVISITED_SUBMISSION:
+      return {
+        ...state,
+        revisitedSubmission: action.revisitedSubmission
+      }
+    case actions.RESET_SUBMISSION:
+      return {
+        ...state,
+        submission: {...defaultSubmission, files: []},
+        revisitedSubmission: {
+          1: false,
+          2: false,
+          3: false, 
+          4: false,
+          5: false
+        }
+      }
+    case actions.SET_HEADER_MODE:
+      return {
+        ...state,
+        headerMode: action.headerMode
+      }
     default:
       return state;
   }
@@ -57,6 +90,8 @@ const TSSProvider = ({ children }) => {
     menuOpen: state.menuOpen,
     submission: state.submission,
     submissionStep: state.submissionStep,
+    revisitedSubmission: state.revisitedSubmission,
+    headerMode: state.headerMode,
     setWindowDimension: (value) => {
       dispatch({ 
         type: actions.SET_WINDOW_DIMENSION, 
@@ -81,7 +116,24 @@ const TSSProvider = ({ children }) => {
         type: actions.SET_SUBMISSION,
         submission: submission
       })
-    }
+    },
+    setRevisitedSubmission: (revisitedSubmission) => {
+      dispatch({
+        type: actions.SET_REVISITED_SUBMISSION,
+        revisitedSubmission: revisitedSubmission
+      })
+    },
+    resetSubmission: () => {
+      dispatch({
+        type: actions.RESET_SUBMISSION
+      })
+    },
+    setHeaderMode: (headerMode) => {
+      dispatch({
+        type: actions.SET_HEADER_MODE,
+        headerMode: headerMode
+      })
+    },
   }
 
   return (

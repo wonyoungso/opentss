@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_06_161731) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_06_202833) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -105,6 +105,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_06_161731) do
     t.text "interview_possible"
     t.text "email"
     t.text "property_address_zipcode"
+    t.string "confirmation_token"
+    t.datetime "confirmation_sent_at"
+    t.boolean "confirmed", default: false
+    t.datetime "confirmed_at"
+    t.string "retrieve_token"
+    t.datetime "retrieve_sent_at"
   end
 
   create_table "users", force: :cascade do |t|

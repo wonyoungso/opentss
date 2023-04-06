@@ -15,6 +15,7 @@ const RequestCopy = () => {
 
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     document.title = "Request a Copy of Tenant Screening Report | OpenTSS: Countering Tenant Screening";
     document.body.className = "bg-white-bg text-dark-blue";
 

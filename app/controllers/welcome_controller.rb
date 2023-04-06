@@ -29,6 +29,12 @@ class WelcomeController < ApplicationController
     render layout: 'application', template: "welcome/index"
   end
 
+  def confirm_email
+    @title = "Confirm your email | OpenTSS: Countering Tenant Screening"
+    render layout: 'application', template: "welcome/index"
+
+  end
+
   def admin_home
     render layout: 'admin_home'
   end

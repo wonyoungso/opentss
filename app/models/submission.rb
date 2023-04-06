@@ -1,5 +1,6 @@
 class Submission < ApplicationRecord
   has_many_attached :reports
+  before_create :generate_confirmation_token
 
   encrypts :email, deterministic: true
   
@@ -47,6 +48,26 @@ class Submission < ApplicationRecord
   validates :property_address_state, :presence => true
   validates :property_address_zipcode, :presence => true
   validates :interview_possible, :presence => true
+  validates :email, :presence => true
+
+  validates :reports, attached: {message: "Tenant screening reports should be attached. Please check previous page and upload them."}, 
+                      content_type: { in: ['image/*', 'image/heif', 'image/heic', 'application/pdf'], message: 'Tenant screening reports are not a PDF or valid image.' } 
+
+  def generate_confirmation_token
+    self.confirmation_token = Devise.friendly_token
+    self.confirmation_sent_at = DateTime.now.utc
+  end
+
+
+  def generate_retrieve_token
+    self.retrieve_token = Devise.friendly_token
+    self.retrieve_sent_at = DateTime.now.utc
+  end
+
+  def retrieve_period_expired?
+   self.retrieve_sent_at && (DateTime.now.utc > self.retrieve_sent_at.utc + 1.day)
+  end
+
 
   def put_params(params)
     self.consented = params[:consented]

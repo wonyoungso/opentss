@@ -14,6 +14,7 @@ const Welcome = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     document.title = "OpenTSS: Countering Tenant Screening";
     document.body.className = "bg-dark-blue-bg text-white";
     setSubmissionStep(1); 

@@ -48,6 +48,14 @@ RailsAdmin.config do |config|
     end
   end
 
+  config.model 'Submission' do 
+    list do
+      field :email
+      field :confirmed
+      field :reports
+    end
+  end
+
   config.model 'Description' do 
     list do
       field :title

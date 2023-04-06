@@ -16,6 +16,7 @@ const SubmissionsNew = () => {
 
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     document.title = "Submit Your Report | OpenTSS: Countering Tenant Screening";
     document.body.className = "bg-white-bg text-dark-blue";
     setMenuOpen(false);
@@ -110,6 +111,19 @@ const SubmissionsNew = () => {
 
             <p className="text-white-op-70">
               We are only interested in the data of your tenant screening reports, not your name, your SSN, nor your address. After you send your report, we will remove your identifiable information on the report and store it on our server. We will ask for additional demographic information to be able to analyze the tenant screening report more accurately, to ascertain how different profiles are treated differently by the tenant screening companies. The report and data will be transferred with an end-to-end encryption and stored on our server. The data will only be used to analyze the tenant screening algorithms. It will neither be forwarded to third parties nor sold.
+            </p>
+
+            <div className="h-5"></div>
+            <h2 className="font-bold text-4xl">
+              Can I submit multiple tenant screening reports?
+            </h2>
+
+            <p className="text-xl font-bold pt-4 pb-2">
+              Yes, if you have multiple reports created by multiple companies!
+            </p>
+
+            <p className="text-white-op-70">
+              We compensate per company. Suppose you have one tenant screening report by Rentgrow and one by SafeRent. Then we will accept both reports as valid submission and compensate two $50 gift cards (total $100). 
             </p>
             <div className="h-5"></div>
             <FormControl>

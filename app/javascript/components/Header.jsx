@@ -1,11 +1,12 @@
 import React from 'react'
 import { store } from '../providers/TSSProvider';
 import { useContext, useEffect } from 'react';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import defaultSubmission from "../providers/default_submission";
 
 export default function Header(props) {
-  
-  const { menuOpen, setMenuOpen } = useContext(store)
+  const navigate = useNavigate();
+  const { menuOpen, setMenuOpen, resetSubmission, headerMode } = useContext(store)
   const { bg } = props;
   
   useEffect(() => {
@@ -92,33 +93,57 @@ export default function Header(props) {
         <header className={`${bg === 'bright' ? 'bg-white-bg' : (bg === 'black' ? 'bg-black' : 'bg-dark-blue-bg')} top-0 py-4 fixed w-full z-50`}>
           <div className="container mx-auto px-5">
             <div className="grid gap-2 grid-cols-2 lg:grid-cols-6 lg:gap-5">
-              <Link to="/">
-                <h1 className="font-normal">
-                  OpenTSS
-                </h1>
-              </Link>
-              <Link to="/how-tss-works" className="hidden lg:block">
-                How TSS works
-              </Link>
+            
+              <h1 className="font-normal cursor-pointer" onClick={() => {
+                if (headerMode === "focus") {
+                  if (confirm("Leaving this page will lose the input you entered. Do you want to continue?")) {
+                    resetSubmission();
+                    navigate("/");
+                  }
+                } else {
 
-              <Link to="/request-copy" className="hidden lg:block">
-                Request a copy
-              </Link>
+                  navigate("/");
+                }
+              }}>
+                OpenTSS
+              </h1>
+              {
+                headerMode === "focus" ?
+                <>
+                  <div className="hidden lg:block lg:col-span-3">
 
-              <Link to="/submissions" className="hidden lg:block">
-                Submit your report
-              </Link>
+                  </div>
+                </> : 
+                <>
+                  <Link to="/how-tss-works" className="hidden lg:block">
+                    How TSS works
+                  </Link>
+
+                  <Link to="/request-copy" className="hidden lg:block">
+                    Request a copy
+                  </Link>
+
+                  <Link to="/submissions" className="hidden lg:block">
+                    Submit your report
+                  </Link>
+                </>
+              }
               
               <div className="hidden lg:block">
 
               </div>
               
               <div className="flex flex-row-reverse">
-                <button onClick={() => { setMenuOpen(!menuOpen); }}>
-                  {
-                    menuOpen ? "Close" : "Menu"
-                  } 
-                </button>
+                {
+                  headerMode === "focus" ?
+                  null : 
+
+                  <button onClick={() => { setMenuOpen(!menuOpen); }}>
+                    {
+                      menuOpen ? "Close" : "Menu"
+                    } 
+                  </button>
+                }
               </div>
             </div>
           </div>

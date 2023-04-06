@@ -14,8 +14,8 @@ import FormHelperText from '@mui/joy/FormHelperText';
 
 const ConsentForm = () => {
 
-  const { submission, setSubmission, setSubmissionStep } = useContext(store);
-  const { register, handleSubmit, watch, formState: { isValid, isDirty, errors } } = useForm({ 
+  const { submission, setSubmission, setSubmissionStep, revisitedSubmission, setRevisitedSubmission, setHeaderMode } = useContext(store);
+  const { register, trigger, handleSubmit, watch, formState: { isValid, isDirty, errors } } = useForm({ 
     mode: "onChange",
     defaultValues: submission
   });
@@ -25,10 +25,18 @@ const ConsentForm = () => {
   const goToNextStep = (data) => {
 
     window.scrollTo(0, 0);
+
+    const jsDate = new Date();
+    const timestamp = jsDate.getTime();
+    const utcOffset = jsDate.getTimezoneOffset();
+    const utcTime = timestamp - utcOffset * 60 * 1000; // convert to milliseconds
+    const isoString = new Date(utcTime).toISOString();
+
+
     setSubmission({
       ...submission,
       consented: true,
-      consented_at: new Date().toISOString(),
+      consented_at: isoString,
       printed_name: data.printed_name
     });
 
@@ -36,16 +44,35 @@ const ConsentForm = () => {
   }
 
   const goBack = () => {
-    const printedNameValue = watch("printed_name");
-
-    setSubmission({
-      ...submission,
-      printed_name: printedNameValue
-    });
 
     window.scrollTo(0, 0);
+    setSubmission({
+      ...submission,
+      printed_name: watch("printed_name")
+    });
     navigate("/submissions");
   }
+
+  const checkKeyDown = (e) => {
+    if (e.key === 'Enter') e.preventDefault();
+  };
+
+  useEffect(() => {
+    setHeaderMode("focus");
+    if (revisitedSubmission[1]) {
+      trigger();
+    }
+    
+    setRevisitedSubmission({
+      ...revisitedSubmission,
+      1: true
+    });
+
+    return () => {
+
+      setHeaderMode("normal");
+    };
+  }, []);
 
   return (
     <>
@@ -209,16 +236,16 @@ const ConsentForm = () => {
             <div className="hidden lg:block"></div>
             <div className="lg:col-span-3">
               <div className="font-bold">
-                BY CLICKING THIS BUTTON, I WILLINGLY AGREE TO PARTICIPATE IN THE RESEARCH IT DESCRIBES.
+                BY PRESSING THIS BUTTON, I WILLINGLY AGREE TO PARTICIPATE IN THE RESEARCH IT DESCRIBES.
               </div>
             </div>
             <div className="hidden lg:block lg:col-span-2"></div>
             <div className="hidden lg:block"></div>
             <div className="lg:col-span-3">
-              <form onSubmit={handleSubmit(goToNextStep)}>
+              <form onSubmit={handleSubmit(goToNextStep)}  onKeyDown={(e) => checkKeyDown(e)}>
                 <FormControl>
                   <FormLabel>Name</FormLabel>
-                  <Input {...register("printed_name", { required: { value: true, message: "This field is required."} })} />
+                  <Input color={errors["printed_name"] ? "danger" : "primary"} {...register("printed_name", { required: { value: true, message: "This field is required."} })} />
                   <FormHelperText>
                     {
                       errors["printed_name"] ? 

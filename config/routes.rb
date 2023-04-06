@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   namespace :api do 
+    get "/confirm-email/:token", to: "confirm_email#confirm", as: "confirm_email"
     resources :submissions
     resources :companies do 
       member do
@@ -13,6 +14,9 @@ Rails.application.routes.draw do
   end
 
   resources :companies
+
+
+  get "/confirm-email/:token", to: "welcome#confirm_email", as: "confirm_email"
 
   get "/submissions/retrieve", to: "submissions#retrieve", as: "submissions_retrieve"
   get "/submissions", to: "submissions#index", as: "submissions"

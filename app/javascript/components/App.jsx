@@ -15,6 +15,7 @@ import RequestCopyResult from "../routes/request-copy-result";
 import SubmissionsRetrieve from "../routes/submissions-retrieve";
 import Submissions from '../routes/submissions';
 import SubmissionsNew from "../routes/submissions-new";
+import ConfirmEmail from "../routes/confirm-email";
 import About from '../routes/about';
 import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
 
@@ -37,6 +38,17 @@ const router = createBrowserRouter([
   {
     path: "/request-copy",
     element: <RequestCopy />,
+    errorElement: <ErrorPage />
+  },
+  ,
+  {
+    path: "/confirm-email/:token",
+    element: <ConfirmEmail />,
+    loader: async ({ request, params }) => {
+      const response = await fetch(`/api/confirm-email/${params.token}`);
+      const responseJson = await response.json();
+      return { responseJson };
+    },
     errorElement: <ErrorPage />
   },
   {

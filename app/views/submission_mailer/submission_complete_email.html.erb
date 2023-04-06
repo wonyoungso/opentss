@@ -65,7 +65,7 @@
                   </p>
                   <div role="separator" style="line-height: 24px">&zwj;</div>
                   <div>
-                    <a href="https://maizzle.com" style="display: inline-block; border-radius: 4px; background-color: #202B6222; padding: 16px 24px; font-size: 16px; font-weight: 600; line-height: 1; color: #202B62; text-decoration: none">
+                    <a href="<%= confirm_email_url(token: @submission.confirmation_token) %>" style="display: inline-block; border-radius: 4px; background-color: #202B6222; padding: 16px 24px; font-size: 16px; font-weight: 600; line-height: 1; color: #202B62; text-decoration: none">
                       <!--[if mso]>
       <i style="mso-font-width: -100%; letter-spacing: 32px; mso-text-raise: 30px" hidden>&nbsp;</i>
     <![endif]-->
@@ -82,7 +82,7 @@
                     What's next?
                   </h2>
                   <p style="margin: 0; color: #666666;">
-                    You will be receiving a $50 visa gift card to your email (<%= @submission.email %>). Check your inbox in 1-2 days. Please note that we manually check individual records to check each submission.<br><br>
+                    You will be receiving a $50 visa gift card to your email (<%= @submission.email %>). Check your inbox in 7 days. Please note that we manually check individual records to check each submission.<br><br>
                     In the email, you can choose either you receive digital gift card or physical gift card. If you choose to receive the physical card, you will be asked to enter your address.
                   </p>
                   <div role="separator" style="line-height: 24px">&zwj;</div>

@@ -1,6 +1,6 @@
 const defaultSubmission = {
-  consented: true,
-  consented_at: new Date(),
+  consented: false,
+  consented_at: "",
   printed_name: "Wonyoung So",
   files: [],
   gender: "male",
@@ -29,3 +29,29 @@ const defaultSubmission = {
 }
 
 export default defaultSubmission;
+
+// printed_name: "Wonyoung So",
+// files: [],
+// gender: "male",
+// is_hispanic_or_latino: "no",
+// race: "asian",
+// age: "30-39",
+// partner: "yes",
+// dependents: "1",
+// income: "3500",
+// accepted: "accepted",
+// security_deposit: "2500",
+// rent: "2500",
+// bedrooms: "1",
+// house_type: "multifamily",
+// voucher: "yes",
+// minimum_rent: "25",
+// landlord_name: "VIVA",
+// property_address: "45",
+// property_address_city: "Cambridge",
+// property_address_state: "Massachusetts",
+// property_address_zipcode: "02142",
+// experience_freeform: "dfije",
+// interview_possible: "yes",
+// email: "wonyoung.so.work@gmail.com",
+// email_confirm: "wonyoung.so.work@gmail.com"

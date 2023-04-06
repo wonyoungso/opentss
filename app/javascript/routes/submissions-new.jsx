@@ -36,7 +36,7 @@ const SubmissionsNew = () => {
 
   return (
     <>
-      <Header bg="bright" />
+      <Header bg="bright" mode="focus" />
       {
         renderStep()
       }

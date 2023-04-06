@@ -17,8 +17,8 @@ import states from "../providers/states";
 
 const ApplicationChars = () => {
 
-  const { submission, setSubmission, setSubmissionStep } = useContext(store);
-  const { register, control, handleSubmit, formState: { isValid, isDirty, errors } } = useForm({ 
+  const { submission, setSubmission, setSubmissionStep, revisitedSubmission, setRevisitedSubmission, setHeaderMode  } = useContext(store);
+  const { register, trigger, control, watch, handleSubmit, formState: { isValid, isDirty, errors } } = useForm({ 
     mode: "onChange",
     defaultValues: submission
   });
@@ -28,6 +28,26 @@ const ApplicationChars = () => {
 
   const goBack = () => {
     window.scrollTo(0, 0);
+    console.log("press goback");
+
+    setSubmission({
+      ...submission,
+      accepted: watch("accepted"),
+      security_deposit: watch("security_deposit"),
+      rent: watch("rent"),
+      bedrooms: watch("bedrooms"),
+      house_type: watch("house_type"),
+      voucher: watch("voucher"),
+      minimum_rent: watch("minimum_rent"),
+      landlord_name: watch("landlord_name"),
+      property_address: watch("property_address"),
+      property_address_city: watch("property_address_city"),
+      property_address_state: watch("property_address_state"),
+      property_address_zipcode: watch("property_address_zipcode"),
+      experience_freeform: watch("experience_freeform"),
+      interview_possible: watch("interview_possible")
+    })
+
     setSubmissionStep(3);
   }
 
@@ -58,9 +78,35 @@ const ApplicationChars = () => {
     setVoucherShow(submission.voucher === "yes");
   }, []);
 
+  const checkKeyDown = (e) => {
+    if (e.key === 'Enter') e.preventDefault();
+  };
+
+  useEffect(() => {
+    setHeaderMode("focus");
+    if (revisitedSubmission[4]) {
+      trigger();
+    }
+    
+    setRevisitedSubmission({
+      ...revisitedSubmission,
+      4: true
+    });
+
+    return () => {
+
+      setHeaderMode("normal");
+    };
+  }, []);
+
+  useEffect(() => {
+    trigger();
+  }, [acceptedShow, voucherShow]);
+
+
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} onKeyDown={(e) => checkKeyDown(e)}>
         <div className="container mx-auto px-5">
           <div className="lg:grid lg:grid-cols-6 lg:gap-5">
             <div>
@@ -212,7 +258,7 @@ const ApplicationChars = () => {
                       return (
                         <RadioGroup  {...field}>
                           <Radio color="neutral" value="single_family" label="Detached Single Family Housing" />
-                          <Radio color="neutral" value="townhoue" label="Townhouse" />
+                          <Radio color="neutral" value="townhouse" label="Townhouse" />
                           <Radio color="neutral" value="multifamily" label="Multifamily Housing" />
                           <Radio color="neutral" value="manufactured" label="Manufactured Housing (i.e. Mobile Homes)" />
                           <Radio color="neutral" value="other" label="Other" />
