@@ -4,6 +4,11 @@ class SubmissionsController < ApplicationController
     render layout: 'application', template: 'welcome/index'
   end
 
+  def retrieve_result
+    @title = "Retrieve your submission | OpenTSS: Countering Tenant Screening"
+    render layout: 'application', template: "welcome/index"
+  end
+
   def index
     @title = "Submit Your Tenant Screening Report | OpenTSS: Countering Tenant Screening"
     render layout: 'application', template: 'welcome/index'

@@ -5,4 +5,11 @@ class SubmissionMailer < ApplicationMailer
     @submission = params[:submission]
     mail(to: @submission.email, subject: 'Your submission of tenant screening reports is complete :: OpenTSS: Countering Tenant Screening')
   end
+  
+  def submissions_retrieve_email
+    @token = params[:token]
+    @email = params[:email]
+    mail(to: @email, subject: 'Here is a secure link for you to retrieve your submission :: OpenTSS: Countering Tenant Screening')
+  end
+
 end

@@ -5,7 +5,14 @@ Rails.application.routes.draw do
 
   namespace :api do 
     get "/confirm-email/:token", to: "confirm_email#confirm", as: "confirm_email"
-    resources :submissions
+    resources :submissions do 
+      collection do 
+        post "query_email"
+        get "/retrieve_result/:token", to: "submissions#retrieve_result", as: "retrieve_result"
+      end
+
+    end
+
     resources :companies do 
       member do
         get "request-copy"
@@ -19,6 +26,9 @@ Rails.application.routes.draw do
   get "/confirm-email/:token", to: "welcome#confirm_email", as: "confirm_email"
 
   get "/submissions/retrieve", to: "submissions#retrieve", as: "submissions_retrieve"
+  get "/retrieve-submission/:token", to: "submissions#retrieve_result", as: "retrieve_result"
+
+
   get "/submissions", to: "submissions#index", as: "submissions"
   get "/submissions/new", to: "submissions#new", as: "submissions_new"
 

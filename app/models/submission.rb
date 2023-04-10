@@ -1,5 +1,6 @@
 class Submission < ApplicationRecord
   has_many_attached :reports
+  belongs_to :company
   before_create :generate_confirmation_token
 
   encrypts :email, deterministic: true
@@ -58,12 +59,6 @@ class Submission < ApplicationRecord
     self.confirmation_sent_at = DateTime.now.utc
   end
 
-
-  def generate_retrieve_token
-    self.retrieve_token = Devise.friendly_token
-    self.retrieve_sent_at = DateTime.now.utc
-  end
-
   def retrieve_period_expired?
    self.retrieve_sent_at && (DateTime.now.utc > self.retrieve_sent_at.utc + 1.day)
   end
@@ -96,6 +91,19 @@ class Submission < ApplicationRecord
     self.interview_possible = params[:interview_possible]
     self.email = params[:email] 
     self.reports.attach(params[:files])
+  end
+
+  def self.update_token(submissions)
+    token = Devise.friendly_token
+    sent_at = DateTime.now.utc
+
+    submissions.each do |submission|
+      submission.retrieve_token = token
+      submission.retrieve_sent_at = sent_at
+      submission.save
+    end
+
+    return token
   end
 
 end

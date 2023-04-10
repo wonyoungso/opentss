@@ -18,6 +18,7 @@ module.exports = {
       'white-op-70': '#666666',
       'white-op-50': '#999999',
       'white-op-10': '#99999922',
+      'white-op-30': '#99999955',
       'light-blue': '#DCE0F8',
       'black': '#000000',
       'dark-blue': '#202B62',

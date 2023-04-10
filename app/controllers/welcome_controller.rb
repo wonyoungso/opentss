@@ -35,6 +35,8 @@ class WelcomeController < ApplicationController
 
   end
 
+
+
   def admin_home
     render layout: 'admin_home'
   end

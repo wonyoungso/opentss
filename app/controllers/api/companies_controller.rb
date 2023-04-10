@@ -2,9 +2,16 @@ class Api::CompaniesController < ApplicationController
   include Rails.application.routes.url_helpers
   include ActiveStorage::SetCurrent
   def index
-    @companies = Company.select(:id, :name).order("name ASC")
+    if params[:mode] == "full"
+      @companies = Company.load_full_list
+      @sampled_companies = @companies.shuffle[0, 10]
 
-    render json: @companies
+      render json: { companies: @companies, sampled_companies: @sampled_companies }
+    else
+      @companies = Company.select(:id, :name).order("name ASC")
+      render json: @companies
+    end
+
   end
 
 

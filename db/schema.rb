@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_06_202833) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_10_221150) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -60,6 +60,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_06_202833) do
     t.datetime "updated_at", null: false
     t.string "request_copy_url"
     t.json "form_json"
+    t.text "data_collection"
+    t.text "scoring_system"
+    t.integer "outsourcing_company_id"
+    t.boolean "is_sample_report_avail", default: false
   end
 
   create_table "companies_descriptions", force: :cascade do |t|
@@ -111,6 +115,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_06_202833) do
     t.datetime "confirmed_at"
     t.string "retrieve_token"
     t.datetime "retrieve_sent_at"
+    t.string "status", default: "submitted"
+    t.integer "company_id"
   end
 
   create_table "users", force: :cascade do |t|
