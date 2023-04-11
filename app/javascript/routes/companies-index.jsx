@@ -68,7 +68,7 @@ const ComapniesIndex = () => {
             {
               _.map(sampled_companies, company => {
                 return (
-                <div key={company.id} className="lg:flex lg:justify-between lg:gap-2 cursor-pointer hover:bg-white-op-10 border-b border-b-white-op-50 py-1 lg:py-3" onClick={() => { navigate(`/companies/${company.id}`) }}>
+                <div key={company.id} className="lg:flex lg:justify-between lg:gap-2 cursor-pointer hover:bg-white-op-10 border-b border-b-white-op-50 py-1" onClick={() => { navigate(`/companies/${company.id}`) }}>
                   <div className="border-b border-b-white-op-30 pt-1 pb-2 lg:p-0 lg:border-none lg:w-2/5 text-lg font-bold text-dark-blue">{ company.name }</div>
                   <div className="border-b border-b-white-op-30 pt-1 pb-2 lg:p-0 lg:border-none lg:w-1/5 text-white-op-70">
                     { 

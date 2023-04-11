@@ -100,7 +100,7 @@ class Submission < ApplicationRecord
     submissions.each do |submission|
       submission.retrieve_token = token
       submission.retrieve_sent_at = sent_at
-      submission.save
+      submission.save(validate: false)
     end
 
     return token
