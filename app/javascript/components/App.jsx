@@ -7,6 +7,7 @@ import { store, TSSProvider } from "../providers/TSSProvider";
 import Container from '../components/Container';
 import Welcome from "../routes/welcome";
 import CompaniesIndex from "../routes/companies-index";
+import CompaniesShow from "../routes/companies-show";
 import ErrorPage from "../routes/error-page";
 import HowTSSWorks from "../routes/how-tss-works";
 import RequestCopy from "../routes/request-copy";
@@ -106,6 +107,16 @@ const router = createBrowserRouter([
     element: <CompaniesIndex />,
     loader: async ({ request, params }) => {
       const response = await fetch(`/api/companies.json?mode=full`);
+      const response_json = await response.json();
+      return response_json;
+    },
+    errorElement: <ErrorPage />
+  },
+  {
+    path: "/companies/:id",
+    element: <CompaniesShow />,
+    loader: async ({ request, params }) => {
+      const response = await fetch(`/api/companies/${params.id}.json`);
       const response_json = await response.json();
       return response_json;
     },

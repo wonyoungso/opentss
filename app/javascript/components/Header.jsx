@@ -2,7 +2,27 @@ import React from 'react'
 import { store } from '../providers/TSSProvider';
 import { useContext, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom'
-import defaultSubmission from "../providers/default_submission";
+
+const useOutsideClick = (callback) => {
+  const ref = React.useRef();
+
+  React.useEffect(() => {
+    const handleClick = (event) => {
+      if (ref.current && !ref.current.contains(event.target)) {
+        callback();
+      }
+    };
+
+    document.addEventListener('click', handleClick, true);
+
+    return () => {
+      document.removeEventListener('click', handleClick, true);
+    };
+  }, [ref]);
+
+  return ref;
+};
+
 
 export default function Header(props) {
   const navigate = useNavigate();
@@ -21,12 +41,18 @@ export default function Header(props) {
     };
 
   }, []);
+
+  const handleClickOutside = () => {
+    setMenuOpen(false);
+  };
+  
+  const ref = useOutsideClick(handleClickOutside);
   
   return (
     <>
       {
         menuOpen ? 
-        <header className={`${bg === 'bright' ? 'bg-white-bg' : (bg === 'black' ? 'bg-black' : 'bg-dark-blue-bg')} top-0 py-4 fixed w-full z-50`}>
+        <header ref={ref} className={`${bg === 'bright' ? 'bg-white-bg' : (bg === 'black' ? 'bg-black' : 'bg-dark-blue-bg')} top-0 py-4 fixed w-full z-50`}>
           <div className="container mx-auto px-5">
             <div className="grid gap-2 grid-cols-2 lg:grid-cols-6 lg:gap-5">
               <Link to="/" className="lg:col-span-5">

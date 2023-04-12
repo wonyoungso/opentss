@@ -7,6 +7,7 @@ class Company < ApplicationRecord
   has_many :submissions
 
   belongs_to :outsourcing_company, class_name: "Company", :optional => true
+  has_many :resellers, class_name: "Company", foreign_key: "outsourcing_company_id"
 
   has_one_attached :request_form
 
@@ -21,17 +22,42 @@ class Company < ApplicationRecord
     }
   end
 
+  def conv_to_json_concise 
+    {
+      id: self.id,
+      name: self.name
+    }
+  end
+
+
+  def conv_to_json_comp
+    result = {
+      id: self.id,
+      name: self.name,
+      data_collection: self.data_collection,
+      scoring_system: self.scoring_system,
+      is_sample_report_avail: self.is_sample_report_avail,
+      submissions_cnt: self.submissions.count,
+      outsourcing_company: nil,
+      resellers: self.resellers.map {|reseller| reseller.conv_to_json_concise }
+    }
+
+    if self.outsourcing_company_id.present?
+      result[:outsourcing_company] = {
+        id: self.outsourcing_company.id,
+        name: self.outsourcing_company.name
+      }
+
+      result[:submissions_cnt] = self.outsourcing_company.submissions.count
+    end
+
+    result
+  end
+
+
   def self.load_full_list
     Company.includes(:outsourcing_company).order("name ASC").map { |c|
-      result = {
-        id: c.id,
-        name: c.name,
-        data_collection: c.data_collection,
-        scoring_system: c.scoring_system,
-        is_sample_report_avail: c.is_sample_report_avail,
-        submissions_cnt: c.submissions.count,
-        outsourcing_company: nil
-      }
+      result = c.conv_to_json_comp
 
       if c.outsourcing_company_id.present?
         result[:outsourcing_company] = {

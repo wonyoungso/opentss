@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, Fragment } from "react";
 import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import { store } from "../providers/TSSProvider";
@@ -28,8 +28,83 @@ const ComapniesIndex = () => {
     setSelectedCompany(value);
   }
 
-  console.log(companies, sampled_companies);
+  const renderSampledCompanies = () => {
 
+    return (   
+        _.map(sampled_companies, sampled_company => {
+          return (
+            <div key={sampled_company.id} className="lg:flex lg:justify-between lg:gap-2 cursor-pointer hover:bg-white-op-10 border-b border-b-white-op-50 py-1 transition-colors" onClick={() => { navigate(`/companies/${sampled_company.id}`) }}>
+              <div className="border-b border-b-white-op-30 pt-1 pb-2 lg:p-0 lg:border-none lg:w-2/5 text-lg font-bold text-dark-blue">{ sampled_company.name }</div>
+              <div className="border-b border-b-white-op-30 pt-1 pb-2 lg:p-0 lg:border-none lg:w-1/5 text-white-op-70">
+                { 
+                  sampled_company.scoring_system ?
+                  <span className="text-sm font-bold text-dark-blue">{ sampled_company.scoring_system }</span> : <span className="text-sm">No scoring system</span>
+                }
+              </div>
+              <div className="text-sm border-b border-b-white-op-30 pt-1 pb-2 lg:p-0 lg:border-none lg:w-1/5 text-white-op-70">
+                { 
+                  _.map(sampled_company.data_collection.split(","), data => {
+                    return <Fragment key={data}>{data}<br/></Fragment>
+                  })
+                }
+              </div>
+              <div className="text-sm pt-1 pb-2 lg:p-0 lg:border-none lg:w-1/5 text-white-op-70">
+                { 
+                  sampled_company.is_sample_report_avail ?
+                  <>Sample reports<br/>available</> : null
+                }
+                { 
+                  sampled_company.is_sample_report_avail & sampled_company.submissions_cnt > 0 ?
+                  <>; </> : null
+                }
+                {
+                  sampled_company.submissions_cnt > 0 ?
+                  <>{ sampled_company.submissions_cnt } Reported</> : null
+                }
+              </div>
+            </div>
+          )
+        })
+    );
+  }
+
+  const renderFilteredCompanies = () => {
+     
+    return (
+      <>
+        <div className="lg:flex lg:justify-between lg:gap-2 cursor-pointer hover:bg-white-op-10 border-b border-b-white-op-50 py-1 transition-colors" onClick={() => { navigate(`/companies/${selectedCompany.id}`) }}>
+          <div className="border-b border-b-white-op-30 pt-1 pb-2 lg:p-0 lg:border-none lg:w-2/5 text-lg font-bold text-dark-blue">{ selectedCompany.name }</div>
+          <div className="border-b border-b-white-op-30 pt-1 pb-2 lg:p-0 lg:border-none lg:w-1/5 text-white-op-70">
+            { 
+              selectedCompany.scoring_system ?
+              <span className="text-sm font-bold text-dark-blue">{ selectedCompany.scoring_system }</span> : <span className="text-sm">No scoring system</span>
+            }
+          </div>
+          <div className="text-sm border-b border-b-white-op-30 pt-1 pb-2 lg:p-0 lg:border-none lg:w-1/5 text-white-op-70">
+            { 
+              _.map(selectedCompany.data_collection.split(","), data => {
+                return <>{data}<br/></>
+              })
+            }
+          </div>
+          <div className="text-sm pt-1 pb-2 lg:p-0 lg:border-none lg:w-1/5 text-white-op-70">
+            { 
+              selectedCompany.is_sample_report_avail ?
+              <>Sample reports<br/>available</> : null
+            }
+            { 
+              selectedCompany.is_sample_report_avail & selectedCompany.submissions_cnt > 0 ?
+              <>; </> : null
+            }
+            {
+              selectedCompany.submissions_cnt > 0 ?
+              <>{ selectedCompany.submissions_cnt } Reported</> : null
+            }
+          </div>
+        </div>
+      </>
+    )
+  }
   return (
     <>
       <Header bg="bright" />
@@ -58,7 +133,7 @@ const ComapniesIndex = () => {
               List of companies
             </h2>
            
-            <div className="hidden lg:flex lg:justify-between lg:gap-2 border-y border-y-dark-blue py-3">
+            <div className="hidden lg:flex lg:justify-between lg:gap-2 border-y border-y-dark-blue py-3 text-sm">
               <div className="lg:w-2/5">Name</div>
               <div className="lg:w-1/5">Scoring<br/>System</div>
               <div className="lg:w-1/5">Data<br/>They Collect</div>
@@ -66,40 +141,9 @@ const ComapniesIndex = () => {
             </div>
             
             {
-              _.map(sampled_companies, company => {
-                return (
-                <div key={company.id} className="lg:flex lg:justify-between lg:gap-2 cursor-pointer hover:bg-white-op-10 border-b border-b-white-op-50 py-1" onClick={() => { navigate(`/companies/${company.id}`) }}>
-                  <div className="border-b border-b-white-op-30 pt-1 pb-2 lg:p-0 lg:border-none lg:w-2/5 text-lg font-bold text-dark-blue">{ company.name }</div>
-                  <div className="border-b border-b-white-op-30 pt-1 pb-2 lg:p-0 lg:border-none lg:w-1/5 text-white-op-70">
-                    { 
-                      company.scoring_system ?
-                      <span className="text-md font-bold text-dark-blue">{ company.scoring_system }</span> : <>No scoring system</>
-                    }
-                  </div>
-                  <div className="border-b border-b-white-op-30 pt-1 pb-2 lg:p-0 lg:border-none lg:w-1/5 text-white-op-70">
-                    { 
-                      _.map(company.data_collection.split(","), data => {
-                        return <>{data}<br/></>
-                      })
-                    }
-                  </div>
-                  <div className="pt-1 pb-2 lg:p-0 lg:border-none lg:w-1/5 text-white-op-70">
-                    { 
-                      company.is_sample_report_avail ?
-                      <>Sample reports<br/>available</> : null
-                    }
-                    { 
-                      company.is_sample_report_avail & company.submissions_cnt > 0 ?
-                      <>; </> : null
-                    }
-                    {
-                      company.submissions_cnt > 0 ?
-                      <>{ company.submissions_cnt } Reported</> : null
-                    }
-                  </div>
-                </div>
-                )
-              })
+              selectedCompany ? 
+              renderFilteredCompanies() : 
+              renderSampledCompanies()
             }
           </div>
           <div className="lg:col-span-1"></div>

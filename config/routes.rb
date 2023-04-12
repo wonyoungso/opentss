@@ -21,8 +21,7 @@ Rails.application.routes.draw do
   end
 
   resources :companies
-
-
+  
   get "/confirm-email/:token", to: "welcome#confirm_email", as: "confirm_email"
 
   get "/submissions/retrieve", to: "submissions#retrieve", as: "submissions_retrieve"

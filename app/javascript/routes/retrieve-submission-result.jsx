@@ -61,31 +61,27 @@ const RetrieveSubmissionResult = () => {
                   </div>
                 </>
               }
+                
+              <div className="hidden lg:flex lg:justify-between lg:gap-2 border-y border-y-dark-blue py-3">
+                <div className="lg:w-4">#</div>
+                <div className="lg:w-2/5">Email</div>
+                <div className="lg:w-1/5">Data<br/>They Collect</div>
+                <div className="lg:w-1/5">Report<br/>Collected</div>
+              </div>
 
-              <Table aria-label="basic table"  stripe="2n" hoverRow>
-                <thead>
-                  <tr>
-                    <th className="w-16">#</th>
-                    <th>Email</th>
-                    <th className="w-32">Submission Date</th>
-                    <th className="w-24">Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                {
-                  _.map(responseJson.submissions, submission => {
-                    return (
-                    <tr key={submission.id}>
-                      <td>{ submission.id }</td>
-                      <td className="overflow-clip overflow-ellipsis whitespace-nowrap">{ submission.email }</td>
-                      <td>{ moment(submission.created_at).format("MM/DD/YYYY") }</td>
-                      <td>{ toTitleCase(submission.status) } </td>
-                    </tr>
-                    )
-                  })
-                }
-                </tbody>
-              </Table>
+
+              {
+                _.map(responseJson.submissions, submission => {
+                  return (
+                  <div key={submission.id} className="lg:flex lg:justify-between lg:gap-2 cursor-pointer hover:bg-white-op-10 border-b border-b-white-op-50 py-1">
+                    <div className="border-b border-b-white-op-30 pt-1 pb-2 lg:p-0 lg:border-none lg:w-4 overflow-hidden overflow-ellipsis text-dark-blue">{ submission.id }</div>
+                    <div className="border-b border-b-white-op-30 pt-1 pb-2 lg:p-0 lg:border-none lg:w-2/5 text-white-op-70 overflow-clip overflow-ellipsis whitespace-nowrap">{ submission.email }</div>
+                    <div className="border-b border-b-white-op-30 pt-1 pb-2 lg:p-0 lg:border-none lg:w-1/5 text-white-op-70">{ moment(submission.created_at).format("MM/DD/YYYY") }</div>
+                    <div className="pt-1 pb-2 lg:p-0 lg:border-none lg:w-1/5 text-white-op-70">{ toTitleCase(submission.status) } </div>
+                  </div>
+                  )
+                })
+              }
               
             </div>
             <div className="lg:col-span-2"></div>

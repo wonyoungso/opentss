@@ -14,6 +14,12 @@ class Api::CompaniesController < ApplicationController
 
   end
 
+  def show
+    @company = Company.find params[:id]
+
+    render json: @company.conv_to_json_comp
+
+  end
 
   def request_copy
     @company = Company.select(:id, :name, :is_accept_letter, :request_copy_url, :form_json).find(params[:id])
