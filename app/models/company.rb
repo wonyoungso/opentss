@@ -39,6 +39,7 @@ class Company < ApplicationRecord
       is_sample_report_avail: self.is_sample_report_avail,
       submissions_cnt: self.submissions.count,
       outsourcing_company: nil,
+      is_admin_interface_available: self.is_admin_interface_available,
       resellers: self.resellers.map {|reseller| reseller.conv_to_json_concise }
     }
 

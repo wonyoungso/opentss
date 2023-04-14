@@ -6,11 +6,9 @@ import { store } from "../providers/TSSProvider";
 import {useNavigate, useLoaderData } from 'react-router-dom';
 import Footer from "../components/Footer";
 import { ArrowBack, Search } from "@mui/icons-material";
-import Autocomplete from '@mui/joy/Autocomplete';
-import FormControl from '@mui/joy/FormControl';
-import FormLabel from '@mui/joy/FormLabel';
+import ReportStats from "../components/ReportStats";
+import ReportDataField from "../components/ReportDataField";
 import _ from 'lodash';
-import { Table } from "@mui/joy";
 
 const CompaniesShow = () => {
 
@@ -33,7 +31,7 @@ const CompaniesShow = () => {
             <button className="text-sm" onClick={() => { navigate("/companies"); }}><ArrowBack size="sm" /> Back</button>
             <div className="pb-2"></div>
           </div>
-          <div className="lg:col-span-3">
+          <div className="lg:col-span-3 pb-10">
             <h2 className="font-bold text-4xl">
               { company.name }
             </h2>
@@ -59,6 +57,30 @@ const CompaniesShow = () => {
             }
             
           </div>
+          <div className="text-right">
+            {
+              company.is_sample_report_avail ? 
+              <span className="text-sm text-right">Sample report available</span> : null
+            }
+          </div>
+
+          <div className="text-right">
+            {
+              company.is_admin_interface_available ? 
+              <span className="text-sm text-right">Admin interface available</span> : null
+            }
+          </div>
+
+
+          <div className="text-right">
+            <span className="text-sm"><span className="">{ company.submissions_cnt }</span> tenants reported</span>
+          </div>
+
+
+          <ReportStats />
+          
+          <ReportDataField company={company} />
+
         </div>
       </div>
       <Footer bg="bright" />
