@@ -5,6 +5,7 @@ import df_logo_dark from '../assets/df_logo_dark.png';
 import mozilla_logo_bright from '../assets/mozilla_logo_bright.png';
 import idss_logo_bright from '../assets/idss_logo_bright.png';
 import df_logo_bright from '../assets/df_logo_bright.png';
+import { ArrowUpward } from "@mui/icons-material";
 
 const Footer = (props) => {
   const { bg } = props;
@@ -22,8 +23,8 @@ const Footer = (props) => {
               We are MIT researchers who address the challenges related to gaining insight into the internal algorithms, representations, and biases of tenant screening algorithms.
             </p>
 
-            <div className="pt-5">
-              <a href="#">Back to top</a>
+            <div className="pt-5 flex items-center cursor-pointer hover:opacity-50 transition-opacity" onClick={() => { window.scrollTo(0, 0); }}>
+              <ArrowUpward size="sm" /> <div className="pl-1">Back to top</div>
             </div>
           </div>
 

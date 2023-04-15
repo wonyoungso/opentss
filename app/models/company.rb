@@ -5,6 +5,7 @@ class Company < ApplicationRecord
   has_many :companies_descriptions
   has_many :descriptions, :through => :companies_descriptions
   has_many :submissions
+  has_one  :report_statistic
 
   belongs_to :outsourcing_company, class_name: "Company", :optional => true
   has_many :resellers, class_name: "Company", foreign_key: "outsourcing_company_id"
@@ -50,6 +51,11 @@ class Company < ApplicationRecord
       }
 
       result[:submissions_cnt] = self.outsourcing_company.submissions.count
+      result[:report_statistic] = self.outsourcing_company.report_statistic.conv_to_json
+      
+    else
+      result[:report_statistic] = self.report_statistic.conv_to_json
+
     end
 
     result

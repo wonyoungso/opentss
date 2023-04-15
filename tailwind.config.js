@@ -24,7 +24,9 @@ module.exports = {
       'dark-blue': '#202B62',
       'dark-blue-op-20': '#202B6222',
       'dark-blue-op-10': '#202B6210',
-      'red': '#FF0000'
+      'red': '#FF0000',
+      'accepted': '#607EE3',
+      'denied': '#FF7721'
     },
     fontFamily: {
       'sans': ["Sohne", "sans-serif"],

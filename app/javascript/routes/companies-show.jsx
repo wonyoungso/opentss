@@ -77,7 +77,7 @@ const CompaniesShow = () => {
           </div>
 
 
-          <ReportStats />
+          <ReportStats report_statistic={company.report_statistic} />
           
           <ReportDataField company={company} />
 

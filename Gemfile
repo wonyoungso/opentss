@@ -27,6 +27,8 @@ gem 'active_storage_validations'
 gem 'dotenv-rails'
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails"
+gem 'distribution', '~> 0.8.0'
+gem "prime"
 gem 'rails_admin', '~> 3.0'
 
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
