@@ -29,7 +29,7 @@ const Footer = (props) => {
           </div>
 
           <div className="lg:col-span-2 lg:col-end-6 leading-5 text-sm">
-            <h3 className={bg === "bright" ? "text-dark-blue" : "text-light-blue"}>
+            <h3 className={bg === "bright" ? "text-dark-blue" : (bg === "black" ? "text-white" : "text-light-blue")}>
               Who supports this project?
             </h3>
             <p className="text-white-op-50">

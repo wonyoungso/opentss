@@ -30,6 +30,11 @@ const router = createBrowserRouter([
   {
     path: "/how-tss-works",
     element: <HowTSSWorks />,
+    loader: async ({ request, params }) => {
+      const response = await fetch(`/api/companies/how_tss_works.json`);
+      const responseJson = await response.json();
+      return responseJson;
+    },
     errorElement: <ErrorPage />
   },
   {

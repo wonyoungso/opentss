@@ -41,7 +41,9 @@ class Company < ApplicationRecord
       submissions_cnt: self.submissions.count,
       outsourcing_company: nil,
       is_admin_interface_available: self.is_admin_interface_available,
-      resellers: self.resellers.map {|reseller| reseller.conv_to_json_concise }
+      resellers: self.resellers.map {|reseller| reseller.conv_to_json_concise },
+      eviction_data_fields: self.eviction_data_fields,
+      criminal_data_fields: self.criminal_data_fields
     }
 
     if self.outsourcing_company_id.present?
@@ -55,7 +57,6 @@ class Company < ApplicationRecord
       
     else
       result[:report_statistic] = self.report_statistic.conv_to_json
-
     end
 
     result

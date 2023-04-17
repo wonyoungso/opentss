@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_15_163458) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_17_180929) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -65,6 +65,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_15_163458) do
     t.integer "outsourcing_company_id"
     t.boolean "is_sample_report_avail", default: false
     t.boolean "is_admin_interface_available", default: false
+    t.json "eviction_data_fields"
+    t.json "criminal_data_fields"
+    t.json "fees"
   end
 
   create_table "companies_descriptions", force: :cascade do |t|

@@ -14,10 +14,19 @@ class Api::CompaniesController < ApplicationController
 
   end
 
+  def how_tss_works
+    @companies = Company.all.select(:id, :name, :eviction_data_fields, :criminal_data_fields, :fees)
+    @companies = @companies.shuffle[0, 12]
+
+    render json: @companies
+  end
+
+
   def show
     @company = Company.find params[:id]
+    @descriptions = @company.descriptions.where(desc_type: "company").map {|d| d.conv_to_json }
 
-    render json: @company.conv_to_json_comp
+    render json: { company: @company.conv_to_json_comp, descriptions: @descriptions }
 
   end
 

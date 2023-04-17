@@ -26,7 +26,11 @@ module.exports = {
       'dark-blue-op-10': '#202B6210',
       'red': '#FF0000',
       'accepted': '#607EE3',
-      'denied': '#FF7721'
+      'denied': '#FF7721',
+      'bright-blue': '#EEF1FB',
+      'gray': '#BBBBBB',
+      'yellow': '#F9C40B',
+      'very-dark-blue': '#000928'
     },
     fontFamily: {
       'sans': ["Sohne", "sans-serif"],

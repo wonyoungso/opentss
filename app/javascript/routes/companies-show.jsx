@@ -14,9 +14,10 @@ const CompaniesShow = () => {
 
   const { setMenuOpen } = useContext(store);
   const navigate = useNavigate();
-  const company = useLoaderData();
+  const { company, descriptions} = useLoaderData();
   
   useEffect(() => {
+    window.scrollTo(0, 0);
     document.title = `${company.name} :: Tenant Screening Services Lookup Tool | OpenTSS: Countering Tenant Screening`;
     document.body.className = "bg-white-bg text-dark-blue";
     setMenuOpen(false);
@@ -53,6 +54,8 @@ const CompaniesShow = () => {
                 {
                   <Link className="underline" to={`/companies/${company.outsourcing_company.id}`}>{company.outsourcing_company.name}</Link>
                 }
+
+                
               </div> : null
             }
             
@@ -60,14 +63,17 @@ const CompaniesShow = () => {
           <div className="text-right">
             {
               company.is_sample_report_avail ? 
-              <span className="text-sm text-right">Sample report available</span> : null
+              <span className="text-sm text-right">Sample report available</span> : 
+              <span className="text-sm text-right text-gray">Sample report unavailable</span>
             }
           </div>
 
           <div className="text-right">
             {
               company.is_admin_interface_available ? 
-              <span className="text-sm text-right">Admin interface available</span> : null
+              <span className="text-sm text-right">Admin interface available</span> : 
+              <span className="text-sm text-right text-gray">Admin interface unavailable</span>
+
             }
           </div>
 
@@ -80,8 +86,26 @@ const CompaniesShow = () => {
           <ReportStats report_statistic={company.report_statistic} />
           
           <ReportDataField company={company} />
-
         </div>
+        {
+            _.map(descriptions, description => {
+              return (
+                <div key={description.id} className="pt-10 lg:grid lg:grid-cols-6 lg:gap-5">
+                  <div className="text-sm">
+                    { description.subtitle }
+                  </div>
+                  <div className="lg:col-span-4">
+                    <h2 className="font-bold text-4xl">
+                      { description.title}
+                    </h2>
+
+                    <div className="pt-5" dangerouslySetInnerHTML={{ __html: description.content }} />
+                    
+                  </div>
+                </div>
+              );
+            })
+          }
       </div>
       <Footer bg="bright" />
     </>

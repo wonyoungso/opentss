@@ -17,6 +17,9 @@ Rails.application.routes.draw do
       member do
         get "request-copy"
       end
+      collection do 
+        get "how_tss_works"
+      end
     end
   end
 

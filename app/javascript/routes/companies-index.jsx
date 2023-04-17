@@ -19,6 +19,7 @@ const ComapniesIndex = () => {
   const [selectedCompany, setSelectedCompany] = useState(null);
   const { companies, sampled_companies } = useLoaderData();
   useEffect(() => {
+    window.scrollTo(0, 0);
     document.title = "Tenant Screening Services Lookup Tool | OpenTSS: Countering Tenant Screening";
     document.body.className = "bg-white-bg text-dark-blue";
     setMenuOpen(false);
