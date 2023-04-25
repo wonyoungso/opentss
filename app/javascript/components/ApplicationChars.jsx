@@ -40,6 +40,7 @@ const ApplicationChars = () => {
       voucher: watch("voucher"),
       minimum_rent: watch("minimum_rent"),
       landlord_name: watch("landlord_name"),
+      landlord_scale: watch("landlord_scale"),
       property_address: watch("property_address"),
       property_address_city: watch("property_address_city"),
       property_address_state: watch("property_address_state"),
@@ -63,6 +64,7 @@ const ApplicationChars = () => {
       voucher: data.voucher,
       minimum_rent: data.minimum_rent,
       landlord_name: data.landlord_name,
+      landlord_scale: data.landlord_scale,
       property_address: data.property_address,
       property_address_city: data.property_address_city,
       property_address_state: data.property_address_state,
@@ -363,6 +365,37 @@ const ApplicationChars = () => {
                     {
                       errors["landlord_name"] ? 
                       <span className="text-red">{errors["landlord_name"].message}</span> : 
+                      <>Required. </>
+                    }
+                  </FormHelperText>
+                </FormControl>
+              </div>
+
+              <div className="py-5">
+                <h3 className="font-bold pb-3">
+                  Is the landlord individual or company?
+                </h3>
+                <FormControl>
+                  <Controller
+                    name="landlord_scale"
+                    control={control}
+                    rules={{ 
+                      required: {value: true, message: "This field is required." }
+                    }}
+                    defaultValue=""
+                    render={({ field }) => {
+                      return (
+                        <RadioGroup  {...field}>
+                          <Radio color="neutral" value="individual" label="Individual" />
+                          <Radio color="neutral" value="company" label="Company" />
+                        </RadioGroup>
+                      )
+                    }}
+                  />
+                  <FormHelperText>
+                    {
+                      errors["landlord_scale"] ? 
+                      <span className="text-red">{errors["landlord_scale"].message}</span> : 
                       <>Required. </>
                     }
                   </FormHelperText>

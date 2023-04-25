@@ -111,10 +111,10 @@ const HowTSSWorks = () => {
             
 
           </div>
-          <div className="">
+          <div className="py-5 lg:py-0">
             <EvictionRecordsCard sample={true} mode="dark" />
           </div>
-          <div>
+          <div className="py-5 lg:py-0">
             <div className="bg-very-dark-blue rounded-md p-3 text-sm" style={{maxWidth: 220}}>
               <div className="flex items-center">
                 <div className="bg-yellow px-1 py-0.25 mx-1 text-very-dark-blue">
@@ -159,7 +159,7 @@ const HowTSSWorks = () => {
           {
             _.map(companies, company => {
               return (
-                <div key={company.id} className="cursor-pointer hover:opacity-50 transition-opacity" onClick={() => { navigate(`/companies/${company.id}`)}}>
+                <div key={company.id} className="py-5 lg:py-0 cursor-pointer hover:opacity-50 transition-opacity" onClick={() => { navigate(`/companies/${company.id}`)}}>
                   <EvictionRecordsCard key={company.id} mode="dark" name={company.name} fields={company.eviction_data_fields} />
                 </div>
               )
@@ -176,7 +176,7 @@ const HowTSSWorks = () => {
 
         <div className="lg:grid lg:grid-cols-6 lg:gap-5 py-20">
 
-          <div className="lg:col-span-2 text-4xl font-bold">
+          <div className="py-5 lg:py-0 lg:col-span-2 text-4xl font-bold">
             Criminal Data Field
             in Tenant Screening Reports
           </div>
@@ -184,10 +184,10 @@ const HowTSSWorks = () => {
             
 
           </div>
-          <div className="">
+          <div className="py-5 lg:py-0">
             <CriminalRecordsCard sample={true} mode="dark" />
           </div>
-          <div>
+          <div className="py-5 lg:py-0">
             <div className="bg-very-dark-blue rounded-md p-3 text-sm" style={{maxWidth: 220}}>
               <div className="flex items-center">
                 <div className="bg-yellow px-1 py-0.25 mx-1 text-very-dark-blue">
@@ -232,7 +232,7 @@ const HowTSSWorks = () => {
           {
             _.map(companies, company => {
               return (
-                <div key={company.id} className="cursor-pointer hover:opacity-50 transition-opacity" onClick={() => { navigate(`/companies/${company.id}`)}}>
+                <div key={company.id} className="py-5 lg:py-0 cursor-pointer hover:opacity-50 transition-opacity" onClick={() => { navigate(`/companies/${company.id}`)}}>
                   <CriminalRecordsCard key={company.id} mode="dark" name={company.name} fields={company.criminal_data_fields} />
                 </div>
               )
@@ -263,12 +263,12 @@ const HowTSSWorks = () => {
           </div>
 
           
-          <div className="lg:col-span-4">
+          <div className="py-1 lg:p-0 lg:col-span-4">
             <div className="pb-3">
               Here are the breakdown of the fees of tenant screening services.
             </div>
 
-            <div className="hidden lg:flex font-bold lg:justify-between lg:gap-2 border-y border-y-bright-blue py-3 text-sm">
+            <div className="lg:flex font-bold lg:justify-between lg:gap-2 border-y border-y-bright-blue py-1 lg:py-3 text-sm">
               <div className="lg:w-2/4">Company Name</div>
               <div className="lg:w-1/4">Fees</div>
               <div className="lg:w-1/4">Notes</div>
@@ -276,9 +276,9 @@ const HowTSSWorks = () => {
             {
                 _.map(companies, company => {
                   return (
-                  <div key={company.id} onClick={() => { navigate(`/companies/${company.id}`)} } className="lg:flex lg:justify-between lg:gap-2 cursor-pointer hover:bg-white-op-10 border-b border-b-white-op-50  py-3 ">
-                    <div className="text-md font-bold border-b border-b-white-op-30 py-3 lg:p-0 lg:border-none lg:w-2/4 text-sm overflow-clip overflow-ellipsis whitespace-nowrap">{ company.name }</div>
-                    <div className="border-b border-b-white-op-30  py-3 lg:p-0 lg:border-none lg:w-1/4 text-sm">
+                  <div key={company.id} onClick={() => { navigate(`/companies/${company.id}`)} } className="lg:flex lg:justify-between lg:gap-2 cursor-pointer hover:bg-white-op-10 border-b border-b-white-op-50 py-1 lg:py-3">
+                    <div className="text-md font-bold border-b border-b-white-op-30 py-1 lg:p-0 lg:border-none lg:w-2/4 text-sm overflow-clip overflow-ellipsis whitespace-nowrap">{ company.name }</div>
+                    <div className="border-b border-b-white-op-30  py-1 lg:p-0 lg:border-none lg:w-1/4 text-sm">
                       {
                         _.map(company.fees.fees, fee => {
                           return (
@@ -287,7 +287,7 @@ const HowTSSWorks = () => {
                         })
                       }
                     </div>
-                    <div className=" py-3 lg:p-0 lg:border-none lg:w-1/4 text-sm ">{ company.fees.notes } </div>
+                    <div className="py-1 lg:p-0 lg:border-none lg:w-1/4 text-sm ">{ company.fees.notes } </div>
                   </div>
                   )
                 })

@@ -1,12 +1,13 @@
 class Submission < ApplicationRecord
   has_many_attached :reports
-  belongs_to :company
+  belongs_to :company, optional: true
   before_create :generate_confirmation_token
 
   encrypts :email, deterministic: true
   
   encrypts :printed_name
   encrypts :gender
+  encrypts :transgender
   encrypts :is_hispanic_or_latino
   encrypts :race
   encrypts :age
@@ -21,6 +22,7 @@ class Submission < ApplicationRecord
   encrypts :voucher
   encrypts :minimum_rent
   encrypts :landlord_name
+  encrypts :landlord_scale
   encrypts :property_address
   encrypts :property_address_city
   encrypts :property_address_state
@@ -30,6 +32,7 @@ class Submission < ApplicationRecord
 
   validates :printed_name, :presence => true
   validates :gender, :presence => true
+  validates :transgender, :presence => true
   validates :is_hispanic_or_latino, :presence => true
   validates :race, :presence => true
   validates :age, :presence => true
@@ -44,6 +47,7 @@ class Submission < ApplicationRecord
   validates :voucher, :presence => true
   validates :minimum_rent, :presence => true
   validates :landlord_name, :presence => true
+  validates :landlord_scale, :presence => true
   validates :property_address, :presence => true
   validates :property_address_city, :presence => true
   validates :property_address_state, :presence => true
@@ -52,7 +56,7 @@ class Submission < ApplicationRecord
   validates :email, :presence => true
 
   validates :reports, attached: {message: "Tenant screening reports should be attached. Please check previous page and upload them."}, 
-                      content_type: { in: ['image/*', 'image/heif', 'image/heic', 'application/pdf'], message: 'Tenant screening reports are not a PDF or valid image.' } 
+                      content_type: { in: ['image/*', "image/jpeg", "image/png", "image/jpg", 'image/heif', 'image/heic', 'application/pdf'], message: 'Tenant screening reports are not a PDF or valid image.' } 
 
   def generate_confirmation_token
     self.confirmation_token = Devise.friendly_token
@@ -69,6 +73,7 @@ class Submission < ApplicationRecord
     self.consented_at = DateTime.parse(params[:consented_at])
     self.printed_name = params[:printed_name]
     self.gender = params[:gender]
+    self.transgender = params[:transgender]
     self.is_hispanic_or_latino = params[:is_hispanic_or_latino]
     self.race = params[:race]
     self.age = params[:age]
@@ -83,6 +88,7 @@ class Submission < ApplicationRecord
     self.voucher = params[:voucher]
     self.minimum_rent = params[:minimum_rent]
     self.landlord_name = params[:landlord_name]
+    self.landlord_scale = params[:landlord_scale]
     self.property_address = params[:property_address]
     self.property_address_city = params[:property_address_city]
     self.property_address_state = params[:property_address_state]

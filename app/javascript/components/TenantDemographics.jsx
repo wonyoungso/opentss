@@ -42,6 +42,7 @@ const TenantDemographics = () => {
     setSubmission({
       ...submission,
       gender: data.gender,
+      transgender: data.transgender,
       race: data.race,
       is_hispanic_or_latino: data.is_hispanic_or_latino,
       age: data.age,
@@ -101,12 +102,10 @@ const TenantDemographics = () => {
                     render={({ field }) => {
                       return (
                         <RadioGroup  {...field}>
-                          <Radio color="neutral" value="famale" label="Female" />
-                          <Radio color="neutral" value="male" label="Male" />
-                          <Radio color="neutral" value="transgender_female" label="Transgender Female" />
-                          <Radio color="neutral" value="transgender_male" label="Transgender Male" />
-                          <Radio color="neutral" value="gender_variant" label="Gender Variant / Non-Conforming" />
-                          <Radio color="neutral" value="not_disclose" label="Prefer not to say" />
+                          <Radio color="neutral" value="woman" label="Woman" />
+                          <Radio color="neutral" value="man" label="Man" />
+                          <Radio color="neutral" value="non_binary" label="Non-binary person" />
+                          <Radio color="neutral" value="not_disclose" label="Prefer not to answer" />
                         </RadioGroup>
                       )
                     }}
@@ -115,6 +114,36 @@ const TenantDemographics = () => {
                     {
                       errors["gender"] ? 
                       <span className="text-red">{errors["gender"].message}</span> : 
+                      <>Required. </>
+                    }
+                  </FormHelperText>
+                </FormControl>
+              </div>
+
+              <div className="py-5">
+                <h3 className="font-bold pb-3">
+                  Do you have lived experience as a trans person (meaning your gender identity does not align with your gender assigned at birth)?
+                </h3>
+                <FormControl>
+                  <Controller
+                    name="transgender"
+                    control={control}
+                    rules={{ required: {value: true, message: "This field is required." }  }}
+                    defaultValue=""
+                    render={({ field }) => {
+                      return (
+                        <RadioGroup  {...field}>
+                          <Radio color="neutral" value="yes" label="Yes" />
+                          <Radio color="neutral" value="no" label="No" />
+                          <Radio color="neutral" value="not_disclose" label="Prefer not to answer" />
+                        </RadioGroup>
+                      )
+                    }}
+                  />
+                  <FormHelperText>
+                    {
+                      errors["transgender"] ? 
+                      <span className="text-red">{errors["transgender"].message}</span> : 
                       <>Required. </>
                     }
                   </FormHelperText>
