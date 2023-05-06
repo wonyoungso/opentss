@@ -14,7 +14,7 @@ const CompaniesShow = () => {
 
   const { setMenuOpen } = useContext(store);
   const navigate = useNavigate();
-  const { company, descriptions} = useLoaderData();
+  const { company, descriptions } = useLoaderData();
   
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -22,6 +22,9 @@ const CompaniesShow = () => {
     document.body.className = "bg-white-bg text-dark-blue";
     setMenuOpen(false);
   }, []);
+
+  const introductionDescriptions = _.filter(descriptions, desc => desc.subtitle === "Introduction")
+  const otherDescriptions = _.filter(descriptions, desc => desc.subtitle != "Introduction")
 
   return (
     <>
@@ -79,16 +82,48 @@ const CompaniesShow = () => {
 
 
           <div className="text-right">
-            <span className="text-sm"><span className="">{ company.submissions_cnt }</span> tenants reported</span>
+            <span className="text-sm"><span className="">{ company.submissions_cnt }</span> reports collected</span>
           </div>
 
-
-          <ReportStats report_statistic={company.report_statistic} />
-          
-          <ReportDataField company={company} />
         </div>
+
         {
-            _.map(descriptions, description => {
+          _.map(introductionDescriptions, description => {
+            return (
+              <div key={description.id} className="lg:grid lg:grid-cols-6 lg:gap-5 pb-10">
+                <div className="text-sm">
+                  { description.subtitle }
+                </div>
+                <div className="lg:col-span-4">
+                  <h2 className="font-bold text-4xl">
+                    { description.title}
+                  </h2>
+
+                  <div className="pt-5" dangerouslySetInnerHTML={{ __html: description.content }} />
+                  
+                </div>
+              </div>
+            );
+          })
+        }
+
+        {
+          company.report_statistic ? 
+          <ReportStats report_statistic={company.report_statistic} /> : 
+          null
+        }
+        
+        
+        {
+          _.isNull(company.outsourcing_company) ?
+
+          <ReportDataField company={company} />
+          : 
+          null
+        }
+
+        {
+            _.map(otherDescriptions, description => {
               return (
                 <div key={description.id} className="pt-10 lg:grid lg:grid-cols-6 lg:gap-5">
                   <div className="text-sm">

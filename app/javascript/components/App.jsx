@@ -78,17 +78,13 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />
   },
   {
-    path: "/request-copy/:type/:arg",
+    path: "/request-copy/companies/:id",
     element: <RequestCopyResult />,
     loader: async ({ request, params }) => {
-      if (params.type === "companies") {
-        const response = await fetch(`/api/companies/${params.arg}/request-copy.json`);
-        const result = await response.json();
-        return result;
-      } else {
-        return {};
-      }
-
+      const response = await fetch(`/api/companies/${params.id}/request-copy.json`);
+      const result = await response.json();
+      return result;
+    
     },
     errorElement: <ErrorPage />
   },

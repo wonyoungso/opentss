@@ -1,0 +1,50 @@
+{
+  "Case Number": {
+    "value": true,
+    "critical": false
+  },
+  "Any Dates": {
+    "value": true,
+    "critical": true
+  },
+  "Comments": {
+    "value": false,
+    "critical": false
+  },
+  "Disposition": {
+    "value": true,
+    "critical": true
+  },
+  "Jurisdiction": {
+    "value": true,
+    "critical": false
+  },
+  "Jurisdiction State": {
+    "value": false,
+    "critical": false
+  },
+  "Method Verified": {
+    "value": false,
+    "critical": false
+  },
+  "Offense Degree": {
+    "value": true,
+    "critical": true
+  },
+  "Person's Info": {
+    "value": true,
+    "critical": false
+  },
+  "Reporting Agency": {
+    "value": false,
+    "critical": false
+  },
+  "Sentence": {
+    "value": false,
+    "critical": false
+  },
+  "Statute": {
+    "value": false,
+    "critical": false
+  }
+}

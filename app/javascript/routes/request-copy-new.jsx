@@ -20,6 +20,7 @@ const RequestCopyNew = () => {
   const { setMenuOpen } = useContext(store);
   const navigate = useNavigate();
   const { companies } = useLoaderData();
+  const [moreThan60days, setMoreThan60days] = useState(false);
   const [findNameStatus, setFindNameStatus] = useState(false);
   const [companyName, setCompanyName] = useState('');
   const [selectedCompany, setSelectedCompany] = useState(null);
@@ -49,12 +50,13 @@ const RequestCopyNew = () => {
       return _.isNull(selectedCompany);
     }
   };
+  
 
   const goToNextStep = () => {
     if (findNameStatus) {
       navigate(`/request-copy/custom-form/${companyName}`);
     } else {
-      navigate(`/request-copy/companies/${selectedCompany.id}`);
+      navigate(`/request-copy/companies/${selectedCompany.id}?sixty_days=${moreThan60days ? "t" : "f"}`);
     }
   };
 
@@ -94,6 +96,11 @@ const RequestCopyNew = () => {
               </FormControl>
               : null
             }
+
+            <FormControl>
+              <Checkbox label="My rental application was screened more than 60 days ago" checked={moreThan60days} onChange={(e) => { setMoreThan60days(e.target.checked) }} />
+            </FormControl>
+            <div className="h-5"></div>
             
             <FormControl>
               <Button disabled={checkStatus()} onClick={goToNextStep} size="lg">

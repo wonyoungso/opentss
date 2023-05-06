@@ -21,7 +21,8 @@ const ReportStats = (props) => {
   console.log(report_statistic.rti_dist.accepted)
 
   return (
-    <>
+    <div className="pt-10 lg:grid lg:grid-cols-6 lg:gap-5">
+
       <div className="text-sm">Reports Statistics</div>
       <div className="lg:col-span-2 text-right ">
         <span className="text-xs uppercase"># of Tenant Screening Report Collected</span><br/>
@@ -192,7 +193,7 @@ const ReportStats = (props) => {
       <div className="lg:col-span-6 pb-10">
 
       </div>
-    </>
+    </div>
   )
 };
 

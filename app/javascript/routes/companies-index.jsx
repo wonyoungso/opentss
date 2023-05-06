@@ -33,6 +33,7 @@ const ComapniesIndex = () => {
 
     return (   
         _.map(sampled_companies, sampled_company => {
+          // console.log(sampled_company);
           return (
             <div key={sampled_company.id} className="lg:flex lg:justify-between lg:gap-2 cursor-pointer hover:bg-white-op-10 border-b border-b-white-op-50 py-1 transition-colors" onClick={() => { navigate(`/companies/${sampled_company.id}`) }}>
               <div className="border-b border-b-white-op-30 pt-1 pb-2 lg:p-0 lg:border-none lg:w-2/5 text-lg font-bold text-dark-blue">{ sampled_company.name }</div>
@@ -44,6 +45,9 @@ const ComapniesIndex = () => {
               </div>
               <div className="text-sm border-b border-b-white-op-30 pt-1 pb-2 lg:p-0 lg:border-none lg:w-1/5 text-white-op-70">
                 { 
+                  _.isNull(sampled_company.data_collection) ? 
+                  <>"Unknown"</>
+                  :
                   _.map(sampled_company.data_collection.split(","), data => {
                     return <Fragment key={data}>{data}<br/></Fragment>
                   })
@@ -82,11 +86,14 @@ const ComapniesIndex = () => {
             }
           </div>
           <div className="text-sm border-b border-b-white-op-30 pt-1 pb-2 lg:p-0 lg:border-none lg:w-1/5 text-white-op-70">
-          { 
-                  _.map(selectedCompany.data_collection.split(","), data => {
-                    return <Fragment key={data}>{data}<br/></Fragment>
-                  })
-                }
+            { 
+              _.isNull(selectedCompany.data_collection) ? 
+              <>Unknown</>
+              :
+              _.map(selectedCompany.data_collection.split(","), data => {
+                return <Fragment key={data}>{data}<br/></Fragment>
+              })
+            }
           </div>
           <div className="text-sm pt-1 pb-2 lg:p-0 lg:border-none lg:w-1/5 text-white-op-70">
             { 

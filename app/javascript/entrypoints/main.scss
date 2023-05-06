@@ -48,6 +48,10 @@ textarea:focus {
   --tw-ring-color: none !important;
 }
 
+.trix-content a { 
+  text-decoration: underline;
+}
+
 tspan {
   font-size: 0.7em;
 }

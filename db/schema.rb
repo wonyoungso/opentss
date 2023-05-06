@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_25_181631) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_05_230228) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -68,6 +68,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_25_181631) do
     t.json "eviction_data_fields"
     t.json "criminal_data_fields"
     t.json "fees"
+    t.string "aka"
+    t.string "company_address"
+    t.string "company_city"
+    t.string "company_state"
+    t.string "company_zip_code"
+    t.boolean "custom_letter_required", default: false
+    t.string "company_mail_name"
+    t.json "detail_config"
+    t.string "company_type", default: "nationwide specialty CRA"
   end
 
   create_table "companies_descriptions", force: :cascade do |t|
@@ -85,6 +94,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_25_181631) do
     t.string "subtitle"
   end
 
+  create_table "outsourcings", force: :cascade do |t|
+    t.integer "company_id"
+    t.integer "outsourcing_company_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "report_statistics", force: :cascade do |t|
     t.integer "company_id"
     t.integer "total"
@@ -98,6 +114,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_25_181631) do
     t.datetime "updated_at", null: false
     t.json "housing_type"
     t.json "dti_dist"
+    t.boolean "public", default: false
   end
 
   create_table "submissions", force: :cascade do |t|

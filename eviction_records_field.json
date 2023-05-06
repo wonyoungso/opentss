@@ -1,0 +1,42 @@
+{
+  "Case Number": {
+    "value": true,
+    "critical": false
+  },
+  "Case Type": {
+    "value": true,
+    "critical": true
+  },
+  "Court Name": {
+    "value": true,
+    "critical": false
+  },
+  "Defendant’s Name": {
+    "value": true,
+    "critical": false
+  },
+  "Defendant’s Address": {
+    "value": false,
+    "critical": false
+  },
+  "Defendant’s SSN": {
+    "value": false,
+    "critical": false
+  },
+  "Amount": {
+    "value": true,
+    "critical": false
+  },
+  "Any Dates": {
+    "value": true,
+    "critical": true
+  },
+  "Judgment": {
+    "value": true,
+    "critical": true
+  },
+  "Plaintiff’s Name": {
+    "value": true,
+    "critical": false
+  }
+}

@@ -39,9 +39,9 @@ Rails.application.configure do
   Rails.application.routes.default_url_options[:port] = 5100
   
   config.action_mailer.smtp_settings = {
-    user_name: ENV['SMTP_USER_NAME'],
-    password: ENV['SMTP_PASSWORD'],
-    address: ENV['SMTP_ADDRESS'],
+    user_name: Rails.application.credentials.dig(:smtp, :user_name),
+    password: Rails.application.credentials.dig(:smtp, :password),
+    address: Rails.application.credentials.dig(:smtp, :address),
     domain: "localhost",
     port: 587,
     authentication: :login,

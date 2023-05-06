@@ -48,6 +48,15 @@ RailsAdmin.config do |config|
     end
   end
 
+
+  config.model 'ReportStatistic' do 
+    list do
+      field :id
+      field :company
+      field :total
+    end
+  end
+
   config.model 'Submission' do 
     list do
       field :email
@@ -60,6 +69,7 @@ RailsAdmin.config do |config|
     list do
       field :title
       field :desc_type
+      field :subtitle
       field :companies
     end
   end

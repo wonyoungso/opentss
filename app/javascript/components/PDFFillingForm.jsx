@@ -9,6 +9,7 @@ import Button from "@mui/joy/Button";
 import Input from '@mui/joy/Input';
 import { FormLabel } from '@mui/joy';
 import { useForm } from "react-hook-form";
+import moment from 'moment';
 
 
 
@@ -28,14 +29,38 @@ const PDFFillingForm = (props) => {
       nameField.setText(value);
     });
 
+    if (company.custom_letter_required) {
+      const dateField = form.getTextField("Date");
+      dateField.setText(moment().format("MMMM D, YYYY"));
+
+      const tenantNameField = form.getTextField("Tenant Name");
+      tenantNameField.setText(data["Name"]);
+
+      const companyNameField = form.getTextField("Company");
+      companyNameField.setText(company.company_mail_name);
+
+      const addressField = form.getTextField("Company Address");
+      addressField.setText(company.company_address);
+
+      const cityField = form.getTextField("Company City");
+      cityField.setText(`${company.company_city}, `);
+
+      const stateField = form.getTextField("Company State");
+      stateField.setText(`${company.company_state} ${company.company_zip_code}`);
+
+    }
+
+    form.flatten();
+
     const pdfBytes = await pdfDoc.save();
     saveAs(new Blob([pdfBytes], {type: "application/pdf"}), `${company.name}_request_form.pdf`);
   }
+  
 
   return (
     <>
       <div className="py-5">
-        We understand that entering your personal information may be a concern. Please be assured that this tool is designed to work within your browser (or your phone), and therefore <span className="font-bold">we do not transmit or store any of the information you enter.</span> Think of it like using a word processor on your computer.
+        We understand that entering your personal information may be a concern. However, please be assured that this tool is designed to work within your browser (or your phone), and therefore <span className="font-bold">we do not transmit or store any of the information you enter.</span> Think of it like using a word processor on your computer.
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
         {

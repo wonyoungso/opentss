@@ -24,11 +24,12 @@ Rails.application.configure do
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
   config.public_file_server.enabled = ENV["RAILS_SERVE_STATIC_FILES"].present?
+  
 
   config.action_mailer.smtp_settings = {
-    user_name: ENV['SMTP_USER_NAME'],
-    password: ENV['SMTP_PASSWORD'],
-    address: ENV['SMTP_ADDRESS'],
+    user_name: Rails.application.credentials.dig(:smtp, :user_name),
+    password: Rails.application.credentials.dig(:smtp, :password),
+    address: Rails.application.credentials.dig(:smtp, :address),
     domain: "localhost",
     port: 587,
     authentication: :login,

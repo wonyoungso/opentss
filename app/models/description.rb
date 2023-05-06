@@ -7,6 +7,8 @@ class Description < ApplicationRecord
 
   def conv_to_json
     {
+      company_name: self.companies.first.name,
+      company_id: self.companies.first.id,
       id: self.id,
       title: self.title,
       subtitle: self.subtitle,
