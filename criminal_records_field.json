@@ -8,7 +8,7 @@
     "critical": true
   },
   "Comments": {
-    "value": false,
+    "value": true,
     "critical": false
   },
   "Disposition": {
@@ -20,7 +20,7 @@
     "critical": false
   },
   "Jurisdiction State": {
-    "value": false,
+    "value": true,
     "critical": false
   },
   "Method Verified": {
@@ -46,5 +46,9 @@
   "Statute": {
     "value": false,
     "critical": false
+  },
+  "Name of Offense": {
+    "value": true,
+    "critical": true
   }
 }

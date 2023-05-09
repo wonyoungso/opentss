@@ -8,6 +8,13 @@ import _ from 'lodash';
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import { Close } from "@mui/icons-material";
 import { ArrowBack } from "@mui/icons-material";
+import Select from '@mui/joy/Select';
+import FormHelperText from '@mui/joy/FormHelperText';
+import Option from '@mui/joy/Option';
+
+const months = ["January","February","March","April","May","June","July",
+"August","September","October","November","December"];
+const years = _.map(_.range(2023, 1960, -1), year => _.toString(year));
 
 const UploadReport = () => {
 
@@ -35,7 +42,7 @@ const UploadReport = () => {
 	};
 
   const checkStatus = () => {
-    return submission.files.length === 0;
+    return submission.files.length === 0 && !_.isNull(submission.report_date_month) && !_.isNull(submission.report_date_year);
   }
 
   const removeHandler = (idx) => {
@@ -44,6 +51,21 @@ const UploadReport = () => {
     newSubmission.files.splice(idx, 1);
 
     setSubmission(newSubmission);
+  }
+
+  const reportDateMonthChange = (evant, value) => {
+    console.log(value);
+    setSubmission({
+      ...submission,
+      report_date_month: value
+    })
+  }
+
+  const reportDateYearChange = (event, value) => {
+    setSubmission({
+      ...submission,
+      report_date_year: value
+    })
   }
 
   useEffect(() => {
@@ -93,21 +115,58 @@ const UploadReport = () => {
               <div className="mt-5 font-bold border-b border-b-dark-blue-bg pb-2">
                 Uploaded Files
               </div>
-              {
-                _.map(submission.files, (file, i) => {
-                  return (
-                    <div key={i} className="py-3 flex justify-between items-center border-b border-b-white-op-10">
-                      <div className="text-sm">
-                        { file.name }
+              <div>
+                {
+                  submission.files.length > 0 ?
+                  _.map(submission.files, (file, i) => {
+                    return (
+                      <div key={i} className="py-3 flex justify-between items-center border-b border-b-white-op-10 last:border-b-dark-blue-bg">
+                        <div className="text-sm">
+                          { file.name }
+                        </div>
+                        <div className="hover:opacity-50 cursor-pointer" onClick={_.bind(removeHandler, null, i) }>
+                          <Close />
+                        </div>
                       </div>
-                      <div className="hover:opacity-50 cursor-pointer" onClick={_.bind(removeHandler, null, i) }>
-                        <Close />
-                      </div>
-                    </div>
-                  )
-                })
-              }
-              
+                    )
+                  }) : 
+                  <div className="py-3 border-b border-b-dark-blue-bg text-sm text-white-op-70">
+                    No files are attached.
+                  </div>
+                }
+              </div>
+
+              <div className="pt-10">
+                <h3 className="font-bold pb-3">
+                  When approximately did you receive this report?
+                </h3>
+
+                <div className="flex gap-1 pb-1">
+                  <Select placeholder="Month" value={submission.report_date_month} onChange={reportDateMonthChange}>
+                    {
+                      _.map(months, month => {
+                        return (
+                          <Option key={month} value={month}>{month}</Option>
+                        )
+                      })
+                    }
+                  </Select>
+                  <Select placeholder="Year" value={submission.report_date_year} onChange={reportDateYearChange}>
+                    {
+                      _.map(years, year => {
+                        return (
+                          <Option key={year} value={year}>{year}</Option>
+                        )
+                      })
+                    }
+                  </Select>
+                </div>
+                <FormHelperText>
+                  Required.
+                </FormHelperText>
+              </div>
+
+
               <div className="h-60"></div>
 
 

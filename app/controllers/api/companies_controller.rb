@@ -8,7 +8,7 @@ class Api::CompaniesController < ApplicationController
 
       render json: { companies: @companies, sampled_companies: @sampled_companies }
     else
-      @companies = Company.where.not(company_type: 'nationwide CRA').select(:id, :name).order("name ASC")
+      @companies = Company.load_full_list
       render json: @companies
     end
 

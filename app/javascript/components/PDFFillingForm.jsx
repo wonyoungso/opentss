@@ -7,26 +7,118 @@ import FormControl from '@mui/joy/FormControl';
 import FormHelperText from '@mui/joy/FormHelperText';
 import Button from "@mui/joy/Button";
 import Input from '@mui/joy/Input';
+import Checkbox from '@mui/joy/Checkbox';
 import { FormLabel } from '@mui/joy';
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import moment from 'moment';
 
 
 
 const PDFFillingForm = (props) => {
   const { company } = props;
-  const { register, handleSubmit, formState: { isValid, isDirty, errors } } = useForm({ mode: "onChange" });
+  const { register, handleSubmit, control, trigger, formState: { isValid, isDirty, errors } } = useForm({ mode: "onChange" });
   // const [data, setData] = useState("");
+
+  useEffect(() => {
+    // if (company.name === "National Tenant Network") {
+      trigger();
+      
+  }, []);
 
   async function onSubmit(data){
     const existingPdfBytes = await fetch(company.request_form_url).then(res => res.arrayBuffer())
     const pdfDoc = await PDFDocument.load(existingPdfBytes);
     const form = pdfDoc.getForm()
-    
+    let restData;
     // Get two text fields from the form
-    _.map(data, (value, key) => {
-      const nameField = form.getTextField(key);
-      nameField.setText(value);
+
+    // NTN speicifc fields  
+    if (company.name === "National Tenant Network") {
+      const ntnSpecificFields = ['Adverse Action Check', "Landlord Phone Number", "Date of Birth", "Generation", "SSN", "Phone"];
+
+      let ntnData = _.pick(data, ntnSpecificFields);
+      restData = _.pick(data, _.difference(_.keys(data), ntnSpecificFields));
+
+      // then ntn_specific checking
+      // first, adverse action checkbox
+      if (ntnData["Adverse Action Check"]) {
+        form.getCheckBox("Annual Free Check").uncheck();
+        form.getCheckBox("Adverse Action Check").check();
+      } else {
+        form.getCheckBox("Annual Free Check").check();
+        form.getCheckBox("Adverse Action Check").uncheck();
+      }
+
+      // split landlord phone number into two
+      const landlordPhoneNumber_01 = ntnData['Landlord Phone Number'].substring(0, 3);
+      const landlordPhoneNumber_02 = ntnData['Landlord Phone Number'].substring(3, ntnData['Landlord Phone Number'].length);
+      const lrdPhoneField_01 = form.getTextField("Landlord Phone Number_1");
+      lrdPhoneField_01.setText(landlordPhoneNumber_01);
+      const lrdPhoneField_02 = form.getTextField("Landlord Phone Number_2");
+      lrdPhoneField_02.setText(landlordPhoneNumber_02);
+
+      // split date of birth
+      const dateOfBirthSplited = ntnData['Date of Birth'].split("/");
+      form.getTextField("Date of Birth Month").setText(dateOfBirthSplited[0]);
+      form.getTextField("Date of Birth Day").setText(dateOfBirthSplited[1]);
+      form.getTextField("Date of Birth Year").setText(dateOfBirthSplited[2]);
+
+      // determine generation
+      if (_.includes(_.lowerCase(ntnData['Generation']), "sr")){
+        form.getCheckBox("Generation Sr").check();
+        form.getCheckBox("Generation Jr").uncheck();
+        form.getCheckBox("Generation Other").uncheck();
+      } else if (_.includes(_.lowerCase(ntnData['Generation']), "jr")){
+        form.getCheckBox("Generation Jr").check();
+        form.getCheckBox("Generation Sr").uncheck();
+        form.getCheckBox("Generation Other").uncheck();
+      } else {
+        form.getCheckBox("Generation Other").check();
+        form.getCheckBox("Generation Jr").uncheck();
+        form.getCheckBox("Generation Sr").uncheck();
+        form.getTextField("Other Generation").setText(ntnData['Generation']);
+      }
+
+      // SSN split
+      _.each(ntnData["SSN"], (digit, idx) => {
+        form.getTextField(`SSN_${idx + 1}`).setText(digit);
+      })
+
+
+      // split phone number into two
+      const phoneNumber_01 = ntnData['Phone'].substring(0, 3);
+      const phoneNumber_02 = ntnData['Phone'].substring(3, ntnData['Phone'].length);
+      form.getTextField("Home Phone_1").setText(phoneNumber_01);
+      form.getTextField("Home Phone_2").setText(phoneNumber_02);
+      form.getTextField("Mobile Phone_1").setText(phoneNumber_01);
+      form.getTextField("Mobile Phone_2").setText(phoneNumber_02);
+      
+      // fillout printed name and date
+      const printedName = `${restData['First Name']}${_.isUndefined(restData['Middle Name']) ? " " : ` ${restData['Middle Name']} `}${restData['Last Name']}`
+      form.getTextField("Printed Name").setText(printedName);
+      form.getTextField("Printed Date").setText(restData['Date']);
+
+
+    } else {
+      restData = data;
+    }
+
+    console.log(company.form_json)
+
+    _.map(restData, (value, key) => {
+      console.log(key, value);
+      if (company.form_json[key].field_type === "checkbox") {
+        // console.log(value, key);
+        const checkboxField = form.getCheckBox(key);
+        if (value) {
+          checkboxField.check();
+        }
+        
+      } else { // textfield
+        const nameField = form.getTextField(key);
+        nameField.setText(value);
+
+      }
     });
 
     if (company.custom_letter_required) {
@@ -56,6 +148,73 @@ const PDFFillingForm = (props) => {
     saveAs(new Blob([pdfBytes], {type: "application/pdf"}), `${company.name}_request_form.pdf`);
   }
   
+  const renderTextField = (field, key) => {
+    return (
+      <FormControl className="pt-5" key={key}>
+        <FormLabel>{field.label}</FormLabel>
+        <Input 
+          color={errors[field.field_name] ? "danger" : "primary"} 
+          {
+            ...register(field.field_name, 
+              { 
+                required: { value: field.required, message: "This field is required." },
+                pattern: 
+                  field.pattern ? 
+                  { value: new RegExp(field.pattern.value), message: field.pattern.message } 
+                  : false
+              }
+            )
+          } 
+          placeholder={field.placeholder} />
+         <FormHelperText>
+          {
+            errors[field.field_name] ? 
+            <span className="text-red">{errors[field.field_name].message}</span> : 
+            (field.required ? <>Required. </> : <>Optional. </>)
+          }
+        </FormHelperText>
+        <FormHelperText>
+          {field.caption}
+        </FormHelperText>
+      </FormControl>
+    );
+  }
+
+  const renderCheckBox = (checkboxField, key) => {
+
+    return (
+      <FormControl className="pt-5" key={key}>
+        <Controller
+            name={checkboxField.field_name}
+            control={control}
+            rules={{ 
+                required: { value: checkboxField.required, message: "This field is required." },
+                pattern: 
+                  checkboxField.pattern ? 
+                  { value: new RegExp(checkboxField.pattern.value), message: checkboxField.pattern.message } 
+                  : false
+              }}
+            defaultValue=""
+            render={({ field }) => {
+              return (
+                <Checkbox {...field} label={checkboxField.label} />
+              )
+            }}
+          />
+          
+         <FormHelperText>
+          {
+            errors[checkboxField.label] ? 
+            <span className="text-red">{errors[checkboxField.label].message}</span> : 
+            (checkboxField.required ? <>Required. </> : <>Optional. </>)
+          }
+        </FormHelperText>
+        <FormHelperText>
+          {checkboxField.caption}
+        </FormHelperText>
+      </FormControl>
+    )
+  }
 
   return (
     <>
@@ -65,35 +224,11 @@ const PDFFillingForm = (props) => {
       <form onSubmit={handleSubmit(onSubmit)}>
         {
           _.map(company.form_json, (field, key) => {
-            return (
-              <FormControl className="pt-5" key={key}>
-                <FormLabel>{field.label}</FormLabel>
-                <Input 
-                  color={errors[field.label] ? "danger" : "primary"} 
-                  {
-                    ...register(field.label, 
-                      { 
-                        required: { value: field.required, message: "This field is required." },
-                        pattern: 
-                          field.pattern ? 
-                          { value: new RegExp(field.pattern.value), message: field.pattern.message } 
-                          : false
-                      }
-                    )
-                  } 
-                  placeholder={field.placeholder} />
-                 <FormHelperText>
-                  {
-                    errors[field.label] ? 
-                    <span className="text-red">{errors[field.label].message}</span> : 
-                    (field.required ? <>Required. </> : <>Optional. </>)
-                  }
-                </FormHelperText>
-                <FormHelperText>
-                  {field.caption}
-                </FormHelperText>
-              </FormControl>
-            )
+            if (field.field_type === "checkbox") {
+              return renderCheckBox(field, key);
+            } else { //
+              return renderTextField(field, key);
+            }
           })
           
         }

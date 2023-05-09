@@ -46,7 +46,7 @@ const ComapniesIndex = () => {
               <div className="text-sm border-b border-b-white-op-30 pt-1 pb-2 lg:p-0 lg:border-none lg:w-1/5 text-white-op-70">
                 { 
                   _.isNull(sampled_company.data_collection) ? 
-                  <>"Unknown"</>
+                  <span className="font-italic">Unknown</span>
                   :
                   _.map(sampled_company.data_collection.split(","), data => {
                     return <Fragment key={data}>{data}<br/></Fragment>

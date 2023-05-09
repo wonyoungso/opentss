@@ -16,7 +16,7 @@
     "critical": false
   },
   "Defendant’s Address": {
-    "value": false,
+    "value": true,
     "critical": false
   },
   "Defendant’s SSN": {
@@ -24,7 +24,7 @@
     "critical": false
   },
   "Amount": {
-    "value": true,
+    "value": false,
     "critical": false
   },
   "Any Dates": {

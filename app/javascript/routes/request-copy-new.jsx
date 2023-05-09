@@ -60,7 +60,20 @@ const RequestCopyNew = () => {
     }
   };
 
+  const hasOnSite = (company) => {
+    if (company.id === 6) {
+      return true;
+    }
+    
+    let result = false;
+    _.each(company.outsourcing_companies, outsourcing_company => {
+      if (outsourcing_company.id === 6) {
+        result = true;
+      }
+    });
 
+    return result;
+  }
 
   return (
     <>
@@ -96,11 +109,15 @@ const RequestCopyNew = () => {
               </FormControl>
               : null
             }
-
-            <FormControl>
-              <Checkbox label="My rental application was screened more than 60 days ago" checked={moreThan60days} onChange={(e) => { setMoreThan60days(e.target.checked) }} />
-            </FormControl>
-            <div className="h-5"></div>
+            {
+              !_.isNull(selectedCompany) && hasOnSite(selectedCompany) ? 
+              <>
+                <FormControl>
+                  <Checkbox label="My rental application was screened more than 60 days ago" checked={moreThan60days} onChange={(e) => { setMoreThan60days(e.target.checked) }} />
+                </FormControl>
+                <div className="h-5"></div>
+              </> : null
+            }
             
             <FormControl>
               <Button disabled={checkStatus()} onClick={goToNextStep} size="lg">

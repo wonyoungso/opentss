@@ -137,7 +137,7 @@ const RequestCopyResult = () => {
               const sixty_days = queryParams.get("sixty_days");
 
               if (description.company_id === 6) {
-                if (sixty_days === "t") {
+                if (sixty_days !== "t") {
                   if (description.subtitle === "Next Step (More than 60 days)") {
                     return null;
                   }

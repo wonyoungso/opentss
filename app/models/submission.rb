@@ -29,6 +29,11 @@ class Submission < ApplicationRecord
   encrypts :property_address_zipcode
   encrypts :experience_freeform
   encrypts :interview_possible
+  encrypts :report_date_month
+  encrypts :report_date_year
+  encrypts :rent_apply_date_month
+  encrypts :rent_apply_date_year
+
 
   validates :printed_name, :presence => true
   validates :gender, :presence => true
@@ -54,6 +59,10 @@ class Submission < ApplicationRecord
   validates :property_address_zipcode, :presence => true
   validates :interview_possible, :presence => true
   validates :email, :presence => true
+  validates :report_date_month, :presence => true
+  validates :report_date_year, :presence => true
+  validates :rent_apply_date_month, :presence => true
+  validates :rent_apply_date_year, :presence => true
 
   validates :reports, attached: {message: "Tenant screening reports should be attached. Please check previous page and upload them."}, 
                       content_type: { in: ['image/*', "image/jpeg", "image/png", "image/jpg", 'image/heif', 'image/heic', 'application/pdf'], message: 'Tenant screening reports are not a PDF or valid image.' } 
@@ -96,6 +105,11 @@ class Submission < ApplicationRecord
     self.experience_freeform = params[:experience_freeform]
     self.interview_possible = params[:interview_possible]
     self.email = params[:email] 
+    self.report_date_month = params[:report_date_month]
+    self.report_date_year = params[:report_date_year]
+    self.rent_apply_date_month = params[:rent_apply_date_month]
+    self.rent_apply_date_year = params[:rent_apply_date_year]
+  
     self.reports.attach(params[:files])
   end
 

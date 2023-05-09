@@ -84,7 +84,7 @@ const ConsentForm = () => {
           </div>
           <div className="lg:col-span-3">
             <h2 className="font-bold text-4xl">
-              Before you submit the report, please read this and consent.
+              Before you submit the report, please read this and consent to participate.
             </h2>
             <div className="pb-5"></div>
            

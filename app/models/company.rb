@@ -128,6 +128,8 @@ class Company < ApplicationRecord
         }
 
         result[:submissions_cnt] = result[:outsourcing_companies].sum {|cc| cc[:count] }
+      else
+        result[:outsourcing_companies] = []
       end
       result
     } 

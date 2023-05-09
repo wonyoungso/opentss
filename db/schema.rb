@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_05_230228) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_06_113500) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -155,6 +155,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_05_230228) do
     t.integer "company_id"
     t.text "transgender"
     t.text "landlord_scale"
+    t.text "report_date_month"
+    t.text "report_date_year"
+    t.text "rent_apply_date_month"
+    t.text "rent_apply_date_year"
   end
 
   create_table "users", force: :cascade do |t|

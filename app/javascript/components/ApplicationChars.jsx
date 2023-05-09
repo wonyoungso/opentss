@@ -14,6 +14,12 @@ import AttachMoney from "@mui/icons-material/AttachMoney"
 import { Input, Option, Select, TextField, Textarea } from "@mui/joy";
 import { useForm, Controller } from "react-hook-form";
 import states from "../providers/states";
+import moment from "moment";
+
+
+const months = ["January","February","March","April","May","June","July",
+"August","September","October","November","December"];
+const years = _.map(_.range(2023, 1960, -1), year => _.toString(year));
 
 const ApplicationChars = () => {
 
@@ -46,7 +52,9 @@ const ApplicationChars = () => {
       property_address_state: watch("property_address_state"),
       property_address_zipcode: watch("property_address_zipcode"),
       experience_freeform: watch("experience_freeform"),
-      interview_possible: watch("interview_possible")
+      interview_possible: watch("interview_possible"),
+      rent_apply_date_month: watch("rent_apply_date_month"),
+      rent_apply_date_year: watch("rent_apply_date_year")
     })
 
     setSubmissionStep(3);
@@ -70,7 +78,9 @@ const ApplicationChars = () => {
       property_address_state: data.property_address_state,
       property_address_zipcode: data.property_address_zipcode,
       experience_freeform: data.experience_freeform,
-      interview_possible: data.interview_possible
+      interview_possible: data.interview_possible,
+      rent_apply_date_month: data.rent_apply_date_month,
+      rent_apply_date_year: data.rent_apply_date_year
     })
     setSubmissionStep(5);
   };
@@ -120,6 +130,129 @@ const ApplicationChars = () => {
                 Now we will ask you about the tenant application.
               </h2>
 
+              <div className="pt-10">
+                <h3 className="font-bold pb-3">
+                  When approximately did you apply?
+                </h3>
+
+                <div className="flex gap-1 pb-1">
+                  <Controller
+                      name="rent_apply_date_month"
+                      control={control}
+                      rules={{ 
+                        required: {value: true, message: "Month field is required." },
+                        validate: {
+                          laterThanReportDate: (formValue) => {
+
+                            if (_.isNull(formValue)) {
+                              return false;
+                            }
+
+                            if (_.isNull(watch("rent_apply_date_year"))) {
+                              return false;
+                            }
+
+                            const applicationDate = moment(`${watch("rent_apply_date_month")} ${watch("rent_apply_date_year")}`, "MMMM YYYY")
+                            const reportDate = moment(`${submission.report_date_month} ${submission.report_date_year}`, "MMMM YYYY")
+                            
+                            _.delay(() => {
+                              trigger("rent_apply_date_year");
+                            }, 200);
+
+                            return applicationDate.isSameOrBefore(reportDate) || `Application date should be the same or before you received the tenant screening report (you entered ${reportDate.format("MMMM YYYY")} in the previous step)`
+                          }
+                        }
+                      }}
+                      render={({ field }) => {
+                        return (
+                          <Select placeholder="Month" {...field} onChange={(e, value) => {
+                              field.onChange(value);
+                          }}>
+                            {
+                              _.map(months, month => {
+                                return (
+                                  <Option key={month} value={month}>{month}</Option>
+                                )
+                              })
+                            }
+                          </Select>
+                        )
+                      }}
+                    />
+                  
+                  <Controller
+                      name="rent_apply_date_year"
+                      control={control}
+                      rules={{ 
+                        required: {value: true, message: "Year field is required." },
+                        validate: {
+                          laterThanReportDate: (formValue) => {
+                            if (_.isNull(formValue)) {
+                              return false;
+                            }
+
+                            if (_.isNull(watch("rent_apply_date_month"))) {
+                              return false;
+                            }
+
+                            const applicationDate = moment(`${watch("rent_apply_date_month")} ${watch("rent_apply_date_year")}`, "MMMM YYYY")
+                            const reportDate = moment(`${submission.report_date_month} ${submission.report_date_year}`, "MMMM YYYY")
+                            
+                            _.delay(() => {
+                              trigger("rent_apply_date_month");
+                            }, 200);
+                            return applicationDate.isSameOrBefore(reportDate) || `Application date should be the same or before you received the tenant screening report (you entered ${reportDate.format("MMMM YYYY")} in the previous step)`
+                          }
+                        }
+                      }}
+                      render={({ field }) => {
+                        return (
+                          <Select placeholder="Year" {...field} onChange={(e, value) => {
+                              field.onChange(value);
+                          }}>
+                            {
+                              _.map(years, year => {
+                                return (
+                                  <Option key={year} value={year}>{year}</Option>
+                                )
+                              })
+                            }
+                          </Select>
+                        )
+                      }}
+                    />
+                </div>
+                <FormHelperText>
+                {
+                    errors["rent_apply_date_year"] && errors["rent_apply_date_month"] ? 
+                    <div className="text-red">
+                      {
+                        errors["rent_apply_date_month"].message === errors["rent_apply_date_year"].message ? 
+                        errors["rent_apply_date_year"].message : 
+                        <>
+                          {errors["rent_apply_date_month"].message} {errors["rent_apply_date_year"].message}
+                        </>
+                      }
+                     
+                    
+                    </div> : 
+                    (
+                      errors["rent_apply_date_month"] && !errors["rent_apply_date_year"] ? 
+                      <div className="text-red">{errors["rent_apply_date_month"].message}</div> : 
+                      (
+                        errors["rent_apply_date_year"] && !errors["rent_apply_date_month"] ? 
+                        <div className="text-red">{errors["rent_apply_date_year"].message}</div> : null
+                      )
+                    ) 
+                  }
+                  {
+                    !errors["rent_apply_date_year"] && !errors["rent_apply_date_month"] ? 
+                    <>Required. </> : null
+                  }
+                </FormHelperText>
+              </div>
+
+
               <div className="py-5">
                 <h3 className="font-bold pb-3">
                   What was the rental decision?
@@ -158,7 +291,7 @@ const ApplicationChars = () => {
                 acceptedShow ?
                 <div className="py-5">
                   <h3 className="font-bold pb-3">
-                    If you are accepted, how much was the security deposit? If there was no security deposit, please enter 0.
+                    If you were accepted, how much was the security deposit? If there was no security deposit, please enter 0.
                   </h3>
                   <FormControl>
                     <Input color={errors["security_deposit"] ? "danger" : "primary"} 
@@ -323,7 +456,7 @@ const ApplicationChars = () => {
                   </h3>
 
                   <p className="pb-3 text-white-op-70">
-                    For instance, Housing Choice Vouchers require you to pay <span className="font-bold">30%</span> of your income as rent.
+                    For instance, Housing Choice Vouchers require you to pay maximum <span className="font-bold">30%</span> of your income as rent.
                   </p>
 
                   <FormControl>

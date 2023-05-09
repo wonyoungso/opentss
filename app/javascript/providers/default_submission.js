@@ -27,7 +27,11 @@ const defaultSubmission = {
   experience_freeform: "dfije",
   interview_possible: "yes",
   email: "wonyoung.so.work@gmail.com",
-  email_confirm: "wonyoung.so.work@gmail.com"
+  email_confirm: "wonyoung.so.work@gmail.com",
+  report_date_month: "June",
+  report_date_year: "2020",
+  rent_apply_date_month: null,
+  rent_apply_date_year: null
 }
 
 export default defaultSubmission;
