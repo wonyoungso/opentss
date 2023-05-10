@@ -1,4 +1,6 @@
 RailsAdmin.config do |config|
+
+  require Rails.root.join('lib', 'rails_admin', 'rails_admin_grant_reward.rb')
   config.asset_source = :sprockets
 
   ### Popular gems integration
@@ -34,6 +36,7 @@ RailsAdmin.config do |config|
     edit
     delete
     show_in_app
+    grant_reward
 
     ## With an audit adapter, you can add:
     # history_index
@@ -60,8 +63,9 @@ RailsAdmin.config do |config|
   config.model 'Submission' do 
     list do
       field :email
-      field :confirmed
-      field :reports
+      field :created_at
+      field :confirmed # email confirm
+      field :status
     end
   end
 

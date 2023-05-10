@@ -38,6 +38,7 @@ gem "stimulus-rails"
 gem "jbuilder"
 gem 'rest-client'
 gem "aws-sdk-s3", require: false
+gem 'tremendous_ruby'
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"

@@ -31,6 +31,7 @@ const RequestCopyResult = () => {
     _.each(document.querySelectorAll(".trix-content a"), elem => {
       const node = document.createAttribute("target");
       node.value = "_blank";
+      console.log(node);
       elem.attributes.setNamedItem(node);
     });
   }, []);

@@ -111,7 +111,7 @@ class Submission < ApplicationRecord
     self.rent_apply_date_year = params[:rent_apply_date_year]
   
     self.reports.attach(params[:files])
-  end
+  end 
 
   def self.update_token(submissions)
     token = Devise.friendly_token
@@ -126,4 +126,66 @@ class Submission < ApplicationRecord
     return token
   end
 
+  def grant_reward!
+    # Campaigns are created within the dashboard by team admins.
+    # They define the catalog and presentation of your reward.
+    # API requests can always override these settings
+    # within the specific reward object by specifying the catalog, message, etc.
+    campaigns = TREMENDOUS_LIBRARY.campaigns.list
+    campaign_id = campaigns.first[:id]
+    
+    # The funding source you select is how you are charged for the order.
+    # In this example, we use the prefunded balance funding source
+    funding_source_id = TREMENDOUS_LIBRARY.funding_sources.list.find { |f| f[:method] == "balance" }[:id]
+    
+    # Optionally pass a unique external_id for each order create call
+    # to guarantee that your order is idempotent and not executed multiple times.
+    
+    # An hash representing the rewards you'd like to send.
+    order_data = {
+      external_id: self.id,
+      payment: {
+        funding_source_id: funding_source_id,
+      },
+      rewards: [{
+        value: {
+          denomination: 50,
+          currency_code: 'USD'
+        },
+        campaign_id: campaign_id,
+        delivery: {
+          method: 'EMAIL',
+        },
+        recipient: {
+          email: self.email,
+          name: self.printed_name
+        }
+      }]
+    }
+    
+    # Submit the order.
+    order = TREMENDOUS_LIBRARY.orders.create!(order_data)
+    
+    # Retrieve the reward.
+    client.rewards.show(order[:rewards].first[:id])
+
+    ## need to document gift card sent at and status change 
+    self.reward_granted_at = DateTime.now
+    self.status = "reward_granted"
+    self.reward_tremendous_json = order
+    self.save
+  end
+
+
+  def request_valid?(private_key:, request:)
+    signature_header = request.headers['Tremendous-Webhook-Signature']
+    algorithm, received_signature = signature_header.split('=', 2)
+  
+    expected_signature = OpenSSL::HMAC.hexdigest(
+      OpenSSL::Digest.new('sha256'), private_key, request.body.read
+    )
+  
+    received_signature == expected_signature
+  end
+  
 end

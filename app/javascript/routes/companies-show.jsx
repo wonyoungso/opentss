@@ -21,6 +21,12 @@ const CompaniesShow = () => {
     document.title = `${company.name} :: Tenant Screening Services Lookup Tool | OpenTSS: Countering Tenant Screening`;
     document.body.className = "bg-white-bg text-dark-blue";
     setMenuOpen(false);
+    _.each(document.querySelectorAll(".trix-content a"), elem => {
+      const node = document.createAttribute("target");
+      node.value = "_blank";
+      console.log(node);
+      elem.attributes.setNamedItem(node);
+    });
   }, []);
 
   const introductionDescriptions = _.filter(descriptions, desc => desc.subtitle === "Introduction")
