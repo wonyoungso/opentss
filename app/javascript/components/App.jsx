@@ -13,6 +13,7 @@ import HowTSSWorks from "../routes/how-tss-works";
 import RequestCopy from "../routes/request-copy";
 import RequestCopyNew from "../routes/request-copy-new";
 import RequestCopyResult from "../routes/request-copy-result";
+import RequestCopyCustom from "../routes/request-copy-custom";
 import SubmissionsRetrieve from "../routes/submissions-retrieve";
 import RetrieveSubmissionResult from "../routes/retrieve-submission-result";
 import Submissions from '../routes/submissions';
@@ -86,6 +87,11 @@ const router = createBrowserRouter([
       return result;
     
     },
+    errorElement: <ErrorPage />
+  },
+  {
+    path: "/request-copy/custom-form/:companyname",
+    element: <RequestCopyCustom />,
     errorElement: <ErrorPage />
   },
   {

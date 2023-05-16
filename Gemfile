@@ -39,6 +39,7 @@ gem "jbuilder"
 gem 'rest-client'
 gem "aws-sdk-s3", require: false
 gem 'tremendous_ruby'
+gem 'lockbox'
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"

@@ -139,10 +139,26 @@ const RequestCopyNew = () => {
             </p>
 
             <h3 className="font-bold text-md">
-              A: Check your email inbox. 
+              A: There are many cases of disclosing the name of tenant screening company. 
             </h3>
             <p className="text-white-op-70 pt-1 pb-5">
+              <span className="font-bold">1. Check your email inbox. </span><br/>
               You may have received an email from the tenant screening company to get a consent so they can collect data about you and provide the data to the landlord. 
+            </p>
+
+            <p className="text-white-op-70 pt-1 pb-5">
+              <span className="font-bold">2. Check your rental application. </span><br/>
+              You may have your rental application, and landlords often disclose the name of the tenant screening company.
+            </p>
+
+            <p className="text-white-op-70 pt-1 pb-5">
+              <span className="font-bold">3. Check your adverse action letter. </span><br/>
+              You may have an adverse action letter, if you were denied and the landlord used a tenant screening service. They need to disclose the name of the company. 
+            </p>
+
+            <p className="text-white-op-70 pt-1 pb-5">
+              <span className="font-bold">4. Ask the landlord or find the website. </span><br/>
+              You may need some additional research on which tenant screening services that your landlord have used. Asking them directly is one way.
             </p>
           </div>
           <div className="lg:col-span-2"></div>

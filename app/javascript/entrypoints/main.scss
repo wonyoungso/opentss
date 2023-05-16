@@ -34,7 +34,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size:16px;
-  line-height: 22px;
+  line-height: 26px;
   transition: 0.3s background-color;
 }
 
@@ -50,6 +50,10 @@ textarea:focus {
 
 .trix-content a { 
   text-decoration: underline;
+}
+
+.trix-content ul { 
+  list-style-type: disc;
 }
 
 tspan {

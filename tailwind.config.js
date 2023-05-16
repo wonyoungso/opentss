@@ -29,7 +29,7 @@ module.exports = {
       'denied': '#FF7721',
       'bright-blue': '#EEF1FB',
       'gray': '#BBBBBB',
-      'yellow': '#F9C40B',
+      'yellow': '#f8c330',
       'very-dark-blue': '#000928'
     },
     fontFamily: {

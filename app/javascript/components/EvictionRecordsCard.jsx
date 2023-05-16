@@ -23,7 +23,7 @@ const EvictionRecordsCard = (props) => {
       {
         _.map(fields, (props, key) => {
           return (
-            <div key={key} className={`relative px-0.5 my-0.5 ${props.critical ? "bg-yellow" : ""} ${props.value ? "" : "text-gray"}`}>
+            <div key={key} className={`relative px-0.5 my-0.5 ${props.critical ? "bg-yellow" : ""} ${props.value ? "" : "text-white-op-50"}`}>
               {key}
               {
                 props.critical && !props.value ?

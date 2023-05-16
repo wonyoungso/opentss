@@ -11,6 +11,7 @@ import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import _ from 'lodash';
 import { Table } from "@mui/joy";
+import CloseIcon from '@mui/icons-material/Close';
 
 const ComapniesIndex = () => {
 
@@ -37,16 +38,16 @@ const ComapniesIndex = () => {
           return (
             <div key={sampled_company.id} className="lg:flex lg:justify-between lg:gap-2 cursor-pointer hover:bg-white-op-10 border-b border-b-white-op-50 py-1 transition-colors" onClick={() => { navigate(`/companies/${sampled_company.id}`) }}>
               <div className="border-b border-b-white-op-30 pt-1 pb-2 lg:p-0 lg:border-none lg:w-2/5 text-lg font-bold text-dark-blue">{ sampled_company.name }</div>
-              <div className="border-b border-b-white-op-30 pt-1 pb-2 lg:p-0 lg:border-none lg:w-1/5 text-white-op-70">
+              <div className="text-sm border-b border-b-white-op-30 pt-1 pb-2 lg:p-0 lg:border-none lg:w-1/5 text-white-op-70">
                 { 
                   sampled_company.scoring_system ?
-                  <span className="text-sm font-bold text-dark-blue">{ sampled_company.scoring_system }</span> : <span className="text-sm">No scoring system</span>
+                  <span className="text-sm font-bold text-dark-blue">{ sampled_company.scoring_system }</span> : <CloseIcon />
                 }
               </div>
               <div className="text-sm border-b border-b-white-op-30 pt-1 pb-2 lg:p-0 lg:border-none lg:w-1/5 text-white-op-70">
                 { 
                   _.isNull(sampled_company.data_collection) ? 
-                  <span className="font-italic">Unknown</span>
+                  <CloseIcon />
                   :
                   _.map(sampled_company.data_collection.split(","), data => {
                     return <Fragment key={data}>{data}<br/></Fragment>
@@ -82,13 +83,13 @@ const ComapniesIndex = () => {
           <div className="border-b border-b-white-op-30 pt-1 pb-2 lg:p-0 lg:border-none lg:w-1/5 text-white-op-70">
             { 
               selectedCompany.scoring_system ?
-              <span className="text-sm font-bold text-dark-blue">{ selectedCompany.scoring_system }</span> : <span className="text-sm">No scoring system</span>
+              <span className="text-sm font-bold text-dark-blue">{ selectedCompany.scoring_system }</span> : <CloseIcon />
             }
           </div>
           <div className="text-sm border-b border-b-white-op-30 pt-1 pb-2 lg:p-0 lg:border-none lg:w-1/5 text-white-op-70">
             { 
               _.isNull(selectedCompany.data_collection) ? 
-              <>Unknown</>
+              <CloseIcon />
               :
               _.map(selectedCompany.data_collection.split(","), data => {
                 return <Fragment key={data}>{data}<br/></Fragment>

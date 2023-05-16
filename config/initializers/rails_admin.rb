@@ -37,6 +37,7 @@ RailsAdmin.config do |config|
     delete
     show_in_app
     grant_reward
+    download_report
 
     ## With an audit adapter, you can add:
     # history_index
@@ -62,9 +63,15 @@ RailsAdmin.config do |config|
 
   config.model 'Submission' do 
     list do
+      field :id
       field :email
       field :created_at
       field :confirmed # email confirm
+      field :status
+      field :reward_granted_at
+    end
+
+    edit do 
       field :status
     end
   end

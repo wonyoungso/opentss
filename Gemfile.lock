@@ -166,6 +166,7 @@ GEM
       activerecord
       kaminari-core (= 1.2.2)
     kaminari-core (1.2.2)
+    lockbox (1.2.0)
     loofah (2.19.1)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -343,6 +344,7 @@ DEPENDENCIES
   ferrum
   image_processing (~> 1.2)
   jbuilder
+  lockbox
   pg (~> 1.1)
   prime
   puma (~> 5.0)

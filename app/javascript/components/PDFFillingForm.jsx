@@ -99,6 +99,66 @@ const PDFFillingForm = (props) => {
       form.getTextField("Printed Date").setText(restData['Date']);
 
 
+    }  else if (company.id === 8) { // Saferent
+      const specificFields = ['Adverse Action Check', "Landlord Phone Number", "Date of Birth", "Generation", "SSN", "Phone", "Date"];
+
+      let saferentData = _.pick(data, specificFields);
+      restData = _.pick(data, _.difference(_.keys(data), specificFields));
+
+      // then ntn_specific checking
+      // first, adverse action checkbox
+      if (saferentData["Adverse Action Check"]) {
+        form.getCheckBox("Annual Free Check").uncheck();
+        form.getCheckBox("Adverse Action Check").check();
+      } else {
+        form.getCheckBox("Annual Free Check").check();
+        form.getCheckBox("Adverse Action Check").uncheck();
+      }
+
+      // split landlord phone number into two
+      const landlordPhoneNumber_01 = saferentData['Landlord Phone Number'].substring(0, 3);
+      const landlordPhoneNumber_02 = saferentData['Landlord Phone Number'].substring(3, saferentData['Landlord Phone Number'].length);
+      const lrdPhoneField_01 = form.getTextField("Landlord Phone Number_1");
+      lrdPhoneField_01.setText(landlordPhoneNumber_01);
+      const lrdPhoneField_02 = form.getTextField("Landlord Phone Number_2");
+      lrdPhoneField_02.setText(landlordPhoneNumber_02);
+
+      // split date of birth
+      form.getTextField("Date of Birth").setText(saferentData['Date of Birth']);
+
+      // determine generation
+      if (_.includes(_.lowerCase(saferentData['Generation']), "sr")){
+        form.getCheckBox("Generation Sr").check();
+        form.getCheckBox("Generation Jr").uncheck();
+      } else if (_.includes(_.lowerCase(saferentData['Generation']), "jr")){
+        form.getCheckBox("Generation Jr").check();
+        form.getCheckBox("Generation Sr").uncheck();
+      } 
+
+      // SSN split
+      _.each(saferentData["SSN"], (digit, idx) => {
+        form.getTextField(`SSN_${idx + 1}`).setText(digit);
+      })
+
+
+      // split phone number into two
+      const phoneNumber_01 = saferentData['Phone'].substring(0, 3);
+      const phoneNumber_02 = saferentData['Phone'].substring(3, saferentData['Phone'].length);
+      form.getTextField("Home Phone_1").setText(phoneNumber_01);
+      form.getTextField("Home Phone_2").setText(phoneNumber_02);
+      form.getTextField("Mobile Phone_1").setText(phoneNumber_01);
+      form.getTextField("Mobile Phone_2").setText(phoneNumber_02);
+      
+      // fillout printed name and date
+      const printedName = `${restData['First Name']}${_.isUndefined(restData['Middle Name']) ? " " : ` ${restData['Middle Name']} `}${restData['Last Name']}`
+      form.getTextField("Printed Name").setText(printedName);
+      form.getTextField("Printed Date").setText(saferentData['Date']);
+      
+
+    } else if (company.name === "RentPrep") { 
+      form.getTextField("Printed Name").setText(data['Full Name']);
+      restData = data;
+      
     } else {
       restData = data;
     }
@@ -142,8 +202,22 @@ const PDFFillingForm = (props) => {
 
     }
 
-    form.flatten();
+    if (company.custom) {
 
+      const dateField = form.getTextField("Date");
+      dateField.setText(moment().format("MMMM D, YYYY"));
+
+
+      const companyNameField = form.getTextField("Company Name");
+      companyNameField.setText(company.name);
+
+
+      const tenantNameField = form.getTextField("Tenant Name");
+      tenantNameField.setText(data["Name"]);
+    }
+
+    form.flatten();
+    
     const pdfBytes = await pdfDoc.save();
     saveAs(new Blob([pdfBytes], {type: "application/pdf"}), `${company.name}_request_form.pdf`);
   }

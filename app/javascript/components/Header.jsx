@@ -145,6 +145,11 @@ export default function Header(props) {
                     How TSS works
                   </Link>
 
+                  <Link to="/companies" className="hidden lg:block">
+                    Company Lookup 
+                  </Link>
+
+
                   <Link to="/request-copy" className="hidden lg:block">
                     Request a copy
                   </Link>
@@ -154,10 +159,6 @@ export default function Header(props) {
                   </Link>
                 </>
               }
-              
-              <div className="hidden lg:block">
-
-              </div>
               
               <div className="flex flex-row-reverse">
                 {

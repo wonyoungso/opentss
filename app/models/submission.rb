@@ -1,5 +1,6 @@
 class Submission < ApplicationRecord
   has_many_attached :reports
+  encrypts_attached :reports
   belongs_to :company, optional: true
   before_create :generate_confirmation_token
 
@@ -165,14 +166,14 @@ class Submission < ApplicationRecord
     
     # Submit the order.
     order = TREMENDOUS_LIBRARY.orders.create!(order_data)
-    
     # Retrieve the reward.
-    client.rewards.show(order[:rewards].first[:id])
+    reward = TREMENDOUS_LIBRARY.rewards.show(order[:rewards].first[:id])
 
     ## need to document gift card sent at and status change 
     self.reward_granted_at = DateTime.now
     self.status = "reward_granted"
-    self.reward_tremendous_json = order
+    self.order_tremendous_json = order
+    self.reward_tremendous_json = reward
     self.save
   end
 
@@ -188,4 +189,37 @@ class Submission < ApplicationRecord
     received_signature == expected_signature
   end
   
+  def report_decrypt_download
+             
+    zip_file = Tempfile.new("reports.zip")
+    files = []
+
+    Zip::File.open(zip_file.path, Zip::File::CREATE) do |zipfile|
+          
+      self.reports.each do |report|
+        filename = report.blob.filename
+        tempfile = Tempfile.new(filename.to_s)
+        
+        tempfile.binmode
+        tempfile.write(report.download)
+        tempfile.rewind
+        tempfile.close
+
+        files << tempfile
+        zipfile.add(filename.to_s, tempfile.path)
+        
+      end
+
+    end
+
+    zip_data = File.read(zip_file.path)
+      
+    zip_file.close
+    zip_file.unlink
+    files.each do |f|
+      f.unlink
+    end
+    zip_data
+  end
+
 end

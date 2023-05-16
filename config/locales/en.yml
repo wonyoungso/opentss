@@ -35,3 +35,6 @@ en:
     actions:
       grant_reward:
         menu: "Grant Reward"
+      
+      download_report:
+        menu: "Download Report"
