@@ -183,7 +183,7 @@ const UploadReport = () => {
             <div className="hidden lg:block"></div>
             <div className="lg:col-span-3">
               <div className="pb-3 font-bold">
-                You send your report through end-to-end-encryption. We will remove every identifiable information and store it to a safe.
+                You send your report through end-to-end-encryption. We will remove every identifiable information and store it to a secured server.
               </div>
               <FormControl>
                 <Button disabled={checkStatus()} onClick={goToNextStep}>Next</Button>

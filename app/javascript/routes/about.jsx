@@ -30,7 +30,7 @@ const About = () => {
           </div>
           <div className="lg:col-span-3">
             <h2 className="font-bold text-4xl">
-              We are researchers at MIT who want to address the challenges of knowing inner algorithms and representations and bias of tenant screening algorithms. 
+              We are researchers who want to address the challenges of knowing inner algorithms and representations and bias of tenant screening algorithms. 
             </h2>
             <p className="my-2">
               OpenTSS aims to develop a crowdsourcing tool and/or campaign to audit tenant screening services and reveal the patterns of their inner algorithms, data structures, and representations, by collecting tenant screening reports, as well as denied renters’ experiences. <br/><br/>

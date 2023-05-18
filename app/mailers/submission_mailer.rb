@@ -1,5 +1,5 @@
 class SubmissionMailer < ApplicationMailer
-  default from: "wso@mit.edu"
+  default from: "opentss@mit.edu"
 
   def submission_complete_email
     @submission = params[:submission]
@@ -10,6 +10,21 @@ class SubmissionMailer < ApplicationMailer
     @token = params[:token]
     @email = params[:email]
     mail(to: @email, subject: 'Here is a secure link for you to retrieve your submission :: OpenTSS: Countering Tenant Screening')
+  end
+
+
+
+  def submission_reupload_request_email
+    @submission = params[:submission]
+    @submission.update_token!
+    @token = @submission.retrieve_token
+    mail(to: @submission.email, subject: 'Screening Report Reupload Request :: OpenTSS: Countering Tenant Screening')
+  end
+
+
+  def submission_reupload_complete_email
+    @submission = params[:submission]
+    mail(to: @submission.email, subject: 'Reuploading your report is completed :: OpenTSS: Countering Tenant Screening')
   end
 
 end

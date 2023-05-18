@@ -4,6 +4,11 @@ class SubmissionsController < ApplicationController
     render layout: 'application', template: 'welcome/index'
   end
 
+  def reupload_report
+    @title = "Reupload your report | OpenTSS: Countering Tenant Screening"
+    render layout: 'application', template: "welcome/index"
+  end
+
   def retrieve_result
     @title = "Retrieve your submission | OpenTSS: Countering Tenant Screening"
     render layout: 'application', template: "welcome/index"

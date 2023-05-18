@@ -77,6 +77,33 @@ module RailsAdmin
         end
       end
 
+      class ReuploadRequest < CustomAction
+        RailsAdmin::Config::Actions.register(self)
+        register_instance_option :only do
+          # model name here
+          "Submission"
+        end
+        register_instance_option :link_icon do
+          'fa fa-code-pull-request' # use any of font-awesome icons
+        end
+        register_instance_option :http_methods do
+          [:get, :post]
+        end
+        register_instance_option :controller do
+          Proc.new do
+            # call model.method here
+            # byebug
+
+            @submission = Submission.find @object.id 
+            
+            SubmissionMailer.with(submission: @submission).submission_reupload_request_email.deliver_later
+
+            flash[:notice] = "Successfully requested a reupload request to ##{@submission.id}"
+            redirect_to back_or_index
+          end
+        end
+      end
+
     end
   end
 end

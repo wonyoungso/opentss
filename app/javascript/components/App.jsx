@@ -16,6 +16,7 @@ import RequestCopyResult from "../routes/request-copy-result";
 import RequestCopyCustom from "../routes/request-copy-custom";
 import SubmissionsRetrieve from "../routes/submissions-retrieve";
 import RetrieveSubmissionResult from "../routes/retrieve-submission-result";
+import ReuploadReport from "../routes/reupload-report";
 import Submissions from '../routes/submissions';
 import SubmissionsNew from "../routes/submissions-new";
 import ConfirmEmail from "../routes/confirm-email";
@@ -63,6 +64,17 @@ const router = createBrowserRouter([
     element: <RetrieveSubmissionResult />,
     loader: async ({ request, params }) => {
       const response = await fetch(`/api/submissions/retrieve_result/${params.token}`);
+      const responseJson = await response.json();
+      return { responseJson };
+    },
+    errorElement: <ErrorPage />
+  },
+
+  {
+    path: "/retrieve-submission/:token/reupload_report",
+    element: <ReuploadReport />,
+    loader: async ({ request, params }) => {
+      const response = await fetch(`/api/submissions/retrieve_result/${params.token}/reupload_report`);
       const responseJson = await response.json();
       return { responseJson };
     },

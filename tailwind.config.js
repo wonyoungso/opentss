@@ -15,7 +15,7 @@ module.exports = {
       'dark-blue-bg': '#2C2E38',
       'white-bg': '#FAFBFD',
       'white': '#FFFFFF',
-      'white-op-70': '#666666',
+      'white-op-70': '#555555',
       'white-op-50': '#999999',
       'white-op-10': '#99999922',
       'white-op-30': '#99999955',

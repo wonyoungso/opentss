@@ -9,6 +9,8 @@ Rails.application.routes.draw do
       collection do 
         post "query_email"
         get "/retrieve_result/:token", to: "submissions#retrieve_result", as: "retrieve_result"
+        get "/retrieve_result/:token/reupload_report", to: "submissions#reupload_report", as: "retrieve_reupload_report"
+        post "/retrieve_result/:token/reupload_report_submit", to: "submissions#reupload_report_submit", as: "retrieve_reupload_report_submit"
       end
 
     end
@@ -29,7 +31,7 @@ Rails.application.routes.draw do
 
   get "/submissions/retrieve", to: "submissions#retrieve", as: "submissions_retrieve"
   get "/retrieve-submission/:token", to: "submissions#retrieve_result", as: "retrieve_result"
-
+  get "/retrieve-submission/:token/reupload_report", to: "submissions#reupload_report", as: "retrieve_reupload_report"
 
   get "/submissions", to: "submissions#index", as: "submissions"
   get "/submissions/new", to: "submissions#new", as: "submissions_new"

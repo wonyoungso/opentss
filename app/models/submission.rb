@@ -51,7 +51,6 @@ class Submission < ApplicationRecord
   validates :bedrooms, :presence => true
   validates :house_type, :presence => true
   validates :voucher, :presence => true
-  validates :minimum_rent, :presence => true
   validates :landlord_name, :presence => true
   validates :landlord_scale, :presence => true
   validates :property_address, :presence => true
@@ -59,7 +58,7 @@ class Submission < ApplicationRecord
   validates :property_address_state, :presence => true
   validates :property_address_zipcode, :presence => true
   validates :interview_possible, :presence => true
-  validates :email, :presence => true
+  validates :email, :presence => true, :uniqueness => true
   validates :report_date_month, :presence => true
   validates :report_date_year, :presence => true
   validates :rent_apply_date_month, :presence => true
@@ -76,6 +75,7 @@ class Submission < ApplicationRecord
   def retrieve_period_expired?
    self.retrieve_sent_at && (DateTime.now.utc > self.retrieve_sent_at.utc + 1.day)
   end
+
 
 
   def put_params(params)
@@ -114,17 +114,23 @@ class Submission < ApplicationRecord
     self.reports.attach(params[:files])
   end 
 
-  def self.update_token(submissions)
-    token = Devise.friendly_token
-    sent_at = DateTime.now.utc
+  def self.update_token_all(submissions)
 
     submissions.each do |submission|
-      submission.retrieve_token = token
-      submission.retrieve_sent_at = sent_at
-      submission.save(validate: false)
+      submission.update_token!
     end
 
     return token
+  end
+
+  def update_token!
+
+    token = Devise.friendly_token
+    sent_at = DateTime.now.utc
+    
+    self.retrieve_token = token
+    self.retrieve_sent_at = sent_at
+    self.save(validate: false)
   end
 
   def grant_reward!
@@ -206,7 +212,7 @@ class Submission < ApplicationRecord
         tempfile.close
 
         files << tempfile
-        zipfile.add(filename.to_s, tempfile.path)
+        zipfile.add(SecureRandom.hex(5) + "_" + filename.to_s, tempfile.path)
         
       end
 

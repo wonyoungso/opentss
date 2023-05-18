@@ -38,3 +38,6 @@ en:
       
       download_report:
         menu: "Download Report"
+      
+      reupload_request:
+        menu: "Reupload Request"

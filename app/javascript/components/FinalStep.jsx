@@ -282,7 +282,7 @@ const FinalStep = () => {
                 _.map(submissionErrors, (value, key) => {
                   return (
                     <p className="text-red font-bold">
-                      { value.join(" ") }
+                      {key}: { value.join(" ") }
                     </p>
                   )
                 })
@@ -336,7 +336,7 @@ const FinalStep = () => {
 
 
             <div className="py-3">
-              <span className="font-bold">How can I reach out to you?</span> Please send an email to <a className="underline" href="mailto:contact@opentss.net">contact@opentss.net</a>! we will respond as soon as we have your email.
+              <span className="font-bold">How can I reach out to you?</span> Please send an email to <a className="underline" href="mailto:opentss@mit.edu">opentss@mit.edu</a>! we will respond as soon as we have your email.
             </div>
 
 

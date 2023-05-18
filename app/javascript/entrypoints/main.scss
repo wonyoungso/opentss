@@ -34,11 +34,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size:16px;
-  line-height: 26px;
+  line-height: 24px;
   transition: 0.3s background-color;
 }
 
-a:hover, button:hover {
+a:hover {
   opacity: 0.5;
   transition: 0.3s opacity;
 }
@@ -58,4 +58,13 @@ textarea:focus {
 
 tspan {
   font-size: 0.7em;
+}
+
+@keyframes slide {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-1500px, 0, 0); /* The image width */
+  }
 }

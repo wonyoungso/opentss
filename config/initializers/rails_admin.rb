@@ -38,6 +38,7 @@ RailsAdmin.config do |config|
     show_in_app
     grant_reward
     download_report
+    reupload_request
 
     ## With an audit adapter, you can add:
     # history_index

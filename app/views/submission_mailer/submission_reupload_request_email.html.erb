@@ -19,7 +19,7 @@
     td,th,div,p,a,h1,h2,h3,h4,h5,h6 {font-family: "Segoe UI", sans-serif; mso-line-height-rule: exactly;}
   </style>
   <![endif]-->
-  <title>Here is a secure link for you to retrieve your submission :: OpenTSS: Countering Tenant Screening</title>
+  <title>Screening Report Reupload Request :: OpenTSS: Countering Tenant Screening</title>
   <style>
     .hover-important-text-decoration-underline:hover {
       text-decoration: underline !important
@@ -44,55 +44,57 @@
   </style>
 </head>
 <body style="margin: 0; width: 100%; background-color: #FAFBFD; padding: 0; -webkit-font-smoothing: antialiased; word-break: break-word">
-  <div style="display: none">
-    Here is a secure link for you to retrieve your submission.
-  </div>
-  <div role="article" aria-roledescription="email" aria-label="Here is a secure link for you to retrieve your submission :: OpenTSS: Countering Tenant Screening" lang="en">
+  <div role="article" aria-roledescription="email" aria-label="Your submission of tenant screening reports is complete :: OpenTSS: Countering Tenant Screening" lang="en">
     <div class="sm-px-4" style="background-color: #FAFBFD; font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif">
       <table align="center" cellpadding="0" cellspacing="0" role="presentation">
         <tr>
           <td style="width: 552px; max-width: 100%">
             <div class="sm-my-8" style="margin-top: 48px; margin-bottom: 48px; text-align: left">
               <a href="<%= root_url %>">
-                <img src="images/opentss_logo.png" width="75" alt="OpenTSS: Countering Tenant Screening" style="max-width: 100%; vertical-align: middle; line-height: 1; border: 0">
+                <img src="<%= image_url("opentss_logo.png") %>" width="75" alt="OpenTSS: Countering Tenant Screening" style="max-width: 100%; vertical-align: middle; line-height: 1; border: 0">
               </a>
             </div>
             <table style="width: 100%;" cellpadding="0" cellspacing="0" role="presentation">
               <tr>
                 <td class="sm-px-6" style="border-radius: 4px; background-color: #FFFFFF; padding: 48px; font-size: 16px; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05)">
                   <h1 class="sm-leading-8" style="margin: 0 0 24px; font-size: 24px; font-weight: 600; color: #202B62">
-                    Thank you! here is the link for your submission.
+                    We ask you to reupload your tenant screening report.
                   </h1>
-                  <p style="margin: 0; line-height: 24px; color: #666666">
-                    Please click the button below to access your status of submission.
-                  </p>
                   <div role="separator" style="line-height: 24px">&zwj;</div>
                   <div>
-                    <a href="<%= retrieve_result_url(token: @token) %>" style="display: inline-block; border-radius: 4px; background-color: #202B6222; padding: 16px 24px; font-size: 16px; font-weight: 600; line-height: 1; color: #202B62; text-decoration: none">
+                    <a href="<%= retrieve_reupload_report_url(token: @token) %>" style="display: inline-block; border-radius: 4px; background-color: #202B6222; padding: 16px 24px; font-size: 16px; font-weight: 600; line-height: 1; color: #202B62; text-decoration: none">
                       <!--[if mso]>
       <i style="mso-font-width: -100%; letter-spacing: 32px; mso-text-raise: 30px" hidden>&nbsp;</i>
     <![endif]-->
                       <span style="mso-text-raise: 16px">
-                        Check your submission &rarr;
-                      </span>
+                  Click to Reupload &rarr;
+                </span>
                       <!--[if mso]>
       <i style="mso-font-width: -100%; letter-spacing: 32px;" hidden>&nbsp;</i>
     <![endif]-->
                     </a>
                   </div>
                   <div role="separator" style="height: 1px; line-height: 1px; margin: 24px 0">&zwj;</div>
+
                   <h2 class="sm-leading-8" style="margin: 0 0 12px; font-size: 20px; font-weight: 600; color: #202B62">
-                    What's next?
+                    Why?
                   </h2>
                   <p style="margin: 0; color: #666666;">
-                    If the status is still processing, then please give us some buffer for a couple more days. You will be receiving a $50 visa gift card to your email (<%= @email %>).
+                    We received your submission, but ask you to reupload your tenant screening report because either 1) it is not legible or 2) there is an unexpected error on receiving your tenant screening report. 
+                  </p>
+                  <div role="separator" style="line-height: 24px">&zwj;</div>
+                  <h2 class="sm-leading-8" style="margin: 0 0 12px; font-size: 20px; font-weight: 600; color: #202B62">
+                    How can I reupload?
+                  </h2>
+                  <p style="margin: 0; color: #666666;">
+                    Please click this <a href="<%= retrieve_reupload_report_url(token: @token) %>" style="color: #202B62; text-decoration: underline">link</a> to reupload.
                   </p>
                   <div role="separator" style="line-height: 24px">&zwj;</div>
                   <h2 class="sm-leading-8" style="margin: 0 0 12px; font-size: 20px; font-weight: 600; color: #202B62">
                     How can I reach out to you?
                   </h2>
                   <p style="margin: 0; color: #666666;">
-                    Just reply to <a href="mailto:opentss@mit.edu" class="hover-important-text-decoration-underline" style="color: #202B62; text-decoration: underline">this email</a>! we will respond as soon as we have your email.
+                    Just reply to <a href="mailto:opentss@mit.edu" class="hover-important-text-decoration-underline" style="color: #202B62; text-decoration: underline;">this email</a>! we will respond as soon as we have your email.
                   </p>
                 </td>
               </tr>

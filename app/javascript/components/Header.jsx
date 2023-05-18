@@ -88,7 +88,7 @@ export default function Header(props) {
 
                 <div className="mt-5">
                   <Link to="/submissions" className="text-lg leading-none">
-                    Submit your <span className="font-bold">tenant screening report</span> <br/>
+                    Donate your <span className="font-bold">tenant screening report</span> <br/>
                     for research
                   </Link>
                 </div>
@@ -106,7 +106,7 @@ export default function Header(props) {
                 </div>
                 <div className="text-sm pt-4">
                   If you have any questions for this project, <br/>
-                  please email us at <a className="underline" href="mailto:contact@opentss.net">contact@opentss.net</a>
+                  please email us at <a className="underline" href="mailto:opentss@mit.edu">opentss@mit.edu</a>
                 </div>
                 
 
@@ -155,7 +155,7 @@ export default function Header(props) {
                   </Link>
 
                   <Link to="/submissions" className="hidden lg:block">
-                    Submit your report
+                    Donate your report
                   </Link>
                 </>
               }

@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "contact@opentss.net"
+  default from: "opentss@mit.edu"
   layout "mailer"
 end
