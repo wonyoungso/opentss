@@ -36,10 +36,10 @@ Rails.application.configure do
     enable_starttls_auto: true
   }
 
-  config.action_mailer.asset_host = "https://opentss.net"
+  config.action_mailer.asset_host = "https://open-tss.net"
 
-  config.action_mailer.default_url_options = { host: 'opentss.net', port: 443 }
-  Rails.application.routes.default_url_options[:host] = "opentss.net"
+  config.action_mailer.default_url_options = { host: 'open-tss.net', port: 443 }
+  Rails.application.routes.default_url_options[:host] = "open-tss.net"
   Rails.application.routes.default_url_options[:port] = 443
   
   # Compress CSS using a preprocessor.
