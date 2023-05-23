@@ -1,4 +1,3 @@
-require 'zip'
 module RailsAdmin
   module Config
     module Actions
