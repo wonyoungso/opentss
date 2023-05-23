@@ -46,6 +46,7 @@ class Submission < ApplicationRecord
   validates :dependents, :presence => true
   validates :income, :presence => true
   validates :accepted, :presence => true
+  validates :security_deposit, :presence => true
   validates :rent, :presence => true
   validates :bedrooms, :presence => true
   validates :house_type, :presence => true

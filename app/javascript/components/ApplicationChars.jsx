@@ -36,10 +36,18 @@ const ApplicationChars = () => {
     window.scrollTo(0, 0);
     console.log("press goback");
 
+    let security_deposit;
+
+    if (watch("accepted") === "accepted") {
+      security_deposit = watch("security_deposit");
+    } else {
+      security_deposit = "-1";
+    }
+
     setSubmission({
       ...submission,
       accepted: watch("accepted"),
-      security_deposit: watch("security_deposit"),
+      security_deposit: security_deposit,
       rent: watch("rent"),
       bedrooms: watch("bedrooms"),
       house_type: watch("house_type"),
@@ -62,10 +70,19 @@ const ApplicationChars = () => {
 
   const onSubmit = (data) => {
     window.scrollTo(0, 0);
+
+    let security_deposit;
+
+    if (data.accepted === "accepted") {
+      security_deposit = data.security_deposit;
+    } else {
+      security_deposit = "-1";
+    }
+    
     setSubmission({
       ...submission,
       accepted: data.accepted,
-      security_deposit: data.security_deposit,
+      security_deposit: security_deposit,
       rent: data.rent,
       bedrooms: data.bedrooms,
       house_type: data.house_type,
