@@ -41,7 +41,7 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'open-tss.net', port: 443 }
   Rails.application.routes.default_url_options[:host] = "open-tss.net"
   Rails.application.routes.default_url_options[:port] = 443
-  
+  ActiveStorage::Current.host = "https://open-tss.net"
   # Compress CSS using a preprocessor.
   # config.assets.css_compressor = :sass
   config.assets.css_compressor = nil
