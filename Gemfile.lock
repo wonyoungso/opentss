@@ -356,6 +356,7 @@ DEPENDENCIES
   rails (~> 7.0.4, >= 7.0.4.2)
   rails_admin (~> 3.0)
   rest-client
+  rubyzip
   sassc-rails
   selenium-webdriver
   sprockets-rails
