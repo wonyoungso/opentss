@@ -1,3 +1,4 @@
+require 'zip'
 class Submission < ApplicationRecord
   has_many_attached :reports
   encrypts_attached :reports
