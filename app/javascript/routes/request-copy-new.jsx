@@ -135,30 +135,31 @@ const RequestCopyNew = () => {
           </div>
           <div className="lg:col-span-3">
             <p className="text-white-op-70 pt-1 pb-5">
-              Q: How do I know which company do they screen?
+              Q: How can I determine which company is conducting the tenant screening?
             </p>
-
+            
             <h3 className="font-bold text-md">
-              A: There are many cases of disclosing the name of tenant screening company. 
+              A: There are several avenues to explore for identifying the tenant screening company.
             </h3>
+            
             <p className="text-white-op-70 pt-1 pb-5">
-              <span className="font-bold">1. Check your email inbox. </span><br/>
-              You may have received an email from the tenant screening company to get a consent so they can collect data about you and provide the data to the landlord. 
+              <span className="font-bold">1. Review your email correspondence.</span><br/>
+              Check your email inbox for any communication received from the tenant screening company. It is common for them to send emails requesting your consent to  collect and provide data to the landlord.
             </p>
 
             <p className="text-white-op-70 pt-1 pb-5">
-              <span className="font-bold">2. Check your rental application. </span><br/>
-              You may have your rental application, and landlords often disclose the name of the tenant screening company.
+              <span className="font-bold">2. Refer to your rental application.</span><br/>
+              Examine your rental application, as landlords often disclose the name of the tenant screening company they utilize during the screening process.
             </p>
 
             <p className="text-white-op-70 pt-1 pb-5">
-              <span className="font-bold">3. Check your adverse action letter. </span><br/>
-              You may have an adverse action letter, if you were denied and the landlord used a tenant screening service. They need to disclose the name of the company. 
+              <span className="font-bold">3. Consult your adverse action letter.</span><br/>
+              If you have received an adverse action letter due to a denial based on tenant screening results, the landlord is required to disclose the name of the screening company in the letter.
             </p>
 
             <p className="text-white-op-70 pt-1 pb-5">
-              <span className="font-bold">4. Ask the landlord or find the website. </span><br/>
-              You may need some additional research on which tenant screening services that your landlord have used. Asking them directly is one way.
+              <span className="font-bold">4. Communicate with the landlord or conduct research.</span><br/>
+              Initiate direct communication with your landlord to inquire about the tenant screening services employed. Lastly, conduct independent research to identify the tenant screening companies associated with your landlord.
             </p>
           </div>
           <div className="lg:col-span-2"></div>

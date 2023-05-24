@@ -21,10 +21,12 @@ class Api::SubmissionsController < ApplicationController
     @submission_exist = @submissions.count > 0 
 
     if @submission_exist
-      
-      @token = Submission.update_token_all(@submissions)
-      SubmissionMailer.with(token: @token, email: params[:email]).submissions_retrieve_email.deliver_later
+      @submission = @submissions.first
+      @submission.update_token!
 
+      @token = @submission.retrieve_token
+
+      SubmissionMailer.with(token: @token, email: params[:email]).submissions_retrieve_email.deliver_later
 
       render json: {
         success: true,
@@ -36,11 +38,6 @@ class Api::SubmissionsController < ApplicationController
         submission_exist: @submission_exist
       }
     end
-
-  rescue 
-    render json: {
-      success: false
-    }, :status => :bad_request
   end
 
   def retrieve_result
@@ -67,6 +64,25 @@ class Api::SubmissionsController < ApplicationController
 
   def reupload_report
     @submission = Submission.where(retrieve_token: params[:token]).select(:id, :email, :created_at, :status, :retrieve_sent_at).first
+
+    if @submission.present?
+      render json: {
+        success: true,
+        token: params[:token],
+        submission: @submission
+      }
+    else
+      render json: {
+        success: false,
+        submission: nil,
+        token: params[:token],
+        message: "No submission"
+      }, status: 401
+    end
+  end
+
+  def consent_form
+    @submission = Submission.where(retrieve_token: params[:token]).select(:id, :email, :created_at, :status, :retrieve_sent_at, :consented_at).first
 
     if @submission.present?
       render json: {

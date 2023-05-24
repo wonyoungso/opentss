@@ -15,6 +15,7 @@ import defaultSubmission from "../providers/default_submission";
 
 const FinalStep = () => {
   const navigate = useNavigate();
+  const [displayEmail, setDisplayEmail] = useState("");
   const { submission, setSubmission, setSubmissionStep, revisitedSubmission, setRevisitedSubmission, setHeaderMode } = useContext(store);
   const [submissionErrors, setSubmissionErrors] = useState(null); 
   const [submitStatus, setSubmitStatus] = useState(0); // 0 = input 1= progress 2=success 3=error
@@ -42,7 +43,7 @@ const FinalStep = () => {
     
     let finalSubmission = {...submission};
     finalSubmission.email = data.email;
-
+    setDisplayEmail(data.email);
     const formData  = new FormData();
     _.each(finalSubmission, (value, key) => {
 
@@ -265,7 +266,7 @@ const FinalStep = () => {
                     {
                       errors["email_confirm"] ? 
                       <span className="text-red">{errors["email_confirm"].message}</span> : 
-                      <>Required. It is important to enter your correct and current email address because we will send a Visa gift card and a copy of your consent form to this email address.</>
+                      <>Required. It is important to enter your correct and current email address because we will send a Visa gift card.</>
                     }
                   </FormHelperText>
                 </FormControl>
@@ -327,11 +328,13 @@ const FinalStep = () => {
             </div>
 
             <div className="py-3">
-              <span className="font-bold">What's next?</span> You will be receiving a $50 visa gift card to your email ({submission.email}). Check your inbox in 7 days. Please note that we manually check individual records to check each submission. In the email, you can choose either you receive digital gift card or physical gift card. If you choose to receive the physical card, you will be asked to enter your address.
+                <span className="font-bold">What's next?</span> You will be receiving a $50 Visa gift card via email. Please anticipate its arrival in your inbox within 7 days. Kindly note that we review each submission individually, and in the event that your tenant screening report is illegible due to a blurry photograph, we may request that you re-upload the report for clarity.
+                <br/><br/>
+                Once we have confirmed the submission is valid, we will promptly send the gift card to your email address ({displayEmail}). Within the gift card email, you will have the option to choose between receiving a digital gift card or a physical one. 
             </div>
 
             <div className="py-3">
-              <span className="font-bold">How can I check the status of my submission?</span> To check the status of your submission, use the following <a href="#">link</a>. You will be prompted to enter your email address, and then we will send a secure link to retrieve the status of your submission.
+              <span className="font-bold">How can I check the status of my submission?</span> To check the status of your submission, use the following <Link to="/submissions/retrieve" className="underline">link</Link>. You will be prompted to enter your email address, and then we will send a secure link to retrieve the status of your submission.
             </div>
 
 

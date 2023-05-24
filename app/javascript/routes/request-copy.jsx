@@ -58,21 +58,21 @@ const RequestCopy = () => {
               Step 1. Identify the tenant screening services which you screened.
             </h3>
             <p className="text-white-op-70 pt-1 pb-5">
-              Every tenant screening services have different protocols for you to submit the request.
+              To request a copy of your tenant screening report, it is crucial to accurately identify the company associated with the screening process. <span className="font-bold text-dark-blue">Each tenant screening service operates with distinct protocols for submitting such requests.</span> For instance, you may have received an email from the tenant screening company, seeking your consent to collect and provide data to the landlord. Alternatively, when completing a rental application, landlords frequently disclose the name of the tenant screening company they employ. These sources of information assist in determining the appropriate entity to approach when requesting your report.
             </p>
 
             <h3 className="font-bold text-md">
-              Step 2. Fillout the form and send the request.
+              Step 2. Fill out the form and send the request.
             </h3>
             <p className="text-white-op-70 pt-1 pb-5">
               Based on the guidance, you send the request and wait until tenant screening or landlords respond and send a copy of your report.
             </p>
 
             <h3 className="font-bold text-md">
-              Step 3. Submit the copy of report to us!
+              Step 3. Donate the copy of your tenant screening report to us!
             </h3>
             <p className="text-white-op-70 pt-1 pb-5">
-              After you received the copy, please <Link className="underline" to="/submissions/new">send it to us</Link> to contribute to the research.
+              After you received the copy, please <Link className="underline" to="/submissions/new">donate it to us</Link> to contribute to the research.
             </p>
           </div>
           <div className="lg:col-span-2"></div>

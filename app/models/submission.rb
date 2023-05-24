@@ -114,15 +114,6 @@ class Submission < ApplicationRecord
     self.reports.attach(params[:files])
   end 
 
-  def self.update_token_all(submissions)
-
-    submissions.each do |submission|
-      submission.update_token!
-    end
-
-    return token
-  end
-
   def update_token!
 
     token = Devise.friendly_token

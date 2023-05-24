@@ -22,6 +22,7 @@ import SubmissionsNew from "../routes/submissions-new";
 import ConfirmEmail from "../routes/confirm-email";
 import About from '../routes/about';
 import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
+import ViewConsentForm from "../routes/view_consent_form";
 
 const router = createBrowserRouter([
   {
@@ -64,8 +65,12 @@ const router = createBrowserRouter([
     element: <RetrieveSubmissionResult />,
     loader: async ({ request, params }) => {
       const response = await fetch(`/api/submissions/retrieve_result/${params.token}`);
-      const responseJson = await response.json();
-      return { responseJson };
+      if (response.status === 401) {
+        throw new Response("No submission has been located using the provided token. It is possible that the token has expired. We kindly request you to retry the submission process by accessing the \"Retrieve Your Submission\" option in the menu.", { status: 401 });
+      } else if (response.status === 200) {
+        const responseJson = await response.json();
+        return { responseJson };
+      } 
     },
     errorElement: <ErrorPage />
   },
@@ -75,8 +80,26 @@ const router = createBrowserRouter([
     element: <ReuploadReport />,
     loader: async ({ request, params }) => {
       const response = await fetch(`/api/submissions/retrieve_result/${params.token}/reupload_report`);
-      const responseJson = await response.json();
-      return { responseJson };
+      if (response.status === 401) {
+        throw new Response("No submission has been located using the provided token. It is possible that the token has expired. We kindly request you to retry the submission process by accessing the \"Retrieve Your Submission\" option in the menu.", { status: 401 });
+      } else if (response.status === 200) {
+        const responseJson = await response.json();
+        return { responseJson };
+      } 
+    },
+    errorElement: <ErrorPage />
+  },
+  {
+    path: "/retrieve-submission/:token/consent_form",
+    element: <ViewConsentForm />,
+    loader: async ({ request, params }) => {
+      const response = await fetch(`/api/submissions/retrieve_result/${params.token}/consent_form`);
+      if (response.status === 401) {
+        throw new Response("No submission has been located using the provided token. It is possible that the token has expired. We kindly request you to retry the submission process by accessing the \"Retrieve Your Submission\" option in the menu.", { status: 401 });
+      } else if (response.status === 200) {
+        const responseJson = await response.json();
+        return { responseJson };
+      } 
     },
     errorElement: <ErrorPage />
   },

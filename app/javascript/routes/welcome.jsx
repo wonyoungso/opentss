@@ -62,7 +62,7 @@ const Welcome = () => {
               <span className="font-bold">tenant screening report</span>
             </div>
             <div className="col-span-2 text-white-op-50 pt-2 lg:pt-0 leading-5 lg:leading-6">
-              We will help you to easily ask for your copy.
+              We provide a tool to facilitate the straightforward process of requesting a copy of your tenant screening report.
             </div>
             <div className="col-span-2 pt-3 lg:pt-1">
               <img src={arrow_right} alt="right arrow" className="lg:block lg:ml-auto" />

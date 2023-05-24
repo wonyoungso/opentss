@@ -57,10 +57,11 @@ const RetrieveSubmissionResult = () => {
                   </div>
                   <div className="hidden lg:flex lg:justify-between lg:gap-2 border-y border-y-dark-blue py-3">
                     <div className="lg:w-10">#</div>
-                    <div className="lg:w-2/5">Email</div>
-                    <div className="lg:w-1/5">Submitted Date</div>
-                    <div className="lg:w-1/5">Status</div>
-                    <div className="lg:w-1/5">Reupload Report</div>
+                    <div className="lg:w-2/6">Email</div>
+                    <div className="lg:w-1/6">Submitted Date</div>
+                    <div className="lg:w-1/6">Status</div>
+                    <div className="lg:w-1/6">Consent Form</div>
+                    <div className="lg:w-1/6">Reupload Report</div>
                   </div>
 
 
@@ -69,10 +70,13 @@ const RetrieveSubmissionResult = () => {
                       return (
                       <div key={submission.id} className="lg:flex lg:justify-between lg:gap-2 cursor-pointer hover:bg-white-op-10 border-b border-b-white-op-50 py-3">
                         <div className="border-b border-b-white-op-30 pt-1 pb-2 lg:p-0 lg:border-none lg:w-10 overflow-hidden overflow-ellipsis text-dark-blue">{ submission.id }</div>
-                        <div className="border-b border-b-white-op-30 pt-1 pb-2 lg:p-0 lg:border-none lg:w-2/5 text-white-op-70 overflow-clip overflow-ellipsis whitespace-nowrap">{ submission.email }</div>
-                        <div className="border-b border-b-white-op-30 pt-1 pb-2 lg:p-0 lg:border-none lg:w-1/5 text-white-op-70">{ moment(submission.created_at).format("MM/DD/YYYY") }</div>
-                        <div className="pt-1 pb-2 lg:p-0 lg:border-none lg:w-1/5 text-white-op-70">{ toTitleCase(submission.status) } </div>
-                        <div className="pt-1 pb-2 lg:p-0 lg:border-none lg:w-1/5 text-white-op-70">
+                        <div className="border-b border-b-white-op-30 pt-1 pb-2 lg:p-0 lg:border-none lg:w-2/6 text-white-op-70 overflow-clip overflow-ellipsis whitespace-nowrap">{ submission.email }</div>
+                        <div className="border-b border-b-white-op-30 pt-1 pb-2 lg:p-0 lg:border-none lg:w-1/6 text-white-op-70">{ moment(submission.created_at).format("MM/DD/YYYY") }</div>
+                        <div className="pt-1 pb-2 lg:p-0 lg:border-none lg:w-1/6 text-white-op-70">{ toTitleCase(submission.status) } </div>
+                        <div className="pt-1 pb-2 lg:p-0 lg:border-none lg:w-1/6 text-white-op-70">
+                          <Link to={`/retrieve-submission/${responseJson.token}/consent_form`} className="font-bold text-dark-blue underline decoration-1">View Consent Form</Link>
+                        </div>
+                        <div className="pt-1 pb-2 lg:p-0 lg:border-none lg:w-1/6 text-white-op-70">
                           {
                             submission.status === "submitted" ? 
                             <Link to={`/retrieve-submission/${responseJson.token}/reupload_report`} className="font-bold text-dark-blue underline decoration-1">Reupload</Link> : null

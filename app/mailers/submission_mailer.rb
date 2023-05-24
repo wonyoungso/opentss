@@ -1,5 +1,5 @@
 class SubmissionMailer < ApplicationMailer
-  default from: "opentss@mit.edu"
+  default from: email_address_with_name("opentss@mit.edu", "OpenTSS: Countering Tenant Screening")
 
   def submission_complete_email
     @submission = params[:submission]
