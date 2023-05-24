@@ -54,6 +54,13 @@ const About = () => {
               PhD Candidate, Department of Urban Studies and Planning<br/>
               Massachusetts Institute of Technology
             </div>
+            <br/><br/>
+            Idana Wilson<br/>
+            <div className="text-gray">
+              <span className="italic">Workshop Organizer</span><br/>
+              Wellesley College
+            </div>
+            
           </div>
           <div className="lg:col-span-2"></div>
           <div className="lg:col-span-6 py-10"></div>

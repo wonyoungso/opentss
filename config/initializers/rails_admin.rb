@@ -71,6 +71,11 @@ RailsAdmin.config do |config|
       field :status
       field :reward_granted_at
     end
+    show do 
+      configure :reports do
+        hide
+      end
+    end
 
     edit do 
       field :status
