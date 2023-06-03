@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useContext, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Header from "../components/Header";
 import { store } from "../providers/TSSProvider";
 import {useNavigate} from 'react-router-dom';
@@ -17,6 +17,7 @@ const RetrieveSubmissionResult = () => {
   const { setMenuOpen } = useContext(store);
   const navigate = useNavigate();
   const { responseJson } = useLoaderData();
+  let { locale } = useParams();
 
   function toTitleCase(str) {
     switch(str) {
@@ -74,12 +75,12 @@ const RetrieveSubmissionResult = () => {
                         <div className="border-b border-b-white-op-30 pt-1 pb-2 lg:p-0 lg:border-none lg:w-1/6 text-white-op-70">{ moment(submission.created_at).format("MM/DD/YYYY") }</div>
                         <div className="pt-1 pb-2 lg:p-0 lg:border-none lg:w-1/6 text-white-op-70">{ toTitleCase(submission.status) } </div>
                         <div className="pt-1 pb-2 lg:p-0 lg:border-none lg:w-1/6 text-white-op-70">
-                          <Link to={`/retrieve-submission/${responseJson.token}/consent_form`} className="font-bold text-dark-blue underline decoration-1">View Consent Form</Link>
+                          <Link to={`/${locale}/retrieve-submission/${responseJson.token}/consent_form`} className="font-bold text-dark-blue underline decoration-1">View Consent Form</Link>
                         </div>
                         <div className="pt-1 pb-2 lg:p-0 lg:border-none lg:w-1/6 text-white-op-70">
                           {
                             submission.status === "submitted" ? 
-                            <Link to={`/retrieve-submission/${responseJson.token}/reupload_report`} className="font-bold text-dark-blue underline decoration-1">Reupload</Link> : null
+                            <Link to={`/${locale}/retrieve-submission/${responseJson.token}/reupload_report`} className="font-bold text-dark-blue underline decoration-1">Reupload</Link> : null
                           }
                           
                         </div>

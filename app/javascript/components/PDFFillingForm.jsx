@@ -11,12 +11,14 @@ import Checkbox from '@mui/joy/Checkbox';
 import { FormLabel } from '@mui/joy';
 import { useForm, Controller } from "react-hook-form";
 import moment from 'moment';
+import { useTranslation, Trans } from 'react-i18next';
 
 
 
 const PDFFillingForm = (props) => {
   const { company } = props;
   const { register, handleSubmit, control, trigger, formState: { isValid, isDirty, errors } } = useForm({ mode: "onChange" });
+  const { t } = useTranslation();
   // const [data, setData] = useState("");
 
   useEffect(() => {
@@ -225,13 +227,13 @@ const PDFFillingForm = (props) => {
   const renderTextField = (field, key) => {
     return (
       <FormControl className="pt-5" key={key}>
-        <FormLabel>{field.label}</FormLabel>
+        <FormLabel>{ t(field.label) }</FormLabel>
         <Input 
           color={errors[field.field_name] ? "danger" : "primary"} 
           {
             ...register(field.field_name, 
               { 
-                required: { value: field.required, message: "This field is required." },
+                required: { value: field.required, message: t("This field is required.") },
                 pattern: 
                   field.pattern ? 
                   { value: new RegExp(field.pattern.value), message: field.pattern.message } 
@@ -244,11 +246,11 @@ const PDFFillingForm = (props) => {
           {
             errors[field.field_name] ? 
             <span className="text-red">{errors[field.field_name].message}</span> : 
-            (field.required ? <>Required. </> : <>Optional. </>)
+            (field.required ? <>{ t("Required.") } </> : <>{ t("Optional.") }</>)
           }
         </FormHelperText>
         <FormHelperText>
-          {field.caption}
+          { t(field.caption) }
         </FormHelperText>
       </FormControl>
     );
@@ -262,16 +264,16 @@ const PDFFillingForm = (props) => {
             name={checkboxField.field_name}
             control={control}
             rules={{ 
-                required: { value: checkboxField.required, message: "This field is required." },
+                required: { value: checkboxField.required, message: t("This field is required.") },
                 pattern: 
                   checkboxField.pattern ? 
-                  { value: new RegExp(checkboxField.pattern.value), message: checkboxField.pattern.message } 
+                  { value: new RegExp(checkboxField.pattern.value), message: t(checkboxField.pattern.message) } 
                   : false
               }}
             defaultValue=""
             render={({ field }) => {
               return (
-                <Checkbox {...field} label={checkboxField.label} />
+                <Checkbox {...field} label={ t(checkboxField.label) } />
               )
             }}
           />
@@ -280,11 +282,11 @@ const PDFFillingForm = (props) => {
           {
             errors[checkboxField.label] ? 
             <span className="text-red">{errors[checkboxField.label].message}</span> : 
-            (checkboxField.required ? <>Required. </> : <>Optional. </>)
+            (checkboxField.required ? t("Required.") : t("Optional.") )
           }
         </FormHelperText>
         <FormHelperText>
-          {checkboxField.caption}
+          { t(checkboxField.caption) }
         </FormHelperText>
       </FormControl>
     )
@@ -293,7 +295,9 @@ const PDFFillingForm = (props) => {
   return (
     <>
       <div className="py-5">
-        We understand that entering your personal information may be a concern. However, please be assured that this tool is designed to work within your browser (or your phone), and therefore <span className="font-bold">we do not transmit or store any of the information you enter.</span> Think of it like using a word processor on your computer.
+        <Trans i18nKey="pdf_filing_form.assure_desc">
+          We understand that entering your personal information may be a concern. However, please be assured that this tool is designed to work within your browser (or your phone), and therefore <span className="font-bold">we do not transmit or store any of the information you enter.</span> Think of it like using a word processor on your computer.
+        </Trans>
       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
         {
@@ -308,7 +312,9 @@ const PDFFillingForm = (props) => {
         }
         <FormControl className="pt-5">
           <Button disabled={!isDirty || !isValid} type="submit" size="lg">
-            Download {company.name} Request Report Form
+            <Trans i18nKey="pdf_filing_form.download_button" values={{ company_name: company.name }}>
+              Download {company.name} Request Report Form
+            </Trans>
           </Button>  
         </FormControl>
       </form>

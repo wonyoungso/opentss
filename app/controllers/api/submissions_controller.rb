@@ -2,8 +2,10 @@ class Api::SubmissionsController < ApplicationController
   def create
     @submission = Submission.new
     @submission.put_params(params)
+    @locale = params[:locale]
+
     if @submission.save
-      SubmissionMailer.with(submission: @submission).submission_complete_email.deliver_later
+      SubmissionMailer.with(submission: @submission, locale: @locale).submission_complete_email.deliver_later
 
       render json: {
         success: true
@@ -19,6 +21,7 @@ class Api::SubmissionsController < ApplicationController
   def query_email
     @submissions = Submission.where(email: params[:email])
     @submission_exist = @submissions.count > 0 
+    @locale = params[:locale]
 
     if @submission_exist
       @submission = @submissions.first
@@ -26,7 +29,7 @@ class Api::SubmissionsController < ApplicationController
 
       @token = @submission.retrieve_token
 
-      SubmissionMailer.with(token: @token, email: params[:email]).submissions_retrieve_email.deliver_later
+      SubmissionMailer.with(token: @token, email: params[:email], locale: @locale).submissions_retrieve_email.deliver_later
 
       render json: {
         success: true,
@@ -102,12 +105,12 @@ class Api::SubmissionsController < ApplicationController
 
   def reupload_report_submit
     @submission = Submission.where(retrieve_token: params[:token]).first
-
+    @locale = params[:locale]
 
     if @submission.present?
       @submission.reports.attach(params[:files])
       if @submission.save
-        SubmissionMailer.with(submission: @submission).submission_reupload_complete_email.deliver_later
+        SubmissionMailer.with(submission: @submission, locale: @locale).submission_reupload_complete_email.deliver_later
 
         render json: {
           success: true

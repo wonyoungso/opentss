@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { useTranslation, Trans } from 'react-i18next';
 import _ from 'lodash';
 import saferent_01 from "../assets/saferent_03.png";
 import saferent_score_01 from "../assets/saferent_score_01.png";
@@ -56,8 +57,11 @@ const heroImages = [
   }
 ]
 
+
 export default function Hero(){
   const [heroImagesFinal, setHeroImagesFinal] = useState(heroImages);
+  const { t } = useTranslation();
+  const { locale } = useParams();
 
   useEffect(() => {
 
@@ -81,8 +85,9 @@ export default function Hero(){
     <>
       <div className="container mx-auto px-5">
         <div className="mt-5"></div>
-        Have you ever <br/> 
-        been screened by...
+        <Trans i18nKey="have you ever been screened by...">
+          Have you ever <br/> been screened by...
+        </Trans>
       </div>
       <div className="my-5 overflow-hidden">
         <motion.div className="h-[400px] flex items-end pb-5" style={{width: 10000, animation: "slide 30s linear infinite alternate" }}>
@@ -113,15 +118,18 @@ export default function Hero(){
         <div className="mt-5"></div>
         
         <div className="font-bold text-6xl md:text-7xl lg:text-9xl leading-none pb-8">
-          <motion.span className="block lg:inline-block relative text-yellow" initial={{ 
-            opacity: 0, top: 20
-          }} animate={{ opacity: 1, top: 0, transition: { duration: 0.3, delay: 0.2} }}>tenant</motion.span><span className="hidden lg:inline">&nbsp;</span>
-          <motion.span className="block lg:inline-block relative text-yellow" initial={{ 
-            opacity: 0, top: 20
-          }} animate={{ opacity: 1, top: 0, transition: { duration: 0.3, delay: 0.3} }}>screening</motion.span>
-          <motion.span className="block lg:inline-block relative text-white" initial={{ 
-            opacity: 0, top: 20
-          }} animate={{ opacity: 1, top: 0, transition: { duration: 0.3, delay: 0.4} }}>services?</motion.span>
+          <Trans i18nKey="tenant screening services title">
+            <motion.span className={`block lg:inline-block relative text-${locale === "en" ? "yellow" : "white"}`} initial={{ 
+              opacity: 0, top: 20
+            }} animate={{ opacity: 1, top: 0, transition: { duration: 0.3, delay: 0.2} }}>tenant</motion.span>
+            <span className="hidden lg:inline">&nbsp;</span>
+            <motion.span className={`block lg:inline-block relative text-yellow`} initial={{ 
+              opacity: 0, top: 20
+            }} animate={{ opacity: 1, top: 0, transition: { duration: 0.3, delay: 0.3} }}>screening</motion.span>
+            <motion.span className={`block lg:inline-block relative text-${locale === "en" ? "white" : "yellow"}`} initial={{ 
+              opacity: 0, top: 20
+            }} animate={{ opacity: 1, top: 0, transition: { duration: 0.3, delay: 0.4} }}>services?</motion.span>
+          </Trans>
         </div>
 
       </div>

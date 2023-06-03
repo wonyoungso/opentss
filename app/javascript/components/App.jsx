@@ -26,12 +26,12 @@ import ViewConsentForm from "../routes/view_consent_form";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/:locale",
     element: <Welcome />,
     errorElement: <ErrorPage />,
   },
   {
-    path: "/how-tss-works",
+    path: "/:locale/how-tss-works",
     element: <HowTSSWorks />,
     loader: async ({ request, params }) => {
       const response = await fetch(`/api/companies/how_tss_works.json`);
@@ -41,17 +41,17 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />
   },
   {
-    path: "/about",
+    path: "/:locale/about",
     element: <About />,
     errorElement: <ErrorPage />
   },
   {
-    path: "/request-copy",
+    path: "/:locale/request-copy",
     element: <RequestCopy />,
     errorElement: <ErrorPage />
   },
   {
-    path: "/confirm-email/:token",
+    path: "/:locale/confirm-email/:token",
     element: <ConfirmEmail />,
     loader: async ({ request, params }) => {
       const response = await fetch(`/api/confirm-email/${params.token}`);
@@ -61,7 +61,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />
   },
   {
-    path: "/retrieve-submission/:token",
+    path: "/:locale/retrieve-submission/:token",
     element: <RetrieveSubmissionResult />,
     loader: async ({ request, params }) => {
       const response = await fetch(`/api/submissions/retrieve_result/${params.token}`);
@@ -76,7 +76,7 @@ const router = createBrowserRouter([
   },
 
   {
-    path: "/retrieve-submission/:token/reupload_report",
+    path: "/:locale/retrieve-submission/:token/reupload_report",
     element: <ReuploadReport />,
     loader: async ({ request, params }) => {
       const response = await fetch(`/api/submissions/retrieve_result/${params.token}/reupload_report`);
@@ -90,7 +90,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />
   },
   {
-    path: "/retrieve-submission/:token/consent_form",
+    path: "/:locale/retrieve-submission/:token/consent_form",
     element: <ViewConsentForm />,
     loader: async ({ request, params }) => {
       const response = await fetch(`/api/submissions/retrieve_result/${params.token}/consent_form`);
@@ -104,7 +104,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />
   },
   {
-    path: "/request-copy/new",
+    path: "/:locale/request-copy/new",
     element: <RequestCopyNew />,
     loader: async ({ request, params }) => {
       const response = await fetch(`/api/companies.json`);
@@ -114,7 +114,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />
   },
   {
-    path: "/request-copy/companies/:id",
+    path: "/:locale/request-copy/companies/:id",
     element: <RequestCopyResult />,
     loader: async ({ request, params }) => {
       const response = await fetch(`/api/companies/${params.id}/request-copy.json`);
@@ -125,27 +125,27 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />
   },
   {
-    path: "/request-copy/custom-form/:companyname",
+    path: "/:locale/request-copy/custom-form/:companyname",
     element: <RequestCopyCustom />,
     errorElement: <ErrorPage />
   },
   {
-    path: "/submissions",
+    path: "/:locale/submissions",
     element: <Submissions />,
     errorElement: <ErrorPage />
   },
   {
-    path: "/submissions/new",
+    path: "/:locale/submissions/new",
     element: <SubmissionsNew />,
     errorElement: <ErrorPage />
   },
   {
-    path: "/submissions/retrieve",
+    path: "/:locale/submissions/retrieve",
     element: <SubmissionsRetrieve />,
     errorElement: <ErrorPage />
   },
   {
-    path: "/companies",
+    path: "/:locale/companies",
     element: <CompaniesIndex />,
     loader: async ({ request, params }) => {
       const response = await fetch(`/api/companies.json?mode=full`);
@@ -155,7 +155,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />
   },
   {
-    path: "/companies/:id",
+    path: "/:locale/companies/:id",
     element: <CompaniesShow />,
     loader: async ({ request, params }) => {
       const response = await fetch(`/api/companies/${params.id}.json`);

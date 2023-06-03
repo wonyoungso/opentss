@@ -4,7 +4,7 @@ import { store } from "../providers/TSSProvider";
 import Button from "@mui/joy/Button";
 import _ from 'lodash';
 import { ArrowBack } from "@mui/icons-material";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Input from "@mui/joy/Input";
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
@@ -13,6 +13,8 @@ import FormHelperText from '@mui/joy/FormHelperText';
 
 
 const ConsentForm = () => {
+  let { locale } = useParams();
+  
 
   const { submission, setSubmission, setSubmissionStep, revisitedSubmission, setRevisitedSubmission, setHeaderMode } = useContext(store);
   const { register, trigger, handleSubmit, watch, formState: { isValid, isDirty, errors } } = useForm({ 
@@ -50,7 +52,7 @@ const ConsentForm = () => {
       ...submission,
       printed_name: watch("printed_name")
     });
-    navigate("/submissions");
+    navigate(`/${locale}/submissions`);
   }
 
   const checkKeyDown = (e) => {

@@ -5,7 +5,7 @@ import Header from "../components/Header";
 import { store } from "../providers/TSSProvider";
 import {useNavigate} from 'react-router-dom';
 import Footer from "../components/Footer";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useParams  } from "react-router-dom";
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import { ArrowBack } from "@mui/icons-material";
 import { Close } from "@mui/icons-material";
@@ -20,6 +20,7 @@ const ReuploadReport = () => {
   const [status, setStatus] = useState(0);
   const [errors, setErrors] = useState([]);
   const { setMenuOpen } = useContext(store);
+  let { locale } = useParams();
   const navigate = useNavigate();
   const { responseJson } = useLoaderData();
 
@@ -36,7 +37,7 @@ const ReuploadReport = () => {
 
 
   const goBack = () => {
-    navigate(`/retrieve-submission/${responseJson.token}`);
+    navigate(`/${locale}/retrieve-submission/${responseJson.token}`);
   }
 
   const checkStatus = () => {
@@ -70,6 +71,7 @@ const ReuploadReport = () => {
       formData.append("files[]", file);
     })
 
+    formData.append("locale", locale);
 
     setStatus(1);
     const response = await fetch(url, {

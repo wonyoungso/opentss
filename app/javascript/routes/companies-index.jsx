@@ -3,7 +3,7 @@ import { useContext, useEffect, useState, Fragment } from "react";
 import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import { store } from "../providers/TSSProvider";
-import {useNavigate, useLoaderData } from 'react-router-dom';
+import {useNavigate, useLoaderData, useParams } from 'react-router-dom';
 import Footer from "../components/Footer";
 import { Search } from "@mui/icons-material";
 import Autocomplete from '@mui/joy/Autocomplete';
@@ -17,6 +17,7 @@ const ComapniesIndex = () => {
 
   const { setMenuOpen } = useContext(store);
   const navigate = useNavigate();
+  let { locale } = useParams();
   const [selectedCompany, setSelectedCompany] = useState(null);
   const { companies, sampled_companies } = useLoaderData();
   useEffect(() => {
@@ -36,7 +37,7 @@ const ComapniesIndex = () => {
         _.map(sampled_companies, sampled_company => {
           // console.log(sampled_company);
           return (
-            <div key={sampled_company.id} className="lg:flex lg:justify-between lg:gap-2 cursor-pointer hover:bg-white-op-10 border-b border-b-white-op-50 py-1 transition-colors" onClick={() => { navigate(`/companies/${sampled_company.id}`) }}>
+            <div key={sampled_company.id} className="lg:flex lg:justify-between lg:gap-2 cursor-pointer hover:bg-white-op-10 border-b border-b-white-op-50 py-1 transition-colors" onClick={() => { navigate(`/${locale}/companies/${sampled_company.id}`) }}>
               <div className="border-b border-b-white-op-30 pt-1 pb-2 lg:p-0 lg:border-none lg:w-2/5 text-lg font-bold text-dark-blue">{ sampled_company.name }</div>
               <div className="text-sm border-b border-b-white-op-30 pt-1 pb-2 lg:p-0 lg:border-none lg:w-1/5 text-white-op-70">
                 { 
@@ -78,7 +79,7 @@ const ComapniesIndex = () => {
      
     return (
       <>
-        <div className="lg:flex lg:justify-between lg:gap-2 cursor-pointer hover:bg-white-op-10 border-b border-b-white-op-50 py-1 transition-colors" onClick={() => { navigate(`/companies/${selectedCompany.id}`) }}>
+        <div className="lg:flex lg:justify-between lg:gap-2 cursor-pointer hover:bg-white-op-10 border-b border-b-white-op-50 py-1 transition-colors" onClick={() => { navigate(`/${locale}/companies/${selectedCompany.id}`) }}>
           <div className="border-b border-b-white-op-30 pt-1 pb-2 lg:p-0 lg:border-none lg:w-2/5 text-lg font-bold text-dark-blue">{ selectedCompany.name }</div>
           <div className="border-b border-b-white-op-30 pt-1 pb-2 lg:p-0 lg:border-none lg:w-1/5 text-white-op-70">
             { 

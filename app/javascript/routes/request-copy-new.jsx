@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import { store } from "../providers/TSSProvider";
-import {useNavigate, useLoaderData } from 'react-router-dom';
+import {useNavigate, useLoaderData, useParams } from 'react-router-dom';
 import Footer from "../components/Footer";
 import Autocomplete from '@mui/joy/Autocomplete';
 import FormControl from '@mui/joy/FormControl';
@@ -13,17 +13,20 @@ import FormHelperText from '@mui/joy/FormHelperText';
 import Input from '@mui/joy/Input';
 import { Button } from "@mui/joy";
 import _ from 'lodash';
+import { useTranslation, Trans } from "react-i18next";
 
 
 const RequestCopyNew = () => {
 
   const { setMenuOpen } = useContext(store);
   const navigate = useNavigate();
+  let { locale } = useParams();
   const { companies } = useLoaderData();
   const [moreThan60days, setMoreThan60days] = useState(false);
   const [findNameStatus, setFindNameStatus] = useState(false);
   const [companyName, setCompanyName] = useState('');
   const [selectedCompany, setSelectedCompany] = useState(null);
+  const { t } = useTranslation();
   
 
   useEffect(() => {
@@ -54,9 +57,9 @@ const RequestCopyNew = () => {
 
   const goToNextStep = () => {
     if (findNameStatus) {
-      navigate(`/request-copy/custom-form/${companyName}`);
+      navigate(`/${locale}/request-copy/custom-form/${companyName}`);
     } else {
-      navigate(`/request-copy/companies/${selectedCompany.id}?sixty_days=${moreThan60days ? "t" : "f"}`);
+      navigate(`/${locale}/request-copy/companies/${selectedCompany.id}?sixty_days=${moreThan60days ? "t" : "f"}`);
     }
   };
 
@@ -81,30 +84,40 @@ const RequestCopyNew = () => {
       <div className="container mx-auto px-5">
         <div className="lg:grid lg:grid-cols-6 lg:gap-5">
           <div>
-            Step 1. Identify the tenant screening service
+            <Trans i18nKey="request_copy_new.step_1_subtitle">
+              Step 1. Identify the tenant screening service
+            </Trans>
           </div>
           <div className="lg:col-span-3">
             <h2 className="font-bold text-4xl">
-              Which is the tenant screening company you were screened?
+              <Trans i18nKey="request_copy_new.step_1_title">
+                Which is the tenant screening company you were screened?
+              </Trans>
             </h2>
             <p className="my-2">
-              This is a tool that guides you through a process of requesting a letter to tenant screening services.
+              <Trans i18nKey="request_copy.title_desc">
+                This is a tool that guides you through a process of requesting a letter to tenant screening services.
+              </Trans>
             </p>
             <div className="h-5"></div>            
 
             <FormControl>
-              <FormLabel>Select the tenant screening service here.</FormLabel>
-              <Autocomplete placeholder="Choose..." disabled={findNameStatus} getOptionLabel={option => option.name} options={companies} value={selectedCompany} onChange={onChangeAutocomplateHandler} />
+              <FormLabel>
+                <Trans i18nKey="request_copy_new.select_label">
+                  Select the tenant screening service here.
+                </Trans>
+              </FormLabel>
+              <Autocomplete placeholder={t("Choose...")} disabled={findNameStatus} getOptionLabel={option => option.name} options={companies} value={selectedCompany} onChange={onChangeAutocomplateHandler} />
             </FormControl>
             <div className="h-5"></div>
 
-            <Checkbox label="I can't find the name in the list" checked={findNameStatus} onChange={onChangeHandler} />
+            <Checkbox label={t("I can't find the name in the list")} checked={findNameStatus} onChange={onChangeHandler} />
             <div className="h-5"></div>
             {
               findNameStatus ?
               <FormControl>
-                <FormLabel>Enter the name of the tenant screening company</FormLabel>
-                <Input value={companyName} placeholder="e.g., TransUnion" onChange={(e) => { setCompanyName(e.target.value)}} />
+                <FormLabel>{t("Enter the name of the tenant screening company")}</FormLabel>
+                <Input value={companyName} placeholder={t("e.g., TransUnion")} onChange={(e) => { setCompanyName(e.target.value)}} />
                 <div className="h-5"></div>
               </FormControl>
               : null
@@ -121,7 +134,7 @@ const RequestCopyNew = () => {
             
             <FormControl>
               <Button disabled={checkStatus()} onClick={goToNextStep} size="lg">
-                Next
+                {t("Next")}
               </Button>  
             </FormControl>
 
@@ -131,36 +144,49 @@ const RequestCopyNew = () => {
           <div className="lg:col-span-2"></div>
 
           <div>
-            Questions
+            { t("FAQ")}
           </div>
           <div className="lg:col-span-3">
             <p className="text-white-op-70 pt-1 pb-5">
-              Q: How can I determine which company is conducting the tenant screening?
+              <Trans i18nKey="request_copy_new.faq_q_1">
+                Q: How can I determine which company is conducting the tenant screening?
+              </Trans>
             </p>
             
             <h3 className="font-bold text-md">
-              A: There are several avenues to explore for identifying the tenant screening company.
+              <Trans i18nKey="request_copy_new.faq_a_1_title">
+                A: There are several avenues to explore for identifying the tenant screening company.
+              </Trans>
             </h3>
             
-            <p className="text-white-op-70 pt-1 pb-5">
-              <span className="font-bold">1. Review your email correspondence.</span><br/>
-              Check your email inbox for any communication received from the tenant screening company. It is common for them to send emails requesting your consent to  collect and provide data to the landlord.
-            </p>
+              <p className="text-white-op-70 pt-1 pb-5">
+                <span className="font-bold">{t("1. Review your email correspondence.")}</span><br/>
+                <Trans i18nKey="request_copy_new.faq_a_desc_01">
+                  Check your email inbox for any communication received from the tenant screening company. It is common for them to send emails requesting your consent to collect and provide data to the landlord.
+                </Trans>
+              </p>
 
-            <p className="text-white-op-70 pt-1 pb-5">
-              <span className="font-bold">2. Refer to your rental application.</span><br/>
-              Examine your rental application, as landlords often disclose the name of the tenant screening company they utilize during the screening process.
-            </p>
+              <p className="text-white-op-70 pt-1 pb-5">
+                <span className="font-bold">{ t("2. Refer to your rental application.") }</span><br/>
+                <Trans i18nKey="request_copy_new.faq_a_desc_02">
+                  Examine your rental application, as landlords often disclose the name of the tenant screening company they utilize during the screening process.
+                </Trans>
+              </p>
 
-            <p className="text-white-op-70 pt-1 pb-5">
-              <span className="font-bold">3. Consult your adverse action letter.</span><br/>
-              If you have received an adverse action letter due to a denial based on tenant screening results, the landlord is required to disclose the name of the screening company in the letter.
-            </p>
+              <p className="text-white-op-70 pt-1 pb-5">
+                <span className="font-bold">{ t("3. Consult your adverse action letter.") }</span><br/>
+                <Trans i18nKey="request_copy_new.faq_a_desc_03">
+                  If you have received an adverse action letter due to a denial based on tenant screening results, the landlord is required to disclose the name of the screening company in the letter.
+                </Trans>
+              </p>
 
-            <p className="text-white-op-70 pt-1 pb-5">
-              <span className="font-bold">4. Communicate with the landlord or conduct research.</span><br/>
-              Initiate direct communication with your landlord to inquire about the tenant screening services employed. Lastly, conduct independent research to identify the tenant screening companies associated with your landlord.
-            </p>
+              <p className="text-white-op-70 pt-1 pb-5">
+                <span className="font-bold">{ t("4. Communicate with the landlord or conduct research.") } </span><br/>
+                <Trans i18nKey="request_copy_new.faq_a_desc_04">
+                  Initiate direct communication with your landlord to inquire about the tenant screening services employed. Lastly, conduct independent research to identify the tenant screening companies associated with your landlord.
+                </Trans>
+              </p>
+            
           </div>
           <div className="lg:col-span-2"></div>
         </div>

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Header from "../components/Header";
 import { store } from "../providers/TSSProvider";
 import {useNavigate, useLoaderData, useSearchParams} from 'react-router-dom';
@@ -15,12 +15,15 @@ import PDFFillingForm from "../components/PDFFillingForm";
 import { Button } from "@mui/joy";
 import _ from 'lodash';
 import {  } from 'react-router-dom';
+import { useTranslation, Trans } from "react-i18next";
 
 const RequestCopyResult = () => {
 
   const { setMenuOpen } = useContext(store);
   const { company, descriptions, outsourcing_companies, outsourcing_company_descriptions } = useLoaderData();
   const [queryParams, setQueryParams] = useSearchParams();
+  let { locale } = useParams();
+  const { t } = useTranslation();
 
   useEffect(() => {
     document.title = "Request a Copy of Tenant Screening Report | OpenTSS: Countering Tenant Screening";
@@ -57,7 +60,7 @@ const RequestCopyResult = () => {
             
           <div>
             { company.name } <br/>
-            Request your report
+            { t("Request your report") }
           </div>
           <div className="lg:col-span-3">
             
@@ -68,13 +71,21 @@ const RequestCopyResult = () => {
               <h2 className="font-bold text-4xl">
                 {
                   company.is_accept_letter ? 
-                  <>{company.name} directly accepts the request of your copy of tenant screening report.</> :
-                  <>We will help you generate the letter to request your copy of tenant screening report, so you can send it to {company.name}.</>
+                  <Trans i18nKey="request_copy_result.direct_accept_title" values={{ company_name: company.name }}>
+                    {company.name} directly accepts the request of your copy of tenant screening report.
+                  </Trans> :
+                  <Trans i18nKey="request_copy_result.compose_letter_title" values={{ company_name: company.name }}>
+                    We will help you generate the letter to request your copy of tenant screening report, so you can send it to { company.name }.
+                  </Trans>
                 }
               </h2> :
               <>
                 <h2 className="font-bold text-4xl">
-                  {company.name} orders tenant screening reports from&nbsp;
+                  <Trans i18nKey="request_copy_result.outsource_title" values={{ company_name: company.name }}>
+                    {company.name} orders tenant screening reports from
+                  </Trans>
+                  
+                  &nbsp;
                   {
                     _.map(outsourcing_companies, (oc, idx) => {
                       return <>{oc.name} {
@@ -91,11 +102,15 @@ const RequestCopyResult = () => {
                     _.map(outsourcing_companies, oc => {
                       if (oc.is_accept_letter) {
                         return (
-                          <>{oc.name} directly accepts the request of your copy of tenant screening report. </>
+                          <Trans i18nKey="request_copy_result.direct_accept_title" values={{ company_name: oc.name }}>
+                            {oc.name} directly accepts the request of your copy of tenant screening report.
+                          </Trans>
                         )
                       } else {
                         return (
-                          <>We will help you generate the letter to request your copy of tenant screening report, so you can send it to {oc.name}.</>
+                          <Trans i18nKey="request_copy_result.compose_letter_title" values={{ company_name: oc.name }}>
+                            We will help you generate the letter to request your copy of tenant screening report, so you can send it to { oc.name }.
+                          </Trans>
                         )
                       }
                     })
@@ -117,7 +132,10 @@ const RequestCopyResult = () => {
                         <>
                           <div className="h-5"></div>
                           <FormControl>
-                            <Button onClick={() => {   window.open(finalCompany.request_copy_url, '_blank'); }}>{finalCompany.name} Inquiry Page</Button>
+                            <Button onClick={() => {   window.open(finalCompany.request_copy_url, '_blank'); }}>
+                            
+                              {finalCompany.name} {t("Inquiry Page")}
+                            </Button>
                           </FormControl>
                         </>:
                         <>
@@ -153,14 +171,14 @@ const RequestCopyResult = () => {
               return (
                 <div key={description.id} className="pt-10 lg:grid lg:grid-cols-6 lg:gap-5">
                   <div>
-                    { description.subtitle }
+                    { t(description.subtitle) }
                     {
                         finalCompanies.length > 1 ? <>&nbsp;({description.company_name})</> : null
                       }
                   </div>
                   <div className="lg:col-span-4">
                     <h2 className="font-bold text-4xl">
-                      { description.title}
+                      { t(description.title) }
                     
                     </h2>
 
@@ -189,7 +207,7 @@ const RequestCopyResult = () => {
                   <>
                     <div className="h-5"></div>
                     <FormControl>
-                      <Button onClick={() => {   window.open(finalCompany.request_copy_url, '_blank'); }}>{finalCompany.name} Inquiry Page</Button>
+                      <Button onClick={() => {   window.open(finalCompany.request_copy_url, '_blank'); }}>{finalCompany.name} { t("Inquiry Page") }</Button>
                     </FormControl>
                   </>:
                   <>

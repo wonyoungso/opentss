@@ -3,7 +3,7 @@ import { useContext, useEffect, useState, Fragment } from "react";
 import { Link } from "react-router-dom";
 import Header from "../components/Header";
 import { store } from "../providers/TSSProvider";
-import {useNavigate, useLoaderData } from 'react-router-dom';
+import {useNavigate, useLoaderData, useParams } from 'react-router-dom';
 import Footer from "../components/Footer";
 import { ArrowBack, Search } from "@mui/icons-material";
 import ReportStats from "../components/ReportStats";
@@ -14,6 +14,7 @@ const CompaniesShow = () => {
 
   const { setMenuOpen } = useContext(store);
   const navigate = useNavigate();
+  let { locale } = useParams();
   const { company, descriptions } = useLoaderData();
   
   useEffect(() => {
@@ -38,7 +39,7 @@ const CompaniesShow = () => {
       <div className="container mx-auto px-5">
         <div className="lg:grid lg:grid-cols-6 lg:gap-x-5 lg:gap-y-2">
           <div className="lg:col-span-6 border-b border-b-dark-blue">
-            <button className="text-sm" onClick={() => { navigate("/companies"); }}><ArrowBack size="sm" /> Back</button>
+            <button className="text-sm" onClick={() => { navigate(`/${locale}/companies`); }}><ArrowBack size="sm" /> Back</button>
             <div className="pb-2"></div>
           </div>
           <div className="lg:col-span-3 pb-10">
@@ -51,7 +52,7 @@ const CompaniesShow = () => {
                 resells reports to <> </>
                 {
                   _.map(company.resellers, reseller => {
-                    return <Fragment key={reseller.id}><Link className="underline" to={`/companies/${reseller.id}`}>{reseller.name}</Link>, </Fragment>
+                    return <Fragment key={reseller.id}><Link className="underline" to={`/${locale}/companies/${reseller.id}`}>{reseller.name}</Link>, </Fragment>
                   })
                 }
               </div> : null
@@ -61,7 +62,7 @@ const CompaniesShow = () => {
               <div className="text-white-op-70 text-sm">
                 obtains reports from <> </>
                 {
-                  <Link className="underline" to={`/companies/${company.outsourcing_company.id}`}>{company.outsourcing_company.name}</Link>
+                  <Link className="underline" to={`/${locale}/companies/${company.outsourcing_company.id}`}>{company.outsourcing_company.name}</Link>
                 }
 
                 

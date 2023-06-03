@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useContext, useEffect } from "react";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData, useParams } from "react-router-dom";
 import Header from "../components/Header";
 import { store } from "../providers/TSSProvider";
 import {useNavigate} from 'react-router-dom';
@@ -43,6 +43,8 @@ const HowTSSWorks = () => {
 
   const { setMenuOpen } = useContext(store);
   const navigate = useNavigate();
+  let { locale } = useParams();
+
   const companies = useLoaderData();
 
   useEffect(() => {
@@ -69,7 +71,7 @@ const HowTSSWorks = () => {
           </div>
         </div>
         <div className="flex justify-center my-3 lg:my-7">
-          <motion.button whileTap={{ scale: 0.98 }} whileHover={{ scale: 1.01 }} transition={{ duration: 0.1 }}   className="flex justify-center items-center gap-2 my-5 bg-yellow py-2 px-10 rounded-md font-bold text-black text-sm lg:text-lg" onClick={() => { navigate("/companies")} }>
+          <motion.button whileTap={{ scale: 0.98 }} whileHover={{ scale: 1.01 }} transition={{ duration: 0.1 }}   className="flex justify-center items-center gap-2 my-5 bg-yellow py-2 px-10 rounded-md font-bold text-black text-sm lg:text-lg" onClick={() => { navigate(`/${locale}/companies`)} }>
             <Article fontSize="18" /> Tenant Screening Services Lookup
           </motion.button>
         </div>
@@ -378,7 +380,7 @@ const HowTSSWorks = () => {
                 <motion.div viewport={{ once: true }} initial={{ opacity: 0, translateY: 20 }} whileInView={{ opacity: 1, translateY: 0 }} transition={{
                   duration: 0.25,
                   delay: 0.3 + idx * 0.1
-                }} key={company.id} className="py-5 lg:py-0 cursor-pointer" onClick={() => { navigate(`/companies/${company.id}`)}}>
+                }} key={company.id} className="py-5 lg:py-0 cursor-pointer" onClick={() => { navigate(`/${locale}/companies/${company.id}`)}}>
                   <EvictionRecordsCard key={company.id} mode="dark" name={company.name} fields={company.eviction_data_fields} />
                 </motion.div>
               )
@@ -387,7 +389,7 @@ const HowTSSWorks = () => {
         </div>
 
         <div className="flex justify-center my-3 lg:my-7">
-          <motion.button whileTap={{ scale: 0.98 }} whileHover={{ scale: 1.01 }} transition={{ duration: 0.1 }}   className="my-5 bg-yellow py-2 px-10 rounded-md font-bold text-black text-sm flex justify-center items-center gap-2 lg:text-lg" onClick={() => { navigate("/companies")} }>
+          <motion.button whileTap={{ scale: 0.98 }} whileHover={{ scale: 1.01 }} transition={{ duration: 0.1 }}   className="my-5 bg-yellow py-2 px-10 rounded-md font-bold text-black text-sm flex justify-center items-center gap-2 lg:text-lg" onClick={() => { navigate(`/${locale}/companies`)} }>
             <Article fontSize="18" /> Tenant Screening Services Lookup
           </motion.button>
         </div>
@@ -483,7 +485,7 @@ const HowTSSWorks = () => {
                 <motion.div viewport={{ once: true }} initial={{ opacity: 0, translateY: 20 }} whileHover={{opacity: 0.5}} whileInView={{ opacity: 1, translateY: 0 }} transition={{
                   duration: 0.25,
                   delay: 0.3 + idx * 0.1
-                }} key={company.id} className="py-5 lg:py-0 cursor-pointer" onClick={() => { navigate(`/companies/${company.id}`)}}>
+                }} key={company.id} className="py-5 lg:py-0 cursor-pointer" onClick={() => { navigate(`/${locale}/companies/${company.id}`)}}>
                   <CriminalRecordsCard key={company.id} mode="dark" name={company.name} fields={company.criminal_data_fields} />
                 </motion.div>
               )
@@ -493,7 +495,7 @@ const HowTSSWorks = () => {
 
 
         <div className="flex justify-center my-3 lg:my-7">
-          <motion.button whileTap={{ scale: 0.98 }} whileHover={{ scale: 1.01 }} transition={{ duration: 0.1 }}   className="my-5 bg-yellow py-2 px-10 rounded-md font-bold text-black text-sm flex justify-center items-center gap-2 lg:text-lg" onClick={() => { navigate("/companies")} }>
+          <motion.button whileTap={{ scale: 0.98 }} whileHover={{ scale: 1.01 }} transition={{ duration: 0.1 }}   className="my-5 bg-yellow py-2 px-10 rounded-md font-bold text-black text-sm flex justify-center items-center gap-2 lg:text-lg" onClick={() => { navigate(`/${locale}/companies`)} }>
             <Article fontSize="18" /> Tenant Screening Services Lookup
           </motion.button>
         </div>
@@ -519,7 +521,7 @@ const HowTSSWorks = () => {
                 duration: 0.25,
                 delay: 0.2
                 }} className="pt-5 text-gray">
-              <span className="font-bold text-white">Relatedly, many tenant screening reports treat sequences of criminal justice procedures, such as arrest, charge, disposition, and sentencing, as a single event.</span> <Link to="/companies/6" className="underline">RealPage</Link>, a tenant screening company, uses “abbreviated” criminal records for 11,000 reports, which are less expensive to obtain than full records but do not include information about the resolution. However, accurately assessing a tenant’s criminal history requires consideration of each step in the criminal justice process, as they imply different consequences. For instance, in 2019, <a href="https://www.criminaljustice.ny.gov/crimnet/ojsa/dispositions-adult-arrest-demographics/2019/NYS.pdf" className="underline" target="_blank">only 18.9% of felony arrests in New York led to final felony convictions.</a> Given that it is crucial to include the final resolution of criminal justice procedures for appropriate evaluation, the use of such abbreviated data by tenant screening services is likely to lead to an incorrect model. Without this context, a tenant’s record could be inaccurately assessed.
+              <span className="font-bold text-white">Relatedly, many tenant screening reports treat sequences of criminal justice procedures, such as arrest, charge, disposition, and sentencing, as a single event.</span> <Link to={`/${locale}/companies/6`} className="underline">RealPage</Link>, a tenant screening company, uses “abbreviated” criminal records for 11,000 reports, which are less expensive to obtain than full records but do not include information about the resolution. However, accurately assessing a tenant’s criminal history requires consideration of each step in the criminal justice process, as they imply different consequences. For instance, in 2019, <a href="https://www.criminaljustice.ny.gov/crimnet/ojsa/dispositions-adult-arrest-demographics/2019/NYS.pdf" className="underline" target="_blank">only 18.9% of felony arrests in New York led to final felony convictions.</a> Given that it is crucial to include the final resolution of criminal justice procedures for appropriate evaluation, the use of such abbreviated data by tenant screening services is likely to lead to an incorrect model. Without this context, a tenant’s record could be inaccurately assessed.
             </motion.p>
           </div>
         </div>
@@ -578,7 +580,7 @@ const HowTSSWorks = () => {
               duration: 0.25,
               delay: 0.2
               }} className="text-gray">
-              <span className="text-white font-bold">These models for scoring and recommendations are often customizable by landlords.</span> An example is <Link to="/companies/7" className="underline">RentGrow</Link> offers a form for customization to their clients. This allows landlords to design which debt collections are included to calculate resident scores and which eviction and criminal cases are considered. RentGrow’s customization is very comprehensive, allowing landlords to establish rules for almost every data, including credits, eviction, and criminal records. Similarly, <Link to="/companies/13" className="underline">National Tenant Network</Link> offers a form for comprehensive customization with some default configuration and <Link to="/companies/43" className="underline">MRI Resident Screening</Link> also provides three predefined risk “tolerance” in the customization of the recommendation. When providing such customization, we assume that a significant portion of the inner algorithms are rule-based, and established by default values from tenant screening services, and then further customized by landlords. Therefore, we argue that regulators must scrutinize how tenant screening services establish default values for each rule and what influences the customized values that landlords enter for customization and what kind of reasoning they use.
+              <span className="text-white font-bold">These models for scoring and recommendations are often customizable by landlords.</span> An example is <Link to={`/${locale}/companies/7`} className="underline">RentGrow</Link> offers a form for customization to their clients. This allows landlords to design which debt collections are included to calculate resident scores and which eviction and criminal cases are considered. RentGrow’s customization is very comprehensive, allowing landlords to establish rules for almost every data, including credits, eviction, and criminal records. Similarly, <Link to={`/${locale}/companies/13`} className="underline">National Tenant Network</Link> offers a form for comprehensive customization with some default configuration and <Link to={`/${locale}/companies/43`} className="underline">MRI Resident Screening</Link> also provides three predefined risk “tolerance” in the customization of the recommendation. When providing such customization, we assume that a significant portion of the inner algorithms are rule-based, and established by default values from tenant screening services, and then further customized by landlords. Therefore, we argue that regulators must scrutinize how tenant screening services establish default values for each rule and what influences the customized values that landlords enter for customization and what kind of reasoning they use.
             </motion.p> 
           </div>
         </div>
@@ -626,7 +628,7 @@ const HowTSSWorks = () => {
               <motion.div viewport={{ once: true }} initial={{ opacity: 0, translateY: 20 }} whileInView={{ opacity: 1, translateY: 0 }} transition={{
                 duration: 0.25,
                 delay: 0.2 + idx * 0.1
-                }} key={company.id} onClick={() => { navigate(`/companies/${company.id}`)} } className="lg:flex lg:justify-between lg:gap-2 cursor-pointer hover:bg-white-op-10 border-b border-b-white-op-50 py-1 lg:py-3">
+                }} key={company.id} onClick={() => { navigate(`/${locale}/companies/${company.id}`)} } className="lg:flex lg:justify-between lg:gap-2 cursor-pointer hover:bg-white-op-10 border-b border-b-white-op-50 py-1 lg:py-3">
                 <div className="text-md font-bold border-b border-b-white-op-30 py-1 lg:p-0 lg:border-none lg:w-2/4 text-sm overflow-clip overflow-ellipsis whitespace-nowrap">{ company.name }</div>
                 <div className="border-b border-b-white-op-30  py-1 lg:p-0 lg:border-none lg:w-1/4 text-sm">
                   {
@@ -709,18 +711,18 @@ const HowTSSWorks = () => {
             <motion.div viewport={{ once: true }} initial={{ opacity: 0, translateY: 20 }} whileInView={{ opacity: 1, translateY: 0 }} className="flex flex-col justify-center gap-5">
               <motion.button whileTap={{ scale: 0.98 }} whileHover={{ scale: 1.01 }} transition={{
                 duration: 0.1
-                }} className="flex justify-center items-center gap-2 my-0.5 bg-yellow py-2 px-10 rounded-md font-bold text-black text-sm lg:text-lg" onClick={() => { navigate("/companies")} }>
+                }} className="flex justify-center items-center gap-2 my-0.5 bg-yellow py-2 px-10 rounded-md font-bold text-black text-sm lg:text-lg" onClick={() => { navigate(`/${locale}/companies`)} }>
                 <Article fontSize="18" /> Tenant Screening Services Lookup
               </motion.button>
 
               <motion.button whileTap={{ scale: 0.98 }} whileHover={{ scale: 1.01 }} transition={{
                 duration: 0.1
-                }} className="flex justify-center items-center gap-2 my-0.5 bg-yellow py-2 px-10 rounded-md font-bold text-black text-sm lg:text-lg" onClick={() => { navigate("/request-copy")} }>
+                }} className="flex justify-center items-center gap-2 my-0.5 bg-yellow py-2 px-10 rounded-md font-bold text-black text-sm lg:text-lg" onClick={() => { navigate(`/${locale}/request-copy`)} }>
                 <SettingsPhone fontSize="18" /> Request Copy of Tenant Screening Report
               </motion.button>
               <motion.button whileTap={{ scale: 0.98 }} whileHover={{ scale: 1.01 }} transition={{
                 duration: 0.1
-                }} className="flex justify-center items-center gap-2  my-0.5 bg-yellow py-2 px-10 rounded-md font-bold text-black text-sm lg:text-lg" onClick={() => { navigate("/request-copy")} }>
+                }} className="flex justify-center items-center gap-2  my-0.5 bg-yellow py-2 px-10 rounded-md font-bold text-black text-sm lg:text-lg" onClick={() => { navigate(`/${locale}/request-copy`)} }>
                 <Favorite fontSize="18" /> Donate Tenant Screening Report
               </motion.button>
             </motion.div>

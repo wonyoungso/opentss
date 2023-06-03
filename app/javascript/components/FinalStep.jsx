@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useContext, useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { store } from "../providers/TSSProvider";
 import Button from "@mui/joy/Button";
 import _ from 'lodash';
@@ -15,6 +15,7 @@ import defaultSubmission from "../providers/default_submission";
 
 const FinalStep = () => {
   const navigate = useNavigate();
+  let { locale } = useParams();
   const [displayEmail, setDisplayEmail] = useState("");
   const { submission, setSubmission, setSubmissionStep, revisitedSubmission, setRevisitedSubmission, setHeaderMode } = useContext(store);
   const [submissionErrors, setSubmissionErrors] = useState(null); 
@@ -57,6 +58,8 @@ const FinalStep = () => {
         formData.append(key, value);
       }
     });
+
+    formData.append("locale", locale);
 
     setSubmitStatus(1);
     const response = await fetch(url, {
@@ -344,7 +347,7 @@ const FinalStep = () => {
 
 
             <FormControl>
-              <Button onClick={() => { navigate("/")}}>Go to First Page</Button>
+              <Button onClick={() => { navigate(`/${locale}`)}}>Go to First Page</Button>
             </FormControl>
           </div>
         </div>

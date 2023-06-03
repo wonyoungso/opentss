@@ -26,27 +26,35 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :companies
+
+  scope "/:locale" do
+      
+    resources :companies
+    
+    get "/confirm-email/:token", to: "welcome#confirm_email", as: "confirm_email"
+
+    get "/submissions/retrieve", to: "submissions#retrieve", as: "submissions_retrieve"
+    get "/retrieve-submission/:token", to: "submissions#retrieve_result", as: "retrieve_result"
+    get "/retrieve-submission/:token/reupload_report", to: "submissions#reupload_report", as: "retrieve_reupload_report"
+    get "/retrieve-submission/:token/consent_form", to: "submissions#consent_form", as: "retrieve_consent_form"
+
+    get "/submissions", to: "submissions#index", as: "submissions"
+    get "/submissions/new", to: "submissions#new", as: "submissions_new"
+
+    get "/how-tss-works", to: "welcome#how_tss_works", as: "how-tss-works"
+    get "/request-copy", to: "welcome#request_copy", as: "request-copy-get"
+    get "/request-copy/new", to: "welcome#request_copy_new", as: "request-copy-new"
+    get "/request-copy/custom-form/:company_name", to: "welcome#request_result", as: "request-copy-custom"
+    get "/request-copy/:type/:arg", to: "welcome#request_result", as: "request-copy-result"
+
+    get "/about", to: "welcome#about", as: "about"
+
+    get "/admin_home", to: "welcome#admin_home", as: "admin_home"
+    get "/", to: "welcome#index", as: "welcome"
+    
+  end
   
-  get "/confirm-email/:token", to: "welcome#confirm_email", as: "confirm_email"
 
-  get "/submissions/retrieve", to: "submissions#retrieve", as: "submissions_retrieve"
-  get "/retrieve-submission/:token", to: "submissions#retrieve_result", as: "retrieve_result"
-  get "/retrieve-submission/:token/reupload_report", to: "submissions#reupload_report", as: "retrieve_reupload_report"
-  get "/retrieve-submission/:token/consent_form", to: "submissions#consent_form", as: "retrieve_consent_form"
+  root to: redirect("/#{I18n.default_locale}", status: 302), as: :root
 
-  get "/submissions", to: "submissions#index", as: "submissions"
-  get "/submissions/new", to: "submissions#new", as: "submissions_new"
-
-  get "/how-tss-works", to: "welcome#how_tss_works", as: "how-tss-works"
-  get "/request-copy", to: "welcome#request_copy", as: "request-copy-get"
-  get "/request-copy/new", to: "welcome#request_copy_new", as: "request-copy-new"
-  get "/request-copy/custom-form/:company_name", to: "welcome#request_result", as: "request-copy-custom"
-  get "/request-copy/:type/:arg", to: "welcome#request_result", as: "request-copy-result"
-
-  get "/about", to: "welcome#about", as: "about"
-
-  get "/admin_home", to: "welcome#admin_home", as: "admin_home"
-  root "welcome#index"
-  
 end

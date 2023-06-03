@@ -5,7 +5,7 @@ import Header from "../components/Header";
 import { store } from "../providers/TSSProvider";
 import {useNavigate} from 'react-router-dom';
 import Footer from "../components/Footer";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useParams } from "react-router-dom";
 import PhotoCamera from '@mui/icons-material/PhotoCamera';
 import { ArrowBack } from "@mui/icons-material";
 import { Close } from "@mui/icons-material";
@@ -19,6 +19,7 @@ const ViewConsentForm = () => {
   const { setMenuOpen } = useContext(store);
   const navigate = useNavigate();
   const { responseJson } = useLoaderData();
+  let { locale } = useParams();
 
   useEffect(() => {
     document.title = "Reupload your tenant screening report | OpenTSS: Countering Tenant Screening";
@@ -27,7 +28,7 @@ const ViewConsentForm = () => {
   }, []);
 
   const goBack = () => {
-    navigate(`/retrieve-submission/${responseJson.token}`);
+    navigate(`/${locale}/retrieve-submission/${responseJson.token}`);
   };
 
   return (

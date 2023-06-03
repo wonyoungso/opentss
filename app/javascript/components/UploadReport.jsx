@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useContext, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { store } from "../providers/TSSProvider";
 import FormControl from '@mui/joy/FormControl';
 import Button from "@mui/joy/Button";
@@ -19,7 +19,9 @@ const years = _.map(_.range(2023, 1960, -1), year => _.toString(year));
 const UploadReport = () => {
 
   const { submission, setSubmission, setSubmissionStep, setHeaderMode } = useContext(store);
-  
+
+  let { locale } = useParams();
+
   const goToNextStep = () => {
     window.scrollTo(0, 0);
     setSubmissionStep(3);
@@ -92,7 +94,7 @@ const UploadReport = () => {
             </h2>
             <div className="pb-5"></div>
             <p>
-              * If you do not have your copy of the tenant screening report, <Link to="/request-copy" className="underline">please click here and request a copy to your tenant screening service</Link>.
+              * If you do not have your copy of the tenant screening report, <Link to={`/${locale}/request-copy`} className="underline">please click here and request a copy to your tenant screening service</Link>.
             </p>
 
             <div className="pt-5">

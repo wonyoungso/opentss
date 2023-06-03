@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useContext, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Header from "../components/Header";
 import { store } from "../providers/TSSProvider";
 import {useNavigate} from 'react-router-dom';
@@ -14,6 +14,7 @@ const ConfirmEmail = () => {
   const { setMenuOpen } = useContext(store);
   const navigate = useNavigate();
   const { responseJson } = useLoaderData();
+  let { locale } = useParams();
 
 
   useEffect(() => {
@@ -40,7 +41,7 @@ const ConfirmEmail = () => {
 
 
               <FormControl>
-                <Button onClick={() => { navigate("/")}}>Go to First Page</Button>
+                <Button onClick={() => { navigate(`/${locale}`)}}>Go to First Page</Button>
               </FormControl>
                 
 

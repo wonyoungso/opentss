@@ -1,6 +1,6 @@
 import * as React from "react";
 import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Header from "../components/Header";
 import { store } from "../providers/TSSProvider";
 import {useNavigate} from 'react-router-dom';
@@ -17,6 +17,7 @@ const SubmissionsRetrieve = () => {
 
   const { setMenuOpen } = useContext(store);
   const navigate = useNavigate();
+  let { locale } = useParams();
   const { register, reset, handleSubmit, formState: { isValid, isDirty, errors } } = useForm({ 
     mode: "onChange"
   });
@@ -40,6 +41,7 @@ const SubmissionsRetrieve = () => {
     
     const formData  = new FormData();
     formData.append("email", data.email);
+    formData.append("locale", locale);
 
     setSubmitStatus(1);
     const response = await fetch(url, {
