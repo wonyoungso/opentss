@@ -230,20 +230,137 @@ const resources = {
       "submissions.submit_desc_01": "Asegúrese de tener listos los archivos digitales (por ejemplo, PDF, JPG, PNG) del informe de selección de inquilinos. <1>Escanee o haga fotos del informe de selección de inquilinos si lo tiene en papel. Compruebe que los informes son legibles.</1>",
       "submissions.submit_desc_02": "Asegúrese de tener una dirección de correo electrónico. <1>Es para recibir tu compensación. Cuando comprobemos que el envío es válido, le enviaremos una tarjeta electrónica de regalo (50 $) a su dirección de correo electrónico.</1>",
       "submissions.submit_desc_03": "Además, le haremos algunas preguntas sobre usted, como su edad, sexo, raza, ingresos, código postal, número de hijos y las condiciones de la vivienda de alquiler que solicitó, como el alquiler, el número de habitaciones y la escala de propietarios (número de unidades). <1>Toda la información que nos envíe será encriptada, de modo que sólo nosotros podamos verla. Además, eliminaremos su información sensible del informe.</1>",
-      "submissions.submit_desc_04": "<0>¿Qué hará OpenTSS con mis datos?</0><1>En primer lugar, nos interesa conocer el impacto discriminatorio de las prácticas de selección de inquilinos por grupos protegidos (por ejemplo, raza, sexo, fuente de ingresos).</1><2>Analizaremos los datos de selección de inquilinos para ver si existe algún impacto discriminatorio por motivos de raza, sexo, situación familiar o fuente de ingresos, y también analizaremos los mecanismos de puntuación o los procesos de toma de decisiones. Publicaremos los resultados en este sitio web de forma agregada.</2><3>También nos interesa el impacto de la recomendación algorítmica realizada por los servicios de selección de inquilinos en la toma de decisiones de los propietarios.</3><4>Esperamos medir el impacto discriminatorio del sistema de puntuación algorítmica en las prácticas de selección de inquilinos.</4><5></5><6>¿Cómo protegerán mis datos?</6><7>Usted envía su informe mediante cifrado de extremo a extremo. Eliminaremos toda la información identificable y la guardaremos en un almacenamiento cifrado y seguro.</7><8>Sólo nos interesan los datos de sus informes de selección de inquilinos, no su nombre, su SSN ni su dirección. Después de enviar su informe, eliminaremos sus datos identificativos del informe y los almacenaremos en nuestro servidor. Le pediremos información demográfica adicional para poder analizar el informe de selección de inquilinos con mayor precisión, para determinar cómo las empresas de selección de inquilinos tratan de forma diferente los distintos perfiles. El informe y los datos se transferirán con un cifrado de extremo a extremo y se almacenarán en nuestro servidor. Los datos sólo se utilizarán para analizar los algoritmos de selección de inquilinos. No se transmitirán a terceros ni se venderán.</8><9></9><10>¿Puedo donar varios informes de selección de inquilinos?</10><11>Lamentablemente, no. Compensamos por persona.</11>"
+      "submissions.submit_desc_04": "<0>¿Qué hará OpenTSS con mis datos?</0><1>En primer lugar, nos interesa conocer el impacto discriminatorio de las prácticas de selección de inquilinos por grupos protegidos (por ejemplo, raza, sexo, fuente de ingresos).</1><2>Analizaremos los datos de selección de inquilinos para ver si existe algún impacto discriminatorio por motivos de raza, sexo, situación familiar o fuente de ingresos, y también analizaremos los mecanismos de puntuación o los procesos de toma de decisiones. Publicaremos los resultados en este sitio web de forma agregada.</2><3>También nos interesa el impacto de la recomendación algorítmica realizada por los servicios de selección de inquilinos en la toma de decisiones de los propietarios.</3><4>Esperamos medir el impacto discriminatorio del sistema de puntuación algorítmica en las prácticas de selección de inquilinos.</4><5></5><6>¿Cómo protegerán mis datos?</6><7>Usted envía su informe mediante cifrado de extremo a extremo. Eliminaremos toda la información identificable y la guardaremos en un almacenamiento cifrado y seguro.</7><8>Sólo nos interesan los datos de sus informes de selección de inquilinos, no su nombre, su SSN ni su dirección. Después de enviar su informe, eliminaremos sus datos identificativos del informe y los almacenaremos en nuestro servidor. Le pediremos información demográfica adicional para poder analizar el informe de selección de inquilinos con mayor precisión, para determinar cómo las empresas de selección de inquilinos tratan de forma diferente los distintos perfiles. El informe y los datos se transferirán con un cifrado de extremo a extremo y se almacenarán en nuestro servidor. Los datos sólo se utilizarán para analizar los algoritmos de selección de inquilinos. No se transmitirán a terceros ni se venderán.</8><9></9><10>¿Puedo donar varios informes de selección de inquilinos?</10><11>Lamentablemente, no. Compensamos por persona.</11>",
       
+      // consent
+      "Back": "Volver",
+      "Informed Consent": "Consentimiento informado",
+      "Before you submit the report, please read this and consent to participate.": "Antes de enviar el informe, lea esto y dé su consentimiento para participar.",
+      "consent.title_part": `
+        <0>CONSENTIMIENTO PARA PARTICIPAR EN LA INVESTIGACIÓN</0>
+        
+        <1>Se le ha pedido que participe en un estudio de investigación dirigido por Wonyoung So, del Departamento de Estudios Urbanos y Planificación del Instituto Tecnológico de Massachusetts (M.I.T.). Este estudio está patrocinado por la Mozilla Foundation.</1><2>Se le ha seleccionado como posible participante en este estudio porque ha sido previamente examinado por los propietarios que utilizan servicios de selección de inquilinos para tomar decisiones sobre el arrendamiento.</2>
+      `,
+      "consent.summary": `
+        <0>
+          La información que figura a continuación ofrece un resumen de la investigación. Su participación en esta investigación es voluntaria y puede retirarse en cualquier momento.
+        </0>
+        
+        <1>
+          <0>Propósito</0><br/>
+          <3>El propósito de este estudio es auditar los servicios de selección de inquilinos y revelar los patrones de sus algoritmos internos, estructuras de datos y representaciones. Este estudio está recopilando informes de selección de inquilinos y experiencias de inquilinos denegados, con el objetivo de medir el impacto discriminatorio y racializado del empleo de servicios de selección de inquilinos.</3>
+        </1>
+
+        <2>
+          <0>Procedimientos del estudio</0><br/>
+          <3>
+            Este estudio recopilará informes de selección de inquilinos. Recogerá el informe, la información demográfica y el resultado de la decisión de arrendamiento (por ejemplo, aceptado o denegado, depósitos de seguridad). El estudio analizará los datos y compartirá los resultados agregados con el público a través de una forma de sitio web de narración digital. Se presentará un informe a la Fundación Mozilla. La participación en el estudio llevará aproximadamente 15 minutos.
+          </3>
+        </2>
+
+        <3>
+          <0>Riesgos y posibles molestias</0><br/>
+          <3>
+            Existen riesgos potenciales para la privacidad de los participantes, ya que el estudio recogerá información sensible y personalmente identificable, así como la información sensible contenida en los informes de selección de inquilinos. Para minimizar estos riesgos, el estudio utilizará la base de datos segura del MIT, encriptación completa y procedimientos de anonimización.
+          </3>
+        </3>
+        <4></4><5></5>
+        <6>Lea la información que figura a continuación y pregunte todo lo que no entienda antes de decidir si desea participar o no.</6>
+      `,
+      "consent.participation_withdrawal": `
+        <0> 
+          <0>PARTICIPACIÓN Y RETIRADA</0><1></1>
+          <3>Su participación en esta investigación es totalmente VOLUNTARIA. Si decide participar, podrá retirarse posteriormente del estudio en cualquier momento sin penalización ni consecuencias de ningún tipo. Si decide no participar, ello no afectará a su relación con el M.I.T. ni a su derecho a la asistencia sanitaria u otros servicios a los que tenga derecho.</3>
+        </0>
+      `,
+      "consent.purpose_study": `
+        <0> 
+          <0>OBJETIVO DEL ESTUDIO</0><1></1>
+          <3>El objetivo es investigar el impacto discriminatorio y racial del uso de servicios de selección de inquilinos. El objetivo del proyecto es crear una base de datos colectiva mediante la recopilación de informes de selección de inquilinos denegados y datos de los inquilinos que fueron rechazados en base a dichos informes, para comprender los patrones de denegación de inquilinos y el impacto dispar del empleo de servicios de selección de inquilinos por parte de los propietarios. La investigación se interesa por el historial crediticio, los registros de desahucios y los antecedentes penales utilizados en los informes de selección de inquilinos, y cómo afectan estas medidas a los algoritmos de puntuación de inquilinos. El objetivo de la investigación es abogar por la regulación de la práctica y la política de los servicios de selección de inquilinos y comprender mejor el sector de la selección de inquilinos.</3>
+        </0>
+      `,
+      "consent.procedures": `
+        <0> 
+          <0>PROCEDIMIENTOS</0><1></1>
+          <3>Si se ofrece voluntario para participar en este estudio, le pedimos que haga lo siguiente: Envíenos su informe de selección de inquilinos. Envíenos sus informes de selección de inquilinos en formato digital. Participe en la encuesta. Complete la herramienta de encuesta para registrar sus experiencias, así como su información demográfica, incluyendo raza, sexo e ingresos, entre otros. La participación en el estudio le llevará aproximadamente 15 minutos.</3>
+        </0>
+      `,
+      "consent.risks": `
+        <0> 
+          <0>POSIBLES RIESGOS Y MOLESTIAS</0><1></1>
+          <3>Existen riesgos potenciales para la privacidad de los participantes, ya que el estudio recopilará información sensible y de identificación personal (por ejemplo, nombre, fecha de nacimiento, número de seguro social, dirección, teléfono, raza, sexo, ingresos, puntuación crediticia, historial de crédito, registros de desahucios, antecedentes penales). Para minimizar estos riesgos, el estudio utilizará la base de datos segura del MIT y se someterá a procedimientos completos de encriptación y anonimización.
+          Los datos brutos nunca se compartirán y el resultado de la investigación se compartirá en análisis con agregación con respecto a cómo los servicios de selección de inquilinos puntúan a los inquilinos. Sin embargo, el extracto de la entrevista podría compartirse de forma anónima (por ejemplo, P1, P2, ...). Se espera que el resultado de esta investigación se publique en forma de informe para la Fundación Mozilla.</3>
+        </0>
+      `,
+      "consent.benefits": `
+        <0> 
+          <0>BENEFICIOS PREVISTOS PARA LOS SUJETOS</0><1></1>
+          <3>Participar en la investigación no conlleva ningún beneficio directo.</3>
+        </0>
+        <1>
+          <0>BENEFICIOS PREVISTOS PARA LA SOCIEDAD</0><1></1>
+          <3>Entre los beneficios potenciales que la sociedad puede esperar del estudio figuran:</3>
+        </1>
+        <2>
+          <0>Mayor transparencia y responsabilidad de los servicios de selección de inquilinos: El estudio pretende auditar y revelar los patrones de algoritmos y estructuras de datos utilizados por los servicios de selección de inquilinos. Esto podría aumentar la transparencia y la responsabilidad de estos servicios y, potencialmente, dar lugar a procesos de toma de decisiones más justos y equitativos.</0>
+          <1>Mejor comprensión del impacto de los servicios de selección de inquilinos: Mediante el análisis de los informes de selección de inquilinos denegados, el estudio proporcionará información sobre el modo en que el historial crediticio, los registros de desahucios y los antecedentes penales influyen en los algoritmos de puntuación de inquilinos. Esto podría llevar a una mejor comprensión del impacto discriminatorio y racializado del empleo de estos servicios.</1>
+          <2>Abogar por políticas de vivienda justa: Los resultados del estudio podrían utilizarse para abogar por la regulación de la práctica y la política de los servicios de selección de inquilinos sobre la base de la norma de impacto dispar de la Ley de Vivienda Justa. Esto podría dar lugar a un sistema de vivienda más justo y equitativo para todos los inquilinos.</2>
+        </2>
+      `,
+      "consent.payment": `
+        <0> 
+          <0>PAGO POR PARTICIPAR</0><1></1>
+          Cada inquilino que participe en la herramienta de crowdsourcing y envíe un informe de selección de inquilinos recibirá una compensación de 50 $. Los inquilinos entrevistados recibirán una compensación de 25 dólares. Las compensaciones se abonarán mediante tarjetas regalo Visa.
+        </0>
+      `,
+      "consent.privacy": `
+        <0> 
+          <0>PRIVACIDAD Y CONFIDENCIALIDAD</0><br/>
+          Las únicas personas que sabrán que usted es un sujeto de investigación son los miembros del equipo de investigación, que pueden incluir colaboradores externos no afiliados al MIT. Ninguna información sobre usted, o proporcionada por usted durante la investigación, será revelada a terceros sin su permiso por escrito, excepto: si es necesario para proteger sus derechos o bienestar, o si es requerido por la ley. Además, su información podrá ser revisada por representantes autorizados del MIT para garantizar el cumplimiento de las políticas y procedimientos del MIT.<br/><br/>
+          Todos los datos se almacenan en un servidor mantenido por el MIT, y el servidor de administración sólo es accesible a través de la VPN del MIT y la cuenta de administrador del equipo, lo que significa que sólo las personas con afiliación al MIT y la debida autorización tendrán acceso. Durante todo el proceso de recopilación de datos, todas las transacciones y los datos se transmitirán mediante HTTP con capa de conexión segura (SSL), y los datos transmitidos se almacenarán cifrados. Una vez finalizada la investigación, se destruirán los datos y los informes. Los datos brutos nunca se compartirán y el resultado de la investigación se compartirá en análisis con agregación con respecto a cómo los servicios de selección de inquilinos puntúan a los inquilinos. El extracto de la entrevista podría compartirse de forma anónima (por ejemplo, P1, P2, ...). Se espera que el resultado de esta investigación se publique en forma de informe para la Fundación Mozilla.
+        </0>
+      `,
+      "consent.data_use": `
+        <0> 
+          <0>USO FUTURO DE LOS DATOS</0><br/>
+          Sus datos recogidos como parte de la investigación, aunque se eliminen los identificadores, no se utilizarán ni distribuirán para futuros estudios de investigación. Una vez finalizado el estudio, el equipo destruirá los datos y las copias impresas.
+          <br/><br/>
+          Los datos identificativos utilizados tradicionalmente sobre usted, como su nombre, dirección, número de teléfono, historial médico, número de la seguridad social, rasgos identificativos o su voz, etc., se eliminarán antes de almacenarlos, utilizarlos o distribuirlos para futuras investigaciones. Una vez finalizado el estudio, todos los datos identificables se destruirán tras el periodo de conservación de datos exigido.
+        </0>
+      `,
+      "consent.withdrawal_by_inv": `
+        <0> 
+          <0>RETIRADA DE LA PARTICIPACIÓN POR PARTE DEL INVESTIGADOR</0><br/>
+          El investigador puede retirarle la participación en esta investigación si surgen circunstancias que lo justifiquen. El investigador, Wonyoung So, tomará la decisión y le comunicará si no le es posible continuar. La decisión puede tomarse para proteger su seguridad o porque forma parte del plan de investigación que las personas que desarrollen determinadas afecciones no puedan seguir participando.
+          <br/><br/>
+          Si debe abandonar porque el investigador se lo pide o porque ha decidido por su cuenta retirarse, se le abonará una tarjeta regalo Visa valorada en 25 dólares.
+        </0>
+      `,
+      "consent.emergency": `
+        <0> 
+          <0>ATENCIÓN DE URGENCIA E INDEMNIZACIÓN POR LESIONES</0><br/>
+          Si cree que ha sufrido un perjuicio, que puede incluir un trauma emocional, como consecuencia de su participación en este estudio, póngase en contacto con el responsable del estudio lo antes posible.<br/><br/>
+          En caso de que usted sufra una lesión de este tipo, M.I.T. podrá proporcionar por sí mismo, o disponer que se proporcione, transporte de emergencia o tratamiento médico, incluido el tratamiento de emergencia y la atención de seguimiento, según sea necesario, o el reembolso de dichos servicios médicos. M.I.T. no proporciona ninguna otra forma de compensación por lesiones. En cualquier caso, ni la oferta de prestar asistencia médica ni la prestación efectiva de servicios médicos se considerarán una admisión de culpa o aceptación de responsabilidad. Las preguntas relativas a esta póliza pueden dirigirse a la Oficina de Seguros del MIT, al teléfono (617) 253-2823.
+        </0>
+      `,
+      "consent.identity_inv": `
+        <0> 
+          <0>IDENTIFICACIÓN DE LOS INVESTIGADORES</0><br/>
+          En caso de lesión relacionada con la investigación o si experimenta una reacción adversa, póngase en contacto inmediatamente con uno de los investigadores que figuran a continuación. Si tiene alguna pregunta sobre la investigación, no dude en ponerse en contacto con Wonyoung So (wso@mit.edu, 617-949-6602).
+        </0>
+      `,
+      "consent.rights": `
+        <0> 
+          <0>DERECHOS DE LOS SUJETOS DE LA INVESTIGACIÓN</0><br/>
+          Usted no está renunciando a ninguna reclamación legal, derecho o recurso debido a su participación en este estudio de investigación. Si cree que se le ha tratado injustamente o tiene alguna pregunta sobre sus derechos como sujeto de investigación, puede ponerse en contacto con el Presidente del Comité sobre el Uso de Humanos como Sujetos Experimentales, M.I.T., Room E25-143B, 77 Massachusetts Ave, Cambridge, MA 02139, teléfono 1-617-253 6787.
+        </0>
+      `,
+      "BY PRESSING THIS BUTTON, I WILLINGLY AGREE TO PARTICIPATE IN THE RESEARCH IT DESCRIBES.": "AL PULSAR ESTE BOTÓN, ACEPTO VOLUNTARIAMENTE PARTICIPAR EN LA INVESTIGACIÓN QUE DESCRIBE.",
+      "I AGREE TO PARTICIPATE": "ACEPTO PARTICIPAR"
     }
   }
 };
 
-
-// <1>2. Consulte su solicitud de alquiler.</1><br/>
-// Examine su solicitud de alquiler, ya que los propietarios suelen revelar el nombre de la empresa de selección de inquilinos que utilizan durante el proceso de selección.
-// <2>3. Consult your adverse action letter.</2><br/>
-// Si ha recibido una carta de acción adversa debido a una denegación basada en los resultados de la selección de inquilinos, el propietario está obligado a revelar el nombre de la empresa de selección en la carta.
-
-// <2>4. Communicate with the landlord or conduct research.</2><br/>
-// Inicie una comunicación directa con el propietario para informarse sobre los servicios de selección de inquilinos empleados. Por último, lleve a cabo una investigación independiente para identificar a las empresas de selección de inquilinos asociadas a su casero.
 
 i18n
   .use(Backend)
@@ -258,7 +375,6 @@ i18n
   .init({
     resources,
     fallbackLng: 'en',
-    debug: true,
     detection: options,
 
     interpolation: {
