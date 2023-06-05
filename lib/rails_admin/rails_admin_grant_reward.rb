@@ -95,7 +95,7 @@ module RailsAdmin
 
             @submission = Submission.find @object.id 
             
-            SubmissionMailer.with(submission: @submission).submission_reupload_request_email.deliver_later
+            SubmissionMailer.with(submission: @submission, locale: @submission.locale).submission_reupload_request_email.deliver_later
 
             flash[:notice] = "Successfully requested a reupload request to ##{@submission.id}"
             redirect_to back_or_index

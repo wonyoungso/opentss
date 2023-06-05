@@ -14,6 +14,7 @@ import Button from "@mui/joy/Button";
 import Table from '@mui/joy/Table';
 import _ from 'lodash';
 import moment from "moment";
+import { useTranslation, Trans } from "react-i18next";
 
 const ReuploadReport = () => {
   const [files, setFiles] = useState([]);
@@ -23,6 +24,7 @@ const ReuploadReport = () => {
   let { locale } = useParams();
   const navigate = useNavigate();
   const { responseJson } = useLoaderData();
+  const { t } = useTranslation();
 
 
   const changeHandler = (event) => {
@@ -98,34 +100,36 @@ const ReuploadReport = () => {
         <div className="container mx-auto px-5">
           <div className="lg:grid lg:grid-cols-6 lg:gap-5">
             <div>
-              <button onClick={goBack}><ArrowBack /> Back</button><br/><br/>
-              Reupload Report
+              <button onClick={goBack}><ArrowBack /> { t("Back") }</button><br/><br/>
+              { t("Re-upload Report") }
             </div>
             <div className="lg:col-span-3">
               <h2 className="font-bold text-4xl">
-                Please reupload your tenant screening report.
+                { t("Please reupload your tenant screening report.") }
               </h2>
               <div className="pb-5"></div>
               <p>
-                We may ask you to reupload because either 1) the report is not legible or 2) there is an unexpected error so we couldn't properly obtain your report.
+                { t("We may ask you to reupload because either 1) the report is not legible or 2) there is an unexpected error so we couldn't properly obtain your report.") }
               </p>
               {
                 status === 2 ?
                 <div className="pt-5">
-                  Your reupload request is successfully submitted. After we check your newly submitted report, we will issue an e-gift card to your email.
+                  { t("Your report is successfully submitted. After we check your newly submitted report, we will issue an e-gift card to your email.") }
                 </div> : null
               }
 
               {
                 status === 3 ?
                 <div className="pt-5">
-                  There is an unexpected error. <br/><br/>
+                  { t("There is an unexpected error.") } <br/><br/>
                   
                   <span className="text-red">
                   { JSON.stringify(errors) }
                   </span><br/><br/>
                   
-                  Please try again later or contact to <a href="mailto:opentss@mit.edu">opentss@mit.edu</a>.
+                  <Trans i18nKey="reupload_report.error_contact">
+                    Please try again later or contact to <a href="mailto:opentss@mit.edu">opentss@mit.edu</a>.
+                  </Trans>
                 </div> : null
               }
 
@@ -135,13 +139,13 @@ const ReuploadReport = () => {
                 <div className="mt-5 py-10 px-10 bg-dark-blue-op-10 rounded-md">  
                   <FormControl>
                     <Button variant="contained" component="label" startDecorator={<PhotoCamera />}>
-                      Choose File...
+                      { t("Choose File...") }
                       <input hidden accept="image/heic, image/heif, image/*, application/pdf, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/msword" multiple type="file" onChange={changeHandler} />
                     </Button>
                   </FormControl>
                 </div>
                 <div className="mt-5 font-bold border-b border-b-dark-blue-bg pb-2">
-                  Uploaded Files
+                  { t("Uploaded Files") }
                 </div>
                 <div>
                   {
@@ -159,7 +163,7 @@ const ReuploadReport = () => {
                       )
                     }) : 
                     <div className="py-3 border-b border-b-dark-blue-bg text-sm text-white-op-70">
-                      No files are attached.
+                      { t("No files are attached.") }
                     </div>
                   }
                 </div>
@@ -177,10 +181,10 @@ const ReuploadReport = () => {
                 <div className="hidden lg:block"></div>
                 <div className="lg:col-span-3">
                   <div className="pb-3 font-bold">
-                    You send your report through end-to-end-encryption. We will remove every identifiable information and store it to a secured server.
+                  { t("You send your report through end-to-end encryption. We will remove every identifiable information and store it on a secured server.") }
                   </div>
                   <FormControl>
-                    <Button disabled={checkStatus()} loading={status === 1} onClick={submit}>Submit</Button>
+                    <Button disabled={checkStatus()} loading={status === 1} onClick={submit}>{ t("Submit") } </Button>
                   </FormControl>
                 </div>
               </div>

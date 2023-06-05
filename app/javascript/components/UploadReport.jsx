@@ -11,6 +11,7 @@ import { ArrowBack } from "@mui/icons-material";
 import Select from '@mui/joy/Select';
 import FormHelperText from '@mui/joy/FormHelperText';
 import Option from '@mui/joy/Option';
+import { useTranslation, Trans } from "react-i18next";
 
 const months = ["January","February","March","April","May","June","July",
 "August","September","October","November","December"];
@@ -21,6 +22,7 @@ const UploadReport = () => {
   const { submission, setSubmission, setSubmissionStep, setHeaderMode } = useContext(store);
 
   let { locale } = useParams();
+  const { t } = useTranslation();
 
   const goToNextStep = () => {
     window.scrollTo(0, 0);
@@ -44,7 +46,7 @@ const UploadReport = () => {
 	};
 
   const checkStatus = () => {
-    return submission.files.length === 0 && !_.isNull(submission.report_date_month) && !_.isNull(submission.report_date_year);
+    return submission.files.length === 0 || _.isNull(submission.report_date_month) || _.isNull(submission.report_date_year);
   }
 
   const removeHandler = (idx) => {
@@ -85,37 +87,39 @@ const UploadReport = () => {
        <div className="container mx-auto px-5">
         <div className="lg:grid lg:grid-cols-6 lg:gap-5">
           <div>
-            <button onClick={goBack}><ArrowBack /> Back</button><br/><br/>
-            Upload Report
+            <button onClick={goBack}><ArrowBack /> { t("Back") }</button><br/><br/>
+            { t("Upload Report") }
           </div>
           <div className="lg:col-span-3">
             <h2 className="font-bold text-4xl">
-              Please upload your tenant screening report.
+              { t("Please upload your tenant screening report.") }
             </h2>
             <div className="pb-5"></div>
-            <p>
-              * If you do not have your copy of the tenant screening report, <Link to={`/${locale}/request-copy`} className="underline">please click here and request a copy to your tenant screening service</Link>.
-            </p>
 
-            <div className="pt-5">
+            <Trans i18nKey="upload_report.title_desc">
               <p className="pt-1">
                 <span className="font-bold">If you have your physical report on you:</span> First, take photos of each page of the report. Then, upload all the photos here.
               </p>
               <p className="pt-3">
-              <span className="font-bold">If you have a PDF file that you received from the tenant screening company:</span> please attach the PDF file here.
+                <span className="font-bold">If you have a PDF file that you received from the tenant screening company:</span> please attach the PDF file here.*
               </p>
+            </Trans>
+            
+            
+
+            <div className="pt-3">
 
               <div className="mt-5 py-10 px-10 bg-dark-blue-op-10 rounded-md">  
                 <FormControl>
                   <Button variant="contained" component="label" startDecorator={<PhotoCamera />}>
-                    Choose File...
+                    { t("Choose File...") }
                     <input hidden accept="image/heic, image/heif, image/*, application/pdf, application/vnd.openxmlformats-officedocument.wordprocessingml.document, application/msword" multiple type="file" onChange={changeHandler} />
                   </Button>
                 </FormControl>
               </div>
 
               <div className="mt-5 font-bold border-b border-b-dark-blue-bg pb-2">
-                Uploaded Files
+                { t("Uploaded Files") }
               </div>
               <div>
                 {
@@ -133,27 +137,27 @@ const UploadReport = () => {
                     )
                   }) : 
                   <div className="py-3 border-b border-b-dark-blue-bg text-sm text-white-op-70">
-                    No files are attached.
+                    { t("No files are attached.") }
                   </div>
                 }
               </div>
-
+                
               <div className="pt-10">
                 <h3 className="font-bold pb-3">
-                  When approximately did you receive this report?
+                  { t("When approximately did you receive this report?") }
                 </h3>
 
                 <div className="flex gap-1 pb-1">
-                  <Select placeholder="Month" value={submission.report_date_month} onChange={reportDateMonthChange}>
+                  <Select placeholder={t("Month")} value={submission.report_date_month} onChange={reportDateMonthChange}>
                     {
                       _.map(months, month => {
                         return (
-                          <Option key={month} value={month}>{month}</Option>
+                          <Option key={month} value={month}>{t(month)}</Option>
                         )
                       })
                     }
                   </Select>
-                  <Select placeholder="Year" value={submission.report_date_year} onChange={reportDateYearChange}>
+                  <Select placeholder={t("Year")} value={submission.report_date_year} onChange={reportDateYearChange}>
                     {
                       _.map(years, year => {
                         return (
@@ -167,7 +171,13 @@ const UploadReport = () => {
                   Required.
                 </FormHelperText>
               </div>
-
+              
+              <Trans i18nKey="upload_report.copy_desc">
+                <p className="text-sm pt-5 text-white-op-50">
+                  * If you do not have your copy of the tenant screening report, <Link to={`/${locale}/request-copy`} className="underline">please click here and request a copy to your tenant screening report</Link>.
+                </p>
+              </Trans>
+              
 
               <div className="h-60"></div>
 
@@ -185,10 +195,10 @@ const UploadReport = () => {
             <div className="hidden lg:block"></div>
             <div className="lg:col-span-3">
               <div className="pb-3 font-bold">
-                You send your report through end-to-end-encryption. We will remove every identifiable information and store it to a secured server.
+                { t("You send your report through end-to-end encryption. We will remove every identifiable information and store it on a secured server.") }
               </div>
               <FormControl>
-                <Button disabled={checkStatus()} onClick={goToNextStep}>Next</Button>
+                <Button disabled={checkStatus()} onClick={goToNextStep}>{ t("Next") }</Button>
               </FormControl>
             </div>
           </div>

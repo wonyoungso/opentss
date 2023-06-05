@@ -59,7 +59,7 @@ class Submission < ApplicationRecord
   validates :property_address_state, :presence => true
   validates :property_address_zipcode, :presence => true
   validates :interview_possible, :presence => true
-  validates :email, :presence => true, :uniqueness => true
+  validates :email, :presence => true#, :uniqueness => true
   validates :report_date_month, :presence => true
   validates :report_date_year, :presence => true
   validates :rent_apply_date_month, :presence => true
@@ -111,6 +111,7 @@ class Submission < ApplicationRecord
     self.report_date_year = params[:report_date_year]
     self.rent_apply_date_month = params[:rent_apply_date_month]
     self.rent_apply_date_year = params[:rent_apply_date_year]
+    self.locale = params[:locale]
   
     self.reports.attach(params[:files])
   end 

@@ -9,6 +9,7 @@ import { ArrowBack, Search } from "@mui/icons-material";
 import ReportStats from "../components/ReportStats";
 import ReportDataField from "../components/ReportDataField";
 import _ from 'lodash';
+import { useTranslation } from "react-i18next";
 
 const CompaniesShow = () => {
 
@@ -16,6 +17,7 @@ const CompaniesShow = () => {
   const navigate = useNavigate();
   let { locale } = useParams();
   const { company, descriptions } = useLoaderData();
+  const { t } = useTranslation();
   
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -39,7 +41,7 @@ const CompaniesShow = () => {
       <div className="container mx-auto px-5">
         <div className="lg:grid lg:grid-cols-6 lg:gap-x-5 lg:gap-y-2">
           <div className="lg:col-span-6 border-b border-b-dark-blue">
-            <button className="text-sm" onClick={() => { navigate(`/${locale}/companies`); }}><ArrowBack size="sm" /> Back</button>
+            <button className="text-sm" onClick={() => { navigate(`/${locale}/companies`); }}><ArrowBack size="sm" /> { t("Back") }</button>
             <div className="pb-2"></div>
           </div>
           <div className="lg:col-span-3 pb-10">
@@ -49,7 +51,7 @@ const CompaniesShow = () => {
             {
               company.resellers.length > 0 ?
               <div className="text-white-op-70 text-sm">
-                resells reports to <> </>
+                { t("resells reports to") } <> </>
                 {
                   _.map(company.resellers, reseller => {
                     return <Fragment key={reseller.id}><Link className="underline" to={`/${locale}/companies/${reseller.id}`}>{reseller.name}</Link>, </Fragment>
@@ -73,23 +75,23 @@ const CompaniesShow = () => {
           <div className="text-right">
             {
               company.is_sample_report_avail ? 
-              <span className="text-sm text-right">Sample report available</span> : 
-              <span className="text-sm text-right text-gray">Sample report unavailable</span>
+              <span className="text-sm text-right">{ t("Sample report available") }</span> : 
+              <span className="text-sm text-right text-gray">{ t("Sample report unavailable") }</span>
             }
           </div>
 
           <div className="text-right">
             {
               company.is_admin_interface_available ? 
-              <span className="text-sm text-right">Admin interface available</span> : 
-              <span className="text-sm text-right text-gray">Admin interface unavailable</span>
+              <span className="text-sm text-right">{ t("Admin interface available") }</span> : 
+              <span className="text-sm text-right text-gray"> { t("Admin interface unavailable") }</span>
 
             }
           </div>
 
 
           <div className="text-right">
-            <span className="text-sm"><span className="">{ company.submissions_cnt }</span> reports collected</span>
+            <span className="text-sm"><span className="">{ company.submissions_cnt }</span> { t("reports collected")}</span>
           </div>
 
         </div>

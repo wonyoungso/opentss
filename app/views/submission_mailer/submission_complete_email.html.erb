@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:v="urn:schemas-microsoft-com:vml">
+<html lang="<%= @locale %>" xmlns:v="urn:schemas-microsoft-com:vml">
 <head>
   <meta charset="utf-8">
   <meta name="x-apple-disable-message-reformatting">
@@ -19,12 +19,12 @@
     td,th,div,p,a,h1,h2,h3,h4,h5,h6 {font-family: "Segoe UI", sans-serif; mso-line-height-rule: exactly;}
   </style>
   <![endif]-->
-  <title>Your submission of tenant screening reports is completed :: OpenTSS: Countering Tenant Screening</title>
+  <title><%= t("submission_mailer.submission_complete_email.subject") %></title>
   <style>
     .hover-important-text-decoration-underline:hover {
       text-decoration: underline !important
     }
-    @media (max-width: 600px) {
+    @media (max-width: 600px) {p
       .sm-my-8 {
         margin-top: 32px !important;
         margin-bottom: 32px !important
@@ -44,7 +44,7 @@
   </style>
 </head>
 <body style="margin: 0; width: 100%; background-color: #FAFBFD; padding: 0; -webkit-font-smoothing: antialiased; word-break: break-word">
-  <div role="article" aria-roledescription="email" aria-label="Your submission of tenant screening reports is complete :: OpenTSS: Countering Tenant Screening" lang="en">
+  <div role="article" aria-roledescription="email" aria-label="<%= t("submission_mailer.submission_complete_email.subject") %>" lang="<%= @locale %>">
     <div class="sm-px-4" style="background-color: #FAFBFD; font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif">
       <table align="center" cellpadding="0" cellspacing="0" role="presentation">
         <tr>
@@ -58,47 +58,47 @@
               <tr>
                 <td class="sm-px-6" style="border-radius: 4px; background-color: #FFFFFF; padding: 48px; font-size: 16px; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05)">
                   <h1 class="sm-leading-8" style="margin: 0 0 24px; font-size: 24px; font-weight: 600; color: #202B62">
-                    Your submission of tenant screening reports is completed. Please confirm your email address to ensure that this email address belongs to you.
+                    <%= t("submission_mailer.submission_complete_email.h1_title") %>
                   </h1>
                   <p style="margin: 0; line-height: 24px; color: #666666">
-                    Thank you very much! We have received and processed your tenant screening report. In the meantime, please confirm your email address.
+                    <%= t("submission_mailer.submission_complete_email.p_01") %>
                   </p>
                   <div role="separator" style="line-height: 24px">&zwj;</div>
                   <div>
                     <a href="<%= confirm_email_url(token: @submission.confirmation_token, locale: @locale) %>" style="display: inline-block; border-radius: 4px; background-color: #202B6222; padding: 16px 24px; font-size: 16px; font-weight: 600; line-height: 1; color: #202B62; text-decoration: none">
                       <!--[if mso]>
-      <i style="mso-font-width: -100%; letter-spacing: 32px; mso-text-raise: 30px" hidden>&nbsp;</i>
-    <![endif]-->
-                      <span style="mso-text-raise: 16px">
-                  Confirm email address &rarr;
-                </span>
-                      <!--[if mso]>
-      <i style="mso-font-width: -100%; letter-spacing: 32px;" hidden>&nbsp;</i>
-    <![endif]-->
+                        <i style="mso-font-width: -100%; letter-spacing: 32px; mso-text-raise: 30px" hidden>&nbsp;</i>
+                      <![endif]-->
+                        <span style="mso-text-raise: 16px">
+                          <%= t("submission_mailer.submission_complete_email.confirm_email") %> &rarr;
+                        </span>
+                      <!--[if mso]> 
+                        <i style="mso-font-width: -100%; letter-spacing: 32px;" hidden>&nbsp;</i>
+                      <![endif]-->
                     </a>
                   </div>
                   <div role="separator" style="height: 1px; line-height: 1px; margin: 24px 0">&zwj;</div>
                   <h2 class="sm-leading-8" style="margin: 0 0 12px; font-size: 20px; font-weight: 600; color: #202B62">
-                    What's next?
+                    <%= t("submission_mailer.submission_complete_email.whats_next") %> 
                   </h2>
                   <p style="margin: 0; color: #666666;">
-                    You will be receiving a $50 Visa gift card via email. Please anticipate its arrival in your inbox within 7 days. Kindly note that we review each submission individually, and in the event that your tenant screening report is illegible due to a blurry photograph, we may request that you re-upload the report for clarity.
+                    <%= t("submission_mailer.submission_complete_email.p_02") %>
                     <br/><br/>
-                    Once we have confirmed the submission is valid, we will promptly send the gift card to your email address (<%= @submission.email %>). Within the gift card email, you will have the option to choose between receiving a digital gift card or a physical one. 
+                    <%= t("submission_mailer.submission_complete_email.p_03", email: @submission.email ) %>
                   </p>
                   <div role="separator" style="line-height: 24px">&zwj;</div>
                   <h2 class="sm-leading-8" style="margin: 0 0 12px; font-size: 20px; font-weight: 600; color: #202B62">
-                    How can I check the status of my submission?
+                    <%= t("submission_mailer.submission_complete_email.check_submission") %>
                   </h2>
                   <p style="margin: 0; color: #666666;">
-                    To check the status of your submission, use the following <a href="<%= submissions_retrieve_url(locale: @locale) %>" style="color: #202B62; text-decoration: underline">link</a>. You will be prompted to enter your email address, and then we will send a secure link to retrieve the status of your submission.
+                    <%= t("submission_mailer.submission_complete_email.p_04") %> <a href="<%= submissions_retrieve_url(locale: @locale) %>" style="color: #202B62; text-decoration: underline"><%= t("submission_mailer.link") %></a>. <%= t("submission_mailer.submission_complete_email.p_05") %>
                   </p>
                   <div role="separator" style="line-height: 24px">&zwj;</div>
                   <h2 class="sm-leading-8" style="margin: 0 0 12px; font-size: 20px; font-weight: 600; color: #202B62">
-                    How can I reach out to you?
+                    <%= t("submission_mailer.reach_out.title") %>
                   </h2>
                   <p style="margin: 0; color: #666666;">
-                    Just reply to <a href="mailto:opentss@mit.edu" class="hover-important-text-decoration-underline" style="color: #202B62; text-decoration: underline;">this email</a>! we will respond as soon as we have your email.
+                    <%= t("submission_mailer.reach_out.p_01") %> <a href="mailto:opentss@mit.edu" class="hover-important-text-decoration-underline" style="color: #202B62; text-decoration: underline;"><%= t("submission_mailer.reach_out.p_02") %></a>! <%= t("submission_mailer.reach_out.p_03") %>
                   </p>
                 </td>
               </tr>
@@ -108,12 +108,12 @@
               <tr>
                 <td style="padding-left: 24px; padding-right: 24px; text-align: left; font-size: 12px">
                   <p style="margin: 0 0 16px; text-transform: uppercase">
-                    OpenTSS: Countering Tenant Screening
+                    <%= t("title") %>
                   </p>
                   <p style="cursor: default">
-                    <a href="<%= about_url(locale: @locale) %>" class="hover-important-text-decoration-underline" style="color: #202B62; text-decoration: underline;">About this project</a>
+                    <a href="<%= about_url(locale: @locale) %>" class="hover-important-text-decoration-underline" style="color: #202B62; text-decoration: underline;"><%= t("about_this_project") %></a>
                     &bull;
-                    <a href="mailto:opentss@mit.edu" class="hover-important-text-decoration-underline" style="color: #202B62; text-decoration: underline;">Email us</a>
+                    <a href="mailto:opentss@mit.edu" class="hover-important-text-decoration-underline" style="color: #202B62; text-decoration: underline;"><%= t("email_us") %></a>
                   </p>
                 </td>
               </tr>

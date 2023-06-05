@@ -12,12 +12,14 @@ import FormLabel from '@mui/joy/FormLabel';
 import _ from 'lodash';
 import { Table } from "@mui/joy";
 import CloseIcon from '@mui/icons-material/Close';
+import { useTranslation, Trans } from "react-i18next";
 
 const ComapniesIndex = () => {
 
   const { setMenuOpen } = useContext(store);
   const navigate = useNavigate();
   let { locale } = useParams();
+  const { t } = useTranslation();
   const [selectedCompany, setSelectedCompany] = useState(null);
   const { companies, sampled_companies } = useLoaderData();
   useEffect(() => {
@@ -121,33 +123,32 @@ const ComapniesIndex = () => {
       <div className="container mx-auto px-5">
         <div className="lg:grid lg:grid-cols-6 lg:gap-5">
           <div>
-            Lookup tool
+            { t("Lookup tool") }
           </div>
           <div className="lg:col-span-4">
             <h2 className="font-bold text-4xl">
-              Tenant Screening<br/>
-              Services Lookup Tool
+              { t("Tenant Screening Services Lookup Tool")}
             </h2>
             <div className="h-5"></div>   
             <FormControl>
-              <FormLabel>Search</FormLabel>
-              <Autocomplete placeholder="Search" stardivecorator={<Search />} getOptionLabel={option => option.name} options={companies} value={selectedCompany} onChange={onChangeAutocompleteHandler} />
+              <FormLabel>{ t("Search") }</FormLabel>
+              <Autocomplete placeholder={ t("Search") } stardivecorator={<Search />} getOptionLabel={option => option.name} options={companies} value={selectedCompany} onChange={onChangeAutocompleteHandler} />
             </FormControl>
 
             <p className="my-2">
-            These tools are updated based on the tenant screening report collection and sample reports they provided to their website. 
+              { t("These tools are updated based on the tenant screening report collection and sample reports they provided to their website.") }
             </p>
             <div className="h-5"></div>            
 
             <h2 className="my-0 lg:my-2 font-bold text-xl text-dark-blue border-b border-b-dark-blue lg:border-none">
-              List of companies
+              { t("List of companies") }
             </h2>
            
             <div className="hidden lg:flex lg:justify-between lg:gap-2 border-y border-y-dark-blue py-3 text-sm">
-              <div className="lg:w-2/5">Name</div>
-              <div className="lg:w-1/5">Scoring<br/>System</div>
-              <div className="lg:w-1/5">Data<br/>They Collect</div>
-              <div className="lg:w-1/5">Report<br/>Collected</div>
+              <div className="lg:w-2/5">{ t("Name") }</div>
+              <div className="lg:w-1/5"><Trans i18nKey="scoring_system">Scoring<br/>System</Trans></div>
+              <div className="lg:w-1/5"><Trans i18nKey="data_collect">Data<br/>They Collect</Trans></div>
+              <div className="lg:w-1/5"><Trans i18nKey="report_collected">Report<br/>Collected</Trans></div>
             </div>
             
             {

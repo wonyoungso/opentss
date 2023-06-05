@@ -15,6 +15,7 @@ import { Input, Option, Select, TextField, Textarea } from "@mui/joy";
 import { useForm, Controller } from "react-hook-form";
 import states from "../providers/states";
 import moment from "moment";
+import { useTranslation, Trans } from "react-i18next";
 
 
 const months = ["January","February","March","April","May","June","July",
@@ -22,7 +23,7 @@ const months = ["January","February","March","April","May","June","July",
 const years = _.map(_.range(2023, 1960, -1), year => _.toString(year));
 
 const ApplicationChars = () => {
-
+  const { t } = useTranslation();
   const { submission, setSubmission, setSubmissionStep, revisitedSubmission, setRevisitedSubmission, setHeaderMode  } = useContext(store);
   const { register, trigger, control, watch, handleSubmit, formState: { isValid, isDirty, errors } } = useForm({ 
     mode: "onChange",
@@ -139,17 +140,17 @@ const ApplicationChars = () => {
         <div className="container mx-auto px-5">
           <div className="lg:grid lg:grid-cols-6 lg:gap-5">
             <div>
-              <button onClick={goBack}><ArrowBack /> Back</button><br/><br/>
-              Tenant Application
+              <button onClick={goBack}><ArrowBack /> { t("Back") }</button><br/><br/>
+              { t("Tenant Application") }
             </div>
             <div className="lg:col-span-3">
               <h2 className="font-bold text-4xl">
-                Now we will ask you about the tenant application.
+                { t("Now we will ask you about the tenant application.") }
               </h2>
 
               <div className="pt-10">
                 <h3 className="font-bold pb-3">
-                  When approximately did you apply?
+                  { t("When approximately did you apply?") }
                 </h3>
 
                 <div className="flex gap-1 pb-1">
@@ -157,7 +158,7 @@ const ApplicationChars = () => {
                       name="rent_apply_date_month"
                       control={control}
                       rules={{ 
-                        required: {value: true, message: "Month field is required." },
+                        required: {value: true, message:  t("Month field is required.")  },
                         validate: {
                           laterThanReportDate: (formValue) => {
 
@@ -176,19 +177,19 @@ const ApplicationChars = () => {
                               trigger("rent_apply_date_year");
                             }, 200);
 
-                            return applicationDate.isSameOrBefore(reportDate) || `Application date should be the same or before you received the tenant screening report (you entered ${reportDate.format("MMMM YYYY")} in the previous step)`
+                            return applicationDate.isSameOrBefore(reportDate) || t("application_chars.validate_date", { date: reportDate.format("MMMM YYYY")})
                           }
                         }
                       }}
                       render={({ field }) => {
                         return (
-                          <Select placeholder="Month" {...field} onChange={(e, value) => {
+                          <Select placeholder={ t("Month") } {...field} onChange={(e, value) => {
                               field.onChange(value);
                           }}>
                             {
                               _.map(months, month => {
                                 return (
-                                  <Option key={month} value={month}>{month}</Option>
+                                  <Option key={month} value={month}>{ t(month) }</Option>
                                 )
                               })
                             }
@@ -201,7 +202,7 @@ const ApplicationChars = () => {
                       name="rent_apply_date_year"
                       control={control}
                       rules={{ 
-                        required: {value: true, message: "Year field is required." },
+                        required: {value: true, message: t("Year field is required.") },
                         validate: {
                           laterThanReportDate: (formValue) => {
                             if (_.isNull(formValue)) {
@@ -218,19 +219,19 @@ const ApplicationChars = () => {
                             _.delay(() => {
                               trigger("rent_apply_date_month");
                             }, 200);
-                            return applicationDate.isSameOrBefore(reportDate) || `Application date should be the same or before you received the tenant screening report (you entered ${reportDate.format("MMMM YYYY")} in the previous step)`
+                            return applicationDate.isSameOrBefore(reportDate) || t("application_chars.validate_date", { date: reportDate.format("MMMM YYYY")})
                           }
                         }
                       }}
                       render={({ field }) => {
                         return (
-                          <Select placeholder="Year" {...field} onChange={(e, value) => {
+                          <Select placeholder={ t("Year") } {...field} onChange={(e, value) => {
                               field.onChange(value);
                           }}>
                             {
                               _.map(years, year => {
                                 return (
-                                  <Option key={year} value={year}>{year}</Option>
+                                  <Option key={year} value={year}>{ t(year) }</Option>
                                 )
                               })
                             }
@@ -264,7 +265,7 @@ const ApplicationChars = () => {
                   }
                   {
                     !errors["rent_apply_date_year"] && !errors["rent_apply_date_month"] ? 
-                    <>Required. </> : null
+                    t("Required.") : null
                   }
                 </FormHelperText>
               </div>
@@ -272,14 +273,14 @@ const ApplicationChars = () => {
 
               <div className="py-5">
                 <h3 className="font-bold pb-3">
-                  What was the rental decision?
+                  { t("What was the rental decision?") }
                 </h3>
                 <FormControl>
                   <Controller
                     name="accepted"
                     control={control}
                     rules={{ 
-                      required: {value: true, message: "This field is required." }
+                      required: {value: true, message: t("This field is required.") }
                     }}
                     defaultValue=""
                     render={({ field }) => {
@@ -288,8 +289,8 @@ const ApplicationChars = () => {
                             setAcceptedShow(e.target.value === "accepted");
                             field.onChange(e);
                          }}>
-                          <Radio color="neutral" value="accepted" label="Accepted" />
-                          <Radio color="neutral" value="denied" label="Denied" />
+                          <Radio color="neutral" value="accepted" label={ t("Accepted") } />
+                          <Radio color="neutral" value="denied" label={ t("Denied") } />
                         </RadioGroup>
                       )
                     }}
@@ -298,7 +299,7 @@ const ApplicationChars = () => {
                     {
                       errors["accepted"] ? 
                       <span className="text-red">{errors["accepted"].message}</span> : 
-                      <>Required. </>
+                      t("Required.")
                     }
                   </FormHelperText>
                 </FormControl>
@@ -308,15 +309,15 @@ const ApplicationChars = () => {
                 acceptedShow ?
                 <div className="py-5">
                   <h3 className="font-bold pb-3">
-                    If you were accepted, how much was the security deposit? If there was no security deposit, please enter 0.
+                    { t("If you were accepted, how much was the security deposit? If there was no security deposit, please enter 0.") }
                   </h3>
                   <FormControl>
                     <Input color={errors["security_deposit"] ? "danger" : "primary"} 
                       {
                         ...register("security_deposit", 
                           { 
-                            required: {value: true, message: "This field is required." }, 
-                            pattern: { value: /^[0-9]+$/, message: "This field only accepts numbers." } 
+                            required: {value: true, message: t("This field is required.") }, 
+                            pattern: { value: /^[0-9]+$/, message: t("This field only accepts numbers.") } 
                           } 
                         )
                       } 
@@ -326,7 +327,7 @@ const ApplicationChars = () => {
                       {
                         errors["security_deposit"] ? 
                         <span className="text-red">{errors["security_deposit"].message}</span> : 
-                        <>Required. </>
+                        t("Required.")
                       }
                     </FormHelperText>
                   </FormControl>
@@ -335,15 +336,15 @@ const ApplicationChars = () => {
               
               <div className="py-5">
                 <h3 className="font-bold pb-3">
-                  How much was the rent of the property?
+                  { t("How much was the rent of the property?") }
                 </h3>
                 <FormControl>
                   <Input color={errors["rent"] ? "danger" : "primary"}
                     {
                       ...register("rent", 
                         { 
-                          required: {value: true, message: "This field is required." },
-                          pattern: { value: /^[0-9]+$/, message: "This field only accepts numbers." }  
+                          required: {value: true, message: t("This field is required.") },
+                          pattern: { value: /^[0-9]+$/, message: t("This field only accepts numbers.") }  
                         }
                       )
                     } 
@@ -353,7 +354,7 @@ const ApplicationChars = () => {
                     {
                       errors["rent"] ? 
                       <span className="text-red">{errors["rent"].message}</span> : 
-                      <>Required. </>
+                      t("Required.")
                     }
                   </FormHelperText>
                 </FormControl>
@@ -361,25 +362,25 @@ const ApplicationChars = () => {
             
               <div className="py-5">
                 <h3 className="font-bold pb-3">
-                  How many bedrooms were there?
+                  { t("How many bedrooms were there?") }
                 </h3>
                 <FormControl>
                   <Controller
                     name="bedrooms"
                     control={control}
                     rules={{ 
-                      required: {value: true, message: "This field is required." }
+                      required: {value: true, message: t("This field is required.") }
                     }}
                     defaultValue=""
                     render={({ field }) => {
                       return (
                         <RadioGroup  {...field}>
-                          <Radio color="neutral" value="0" label="Studio" />
-                          <Radio color="neutral" value="1" label="1 Bedroom" />
-                          <Radio color="neutral" value="2" label="2 Bedrooms" />
-                          <Radio color="neutral" value="3" label="3 Bedrooms" />
-                          <Radio color="neutral" value="4" label="4 Bedrooms" />
-                          <Radio color="neutral" value=">=5" label="More than 5 Bedrooms" />
+                          <Radio color="neutral" value="0" label={ t("Studio") } />
+                          <Radio color="neutral" value="1" label={ t("1 Bedroom") } />
+                          <Radio color="neutral" value="2" label={ t("2 Bedrooms") } />
+                          <Radio color="neutral" value="3" label={ t("3 Bedrooms") } />
+                          <Radio color="neutral" value="4" label={ t("4 Bedrooms") } />
+                          <Radio color="neutral" value=">=5" label={ t("More than 5 Bedrooms") } />
                         </RadioGroup>
                       )
                     }}
@@ -388,7 +389,7 @@ const ApplicationChars = () => {
                     {
                       errors["bedrooms"] ? 
                       <span className="text-red">{errors["bedrooms"].message}</span> : 
-                      <>Required. </>
+                      t("Required.")
                     }
                   </FormHelperText>
                 </FormControl>
@@ -396,24 +397,24 @@ const ApplicationChars = () => {
 
               <div className="py-5">
                 <h3 className="font-bold pb-3">
-                  What was the house type?
+                  { t("What was the house type?") }
                 </h3>
                 <FormControl>
                   <Controller
                     name="house_type"
                     control={control}
                     rules={{ 
-                      required: {value: true, message: "This field is required." }
+                      required: {value: true, message: t("This field is required.") }
                     }}
                     defaultValue=""
                     render={({ field }) => {
                       return (
                         <RadioGroup  {...field}>
-                          <Radio color="neutral" value="single_family" label="Detached Single Family Housing" />
-                          <Radio color="neutral" value="townhouse" label="Townhouse" />
-                          <Radio color="neutral" value="multifamily" label="Multifamily Housing" />
-                          <Radio color="neutral" value="manufactured" label="Manufactured Housing (i.e. Mobile Homes)" />
-                          <Radio color="neutral" value="other" label="Other" />
+                          <Radio color="neutral" value="single_family" label={ t("Detached Single Family Housing") } />
+                          <Radio color="neutral" value="townhouse" label={ t("Townhouse") } />
+                          <Radio color="neutral" value="multifamily" label={ t("Multifamily Housing") } />
+                          <Radio color="neutral" value="manufactured" label={ t("Manufactured Housing (i.e. Mobile Homes)") } />
+                          <Radio color="neutral" value="other" label={ t("Other") } />
                         </RadioGroup>
                       )
                     }}
@@ -422,7 +423,7 @@ const ApplicationChars = () => {
                     {
                       errors["house_type"] ? 
                       <span className="text-red">{errors["house_type"].message}</span> : 
-                      <>Required. </>
+                      t("Required.")
                     }
                   </FormHelperText>
                 </FormControl>
@@ -430,17 +431,17 @@ const ApplicationChars = () => {
               
               <div className="py-5">
                 <h3 className="font-bold pb-3">
-                  Do you have any types of housing vouchers?
+                  { t("Do you have any types of housing vouchers?") }
                 </h3>
                 <p className="pb-3 text-white-op-70">
-                  * Vouchers include Housing Choice Vouchers (Section 8), Veterans Affairs Supportive Housing (VASH), as well as city-level vouchers like CityFHEPS in NYC.
+                  { t("* Vouchers include Housing Choice Vouchers (Section 8), Veterans Affairs Supportive Housing (VASH), as well as city-level vouchers like CityFHEPS in NYC.") }
                 </p>
                 <FormControl>
                   <Controller
                     name="voucher"
                     control={control}
                     rules={{ 
-                      required: {value: true, message: "This field is required." }
+                      required: {value: true, message: t("This field is required.") }
                     }}
                     defaultValue=""
                     render={({ field }) => {
@@ -459,7 +460,7 @@ const ApplicationChars = () => {
                     {
                       errors["voucher"] ? 
                       <span className="text-red">{errors["voucher"].message}</span> : 
-                      <>Required. </>
+                      t("Required.")
                     }
                   </FormHelperText>
                 </FormControl>
@@ -469,11 +470,13 @@ const ApplicationChars = () => {
                 voucherShow ? 
                 <div className="py-5">
                   <h3 className="font-bold pb-3">
-                    What percentage of your income do you pay under your housing voucher?
+                    { t("What percentage of your income do you pay under your housing voucher?") }
                   </h3>
 
                   <p className="pb-3 text-white-op-70">
-                    For instance, Housing Choice Vouchers require you to pay maximum <span className="font-bold">30%</span> of your income as rent.
+                    <Trans i18nKey="application_chars.hcv_desc">
+                      For instance, Housing Choice Vouchers require you to pay maximum <span className="font-bold">30%</span> of your income as rent.
+                    </Trans>
                   </p>
 
                   <FormControl>
@@ -481,8 +484,8 @@ const ApplicationChars = () => {
                       {
                         ...register("minimum_rent", 
                           { 
-                            required: {value: true, message: "This field is required." },
-                            pattern: { value: /^(?:100|[1-9][0-9]?|0)$/, message: "This field only accepts percetages (0-100)." }  
+                            required: {value: true, message: t("This field is required.") },
+                            pattern: { value: /^(?:100|[1-9][0-9]?|0)$/, message: t("This field only accepts percentages (0-100).") }  
                           }
                         )
                       } 
@@ -492,7 +495,7 @@ const ApplicationChars = () => {
                       {
                         errors["minimum_rent"] ? 
                         <span className="text-red">{errors["minimum_rent"].message}</span> : 
-                        <>Required. </>
+                        t("Required.")
                       }
                     </FormHelperText>
                   </FormControl>
@@ -501,13 +504,13 @@ const ApplicationChars = () => {
              
               <div className="py-5">
                 <h3 className="font-bold pb-3">
-                  Enter the name of the landlord or the property management company.
+                  { t("Enter the name of the landlord or the property management company.") }
                 </h3>
                 <FormControl>
                   <Input color={errors["landlord_name"] ? "danger" : "primary"}
                     {
                       ...register("landlord_name",
-                        { required: {value: true, message: "This field is required."} }
+                        { required: {value: true, message: t("This field is required.")} }
                       )
                     }  />
 
@@ -515,7 +518,7 @@ const ApplicationChars = () => {
                     {
                       errors["landlord_name"] ? 
                       <span className="text-red">{errors["landlord_name"].message}</span> : 
-                      <>Required. </>
+                      t("Required.")
                     }
                   </FormHelperText>
                 </FormControl>
@@ -523,21 +526,21 @@ const ApplicationChars = () => {
 
               <div className="py-5">
                 <h3 className="font-bold pb-3">
-                  Is the landlord individual or company?
+                  { t("Is the landlord individual or a company?") }
                 </h3>
                 <FormControl>
                   <Controller
                     name="landlord_scale"
                     control={control}
                     rules={{ 
-                      required: {value: true, message: "This field is required." }
+                      required: {value: true, message: t("This field is required.") }
                     }}
                     defaultValue=""
                     render={({ field }) => {
                       return (
                         <RadioGroup  {...field}>
-                          <Radio color="neutral" value="individual" label="Individual" />
-                          <Radio color="neutral" value="company" label="Company" />
+                          <Radio color="neutral" value="individual" label={ t("Individual") } />
+                          <Radio color="neutral" value="company" label={ t("Company") } />
                         </RadioGroup>
                       )
                     }}
@@ -546,7 +549,7 @@ const ApplicationChars = () => {
                     {
                       errors["landlord_scale"] ? 
                       <span className="text-red">{errors["landlord_scale"].message}</span> : 
-                      <>Required. </>
+                      t("Required.")
                     }
                   </FormHelperText>
                 </FormControl>
@@ -554,14 +557,14 @@ const ApplicationChars = () => {
 
               <div className="py-5">
                 <h3 className="font-bold pb-3">
-                  Enter the property address *you applied*.
+                  { t("Enter the property address *you applied*.") }
                 </h3>
                 <FormControl>
-                  <FormLabel>Address</FormLabel>
+                  <FormLabel>{ t("Address") }</FormLabel>
                   <Input color={errors["property_address"] ? "danger" : "primary"}
                     {
                       ...register("property_address",
-                        { required: {value: true, message: "This field is required."} }
+                        { required: {value: true, message: t("This field is required.")} }
                       )
                     }  />
 
@@ -569,17 +572,17 @@ const ApplicationChars = () => {
                     {
                       errors["property_address"] ? 
                       <span className="text-red">{errors["property_address"].message}</span> : 
-                      <>Required. </>
+                      t("Required.")
                     }
                   </FormHelperText>
                 </FormControl>
                 <div className="p-3"></div>
                 <FormControl>
-                  <FormLabel>City</FormLabel>
+                  <FormLabel>{ t("City") }</FormLabel>
                   <Input color={errors["property_address_city"] ? "danger" : "primary"}
                     {
                       ...register("property_address_city",
-                        { required: {value: true, message: "This field is required."} }
+                        { required: {value: true, message: t("This field is required.")} }
                       )
                     }  />
 
@@ -587,24 +590,24 @@ const ApplicationChars = () => {
                     {
                       errors["property_address_city"] ? 
                       <span className="text-red">{errors["property_address_city"].message}</span> : 
-                      <>Required. </>
+                      t("Required.")
                     }
                   </FormHelperText>
                 </FormControl>
                 <div className="p-3"></div>
 
                 <FormControl>
-                  <FormLabel>State</FormLabel>
+                  <FormLabel>{ t("State") }</FormLabel>
                   <Controller
                     name="property_address_state"
                     control={control}
                     defaultValue=""
                     rules={
-                      { required: {value: true, message: "This field is required."} }
+                      { required: {value: true, message: t("This field is required.")} }
                     }
                     render={({ field }) => {
                       return (
-                        <Select {...field} placeholder="Choose State..." onChange={(e, newValue) => {
+                        <Select {...field} placeholder={ t("Choose State...") } onChange={(e, newValue) => {
                           field.onChange(newValue)
                         }} color={errors["property_address_state"] ? "danger" : "primary"}>
                           {
@@ -624,19 +627,19 @@ const ApplicationChars = () => {
                     {
                       errors["property_address_state"] ? 
                       <span className="text-red">{errors["property_address_state"].message}</span> : 
-                      <>Required. </>
+                      t("Required.")
                     }
                   </FormHelperText>
                 </FormControl>
                 
                 <div className="p-3"></div>
                 <FormControl>
-                  <FormLabel>Zip Code</FormLabel>
+                  <FormLabel>{ t("Zip Code") }</FormLabel>
                   <Input color={errors["property_address_zipcode"] ? "danger" : "primary"}
                     {
                       ...register("property_address_zipcode",
-                        { required: { value: true, message: "This field is required."},
-                          pattern:  { value: new RegExp("^\\d{5}(?:[-\\s]\\d{4})?$"), "message": "This field allows only zip code."} }
+                        { required: { value: true, message: t("This field is required.")},
+                          pattern:  { value: new RegExp("^\\d{5}(?:[-\\s]\\d{4})?$"), "message": t("This field allows only zip code (e.g., XXXXX or XXXXX-YYYY)")} }
                       )
                     }  />
 
@@ -644,7 +647,7 @@ const ApplicationChars = () => {
                     {
                       errors["property_address_zipcode"] ? 
                       <span className="text-red">{errors["property_address_zipcode"].message}</span> : 
-                      <>Required. </>
+                      t("Required.")
                     }
                   </FormHelperText>
                 </FormControl>
@@ -653,7 +656,7 @@ const ApplicationChars = () => {
               
               <div className="py-5">
                 <h3 className="font-bold pb-3">
-                  Please describe your experience with a landlord or property management company that uses tenant screening services.
+                  { t("Please describe your experience with a landlord or property management company that uses tenant screening services.") }
                 </h3>
 
                 <p className="pb-3 text-white-op-70">
@@ -661,7 +664,7 @@ const ApplicationChars = () => {
                 </p>
 
                 <FormControl>
-                  <Textarea minRows={4} placeholder="Type your experience..." color={errors["experience_freeform"] ? "danger" : "primary"}
+                  <Textarea minRows={4} placeholder={ t("Type your experience...") } color={errors["experience_freeform"] ? "danger" : "primary"}
                     {
                       ...register("experience_freeform")
                     } />
@@ -670,7 +673,7 @@ const ApplicationChars = () => {
                     {
                       errors["experience_freeform"] ? 
                       <span className="text-red">{errors["experience_freeform"].message}</span> : 
-                      <>Optional. </>
+                      t("Optional.")
                     }
                   </FormHelperText>
                 </FormControl>
@@ -678,21 +681,21 @@ const ApplicationChars = () => {
               
               <div className="py-5">
                 <h3 className="font-bold pb-3">
-                  Would you be willing to participate in an interview with us to discuss your experience further, if we are interested in learning more?
+                  { t("Would you be willing to participate in an interview with us to discuss your experience further, if we are interested in learning more?") }
                 </h3>
                 <FormControl>
                   <Controller
                     name="interview_possible"
                     control={control}
                     rules={{ 
-                      required: {value: true, message: "This field is required." }
+                      required: {value: true, message: t("This field is required.") }
                     }}
                     defaultValue=""
                     render={({ field }) => {
                       return (
                         <RadioGroup  {...field}>
-                          <Radio color="neutral" value="yes" label="Yes" />
-                          <Radio color="neutral" value="no" label="No" />
+                          <Radio color="neutral" value="yes" label={ t("Yes") } />
+                          <Radio color="neutral" value="no" label={ t("No") }/>
                         </RadioGroup>
                       )
                     }}
@@ -701,7 +704,7 @@ const ApplicationChars = () => {
                     {
                       errors["interview_possible"] ? 
                       <span className="text-red">{errors["interview_possible"].message}</span> : 
-                      <>Required. </>
+                      t("Required.")
                     }
                   </FormHelperText>
                 </FormControl>
@@ -720,7 +723,7 @@ const ApplicationChars = () => {
               <div className="hidden lg:block"></div>
               <div className="lg:col-span-3">
                 <FormControl>
-                  <Button disabled={!isValid} type="submit">Next</Button>
+                  <Button disabled={!isValid} type="submit">{ t("Next") }</Button>
                 </FormControl>
               </div>
             </div>

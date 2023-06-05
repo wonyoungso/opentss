@@ -7,7 +7,7 @@ class SubmissionMailer < ApplicationMailer
     @locale = params[:locale]
     
     I18n.with_locale(@locale) do 
-      mail(to: @submission.email, subject: 'Your submission of tenant screening reports is completed :: OpenTSS: Countering Tenant Screening')
+      mail(to: @submission.email, subject: I18n.t("submission_mailer.submission_complete_email.subject"))
     end
   end
   
@@ -17,7 +17,7 @@ class SubmissionMailer < ApplicationMailer
     @locale = params[:locale]
     
     I18n.with_locale(@locale) do 
-      mail(to: @email, subject: 'Here is a secure link for you to retrieve your submission :: OpenTSS: Countering Tenant Screening')
+      mail(to: @email, subject: I18n.t("submission_mailer.submissions_retrieve_email.subject"))
     end
   end
 
@@ -31,7 +31,7 @@ class SubmissionMailer < ApplicationMailer
     @locale = params[:locale]
     
     I18n.with_locale(@locale) do 
-      mail(to: @submission.email, subject: 'Screening Report Reupload Request :: OpenTSS: Countering Tenant Screening')
+      mail(to: @submission.email, subject: I18n.t("submission_mailer.submission_reupload_request_email.subject") )
     end
   end
 
@@ -42,7 +42,7 @@ class SubmissionMailer < ApplicationMailer
     @locale = params[:locale]
     
     I18n.with_locale(@locale) do 
-      mail(to: @submission.email, subject: 'Reuploading your report is completed :: OpenTSS: Countering Tenant Screening')
+      mail(to: @submission.email, subject: I18n.t("submission_mailer.submission_reupload_complete_email.subject") )
     end
   end
 

@@ -208,7 +208,15 @@ export default function Header(props) {
               <div className="flex flex-row-reverse gap-2 items-start">
                 {
                   headerMode === "focus" ?
-                  null : 
+                  <>
+                    <button className={`text-${locale === "es" ? (bg === 'bright' ? "dark-blue" : "white") : "gray"}`} onClick={() => { handleLanguageClick("es") }}>
+                        ES
+                      </button>
+                    <span className="text-gray">/</span>
+                    <button className={`text-${locale === "en" ? (bg === 'bright' ? "dark-blue" : "white") : "gray"}`} onClick={() => { handleLanguageClick("en") }}>
+                      EN
+                    </button>
+                  </> : 
                   <>
                     <button onClick={() => { setMenuOpen(!menuOpen); }}>
                       {

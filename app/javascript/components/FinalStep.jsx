@@ -12,9 +12,11 @@ import { Input, Option, Select, TextField, Textarea } from "@mui/joy";
 import { useForm, Controller } from "react-hook-form";
 import states from "../providers/states";
 import defaultSubmission from "../providers/default_submission";
+import { useTranslation, Trans } from "react-i18next";
 
 const FinalStep = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   let { locale } = useParams();
   const [displayEmail, setDisplayEmail] = useState("");
   const { submission, setSubmission, setSubmissionStep, revisitedSubmission, setRevisitedSubmission, setHeaderMode } = useContext(store);
@@ -109,23 +111,22 @@ const FinalStep = () => {
         <div className="container mx-auto px-5">
           <div className="lg:grid lg:grid-cols-6 lg:gap-5">
             <div>
-              <button onClick={submitStatus === 1 ? null : goBack }><ArrowBack /> Back</button><br/><br/>
-              Email address for 
-              <br/>gift card
+              <button onClick={submitStatus === 1 ? null : goBack }><ArrowBack /> { t("Back") }</button><br/><br/>
+              { t("Email address for gift card") }
             </div>
             <div className="lg:col-span-3">
               <h2 className="font-bold text-4xl">
-                Finally, enter your information for gift card delivery.
+                { t("Finally, enter your information for gift card delivery.") }
               </h2>
 
               <div className="py-5">
                 <h3 className="font-bold pb-3">
-                  What is your email address?
+                  { t("What is your email address?") }
                 </h3>
 
 
                 <FormControl>
-                  <Input disabled={submitStatus === 1} placeholder="e.g., john@doe.com" color={errors["email"] ? "danger" : "primary"}
+                  <Input disabled={submitStatus === 1} placeholder={ t("e.g., john@gmail.com") } color={errors["email"] ? "danger" : "primary"}
                     {
                       ...register("email", 
                         { 
@@ -139,7 +140,7 @@ const FinalStep = () => {
                     {
                       errors["email"] ? 
                       <span className="text-red">{errors["email"].message}</span> : 
-                      <>Required. </>
+                      t("Required.")
                     }
                   </FormHelperText>
                 </FormControl>
@@ -147,12 +148,12 @@ const FinalStep = () => {
 
               <div className="py-2">
                 <h3 className="font-bold pb-3">
-                  Confirm your email address.
+                  { t("Confirm your email address.") }
                 </h3>
 
 
                 <FormControl>
-                  <Input disabled={submitStatus === 1} placeholder="e.g., john@doe.com" color={errors["email_confirm"] ? "danger" : "primary"}
+                  <Input disabled={submitStatus === 1} placeholder={ t("e.g., john@gmail.com") } color={errors["email_confirm"] ? "danger" : "primary"}
                     {
                       ...register("email_confirm", 
                         { 
@@ -171,7 +172,7 @@ const FinalStep = () => {
                     {
                       errors["email_confirm"] ? 
                       <span className="text-red">{errors["email_confirm"].message}</span> : 
-                      <>Required. It is important to enter your correct and current email address because we will send a Visa gift card and a copy of your consent form to this email address.</>
+                      t("Required. It is important to enter your correct and current email address because we will send a Visa gift card and a copy of your consent form to this email address.")
                     }
                   </FormHelperText>
                 </FormControl>
@@ -191,7 +192,7 @@ const FinalStep = () => {
               <div className="hidden lg:block"></div>
               <div className="lg:col-span-3">
                 <FormControl>
-                  <Button disabled={!isValid} loading={submitStatus === 1} type="submit">Done</Button>
+                  <Button disabled={!isValid} loading={submitStatus === 1} type="submit">{ t("Done")} </Button>
                 </FormControl>
               </div>
             </div>
@@ -207,23 +208,22 @@ const FinalStep = () => {
         <div className="container mx-auto px-5">
           <div className="lg:grid lg:grid-cols-6 lg:gap-5">
             <div>
-              <button onClick={submitStatus === 1 ? null : goBack }><ArrowBack /> Back</button><br/><br/>
-              Email address for 
-              <br/>gift card
+              <button onClick={submitStatus === 1 ? null : goBack }><ArrowBack /> { t("Back") }</button><br/><br/>
+              { t("Email address for gift card") }
             </div>
             <div className="lg:col-span-3">
               <h2 className="font-bold text-4xl">
-                Finally, enter your information for gift card delivery.
+                { t("Finally, enter your information for gift card delivery.") }
               </h2>
 
               <div className="py-5">
                 <h3 className="font-bold pb-3">
-                  What is your email address?
+                  { t("What is your email address?") }
                 </h3>
 
 
                 <FormControl>
-                  <Input disabled={submitStatus === 1} placeholder="e.g., john@doe.com" color={errors["email"] ? "danger" : "primary"}
+                  <Input disabled={submitStatus === 1} placeholder={ t("e.g., john@gmail.com") } color={errors["email"] ? "danger" : "primary"}
                     {
                       ...register("email", 
                         { 
@@ -237,7 +237,7 @@ const FinalStep = () => {
                     {
                       errors["email"] ? 
                       <span className="text-red">{errors["email"].message}</span> : 
-                      <>Required. </>
+                      t("Required.")
                     }
                   </FormHelperText>
                 </FormControl>
@@ -245,12 +245,12 @@ const FinalStep = () => {
 
               <div className="py-2">
                 <h3 className="font-bold pb-3">
-                  Confirm your email address.
+                  { t("Confirm your email address.") }
                 </h3>
 
 
                 <FormControl>
-                  <Input disabled={submitStatus === 1} placeholder="e.g., john@doe.com" color={errors["email_confirm"] ? "danger" : "primary"}
+                  <Input disabled={submitStatus === 1} placeholder={ t("e.g., john@gmail.com") } color={errors["email_confirm"] ? "danger" : "primary"}
                     {
                       ...register("email_confirm", 
                         { 
@@ -269,11 +269,11 @@ const FinalStep = () => {
                     {
                       errors["email_confirm"] ? 
                       <span className="text-red">{errors["email_confirm"].message}</span> : 
-                      <>Required. It is important to enter your correct and current email address because we will send a Visa gift card.</>
+                      t("Required. It is important to enter your correct and current email address because we will send a Visa gift card and a copy of your consent form to this email address.")
                     }
                   </FormHelperText>
                 </FormControl>
-              </div>  
+              </div>
               {
                 submissionErrors ?
                 <>
@@ -292,6 +292,7 @@ const FinalStep = () => {
                 })
               }
 
+
               <div className="h-48"></div>
 
             </div>
@@ -305,7 +306,7 @@ const FinalStep = () => {
               <div className="hidden lg:block"></div>
               <div className="lg:col-span-3">
                 <FormControl>
-                  <Button disabled={!isValid} loading={submitStatus === 1} type="submit">Done</Button>
+                  <Button disabled={!isValid} loading={submitStatus === 1} type="submit">{ t("Done")} </Button>
                 </FormControl>
               </div>
             </div>
@@ -320,34 +321,38 @@ const FinalStep = () => {
       <div className="container mx-auto px-5">
         <div className="lg:grid lg:grid-cols-6 lg:gap-5">
           <div>
-            Thank you
+            { t("Thank you") }
           </div>
           <div className="lg:col-span-3">
             <h2 className="font-bold text-4xl">
-              Thank you very much! We will send a gift card as soon as we check your submission is complete.
+              { t("Thank you very much! We will send a gift card as soon as we check your submission is completed.") }
             </h2>
-            <div className="py-3">
-              <span className="font-bold">Please confirm your email address:</span> We have received and processed your tenant screening report. In the meantime, please confirm your email address through the email we just sent.
-            </div>
+            
+            <Trans i18nKey="submissions.final_desc" values={{ displayEmail: displayEmail }}>
+              <div className="py-3">
+                <span className="font-bold">Please confirm your email address:</span> We have received and processed your tenant screening report. In the meantime, please confirm your email address through the email we just sent.
+              </div>
 
-            <div className="py-3">
+              <div className="py-3">
                 <span className="font-bold">What's next?</span> You will be receiving a $50 Visa gift card via email. Please anticipate its arrival in your inbox within 7 days. Kindly note that we review each submission individually, and in the event that your tenant screening report is illegible due to a blurry photograph, we may request that you re-upload the report for clarity.
                 <br/><br/>
                 Once we have confirmed the submission is valid, we will promptly send the gift card to your email address ({displayEmail}). Within the gift card email, you will have the option to choose between receiving a digital gift card or a physical one. 
-            </div>
+              </div>
 
-            <div className="py-3">
-              <span className="font-bold">How can I check the status of my submission?</span> To check the status of your submission, use the following <Link to="/submissions/retrieve" className="underline">link</Link>. You will be prompted to enter your email address, and then we will send a secure link to retrieve the status of your submission.
-            </div>
+              <div className="py-3">
+                <span className="font-bold">How can I check the status of my submission?</span> To check the status of your submission, use the following <Link to="/submissions/retrieve" className="underline">link</Link>. You will be prompted to enter your email address, and then we will send a secure link to retrieve the status of your submission.
+              </div>
 
 
-            <div className="py-3">
-              <span className="font-bold">How can I reach out to you?</span> Please send an email to <a className="underline" href="mailto:opentss@mit.edu">opentss@mit.edu</a>! we will respond as soon as we have your email.
-            </div>
+              <div className="py-3">
+                <span className="font-bold">How can I reach out to you?</span> Please send an email to <a className="underline" href="mailto:opentss@mit.edu">opentss@mit.edu</a>! we will respond as soon as we have your email.
+              </div>
+            </Trans>
+            
 
 
             <FormControl>
-              <Button onClick={() => { navigate(`/${locale}`)}}>Go to First Page</Button>
+              <Button onClick={() => { navigate(`/${locale}`)}}>{ t("Go to First Page") }</Button>
             </FormControl>
           </div>
         </div>

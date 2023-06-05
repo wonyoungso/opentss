@@ -4,6 +4,8 @@ import { initReactI18next } from 'react-i18next';
 
 import Backend from 'i18next-http-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
+import { kebabCase } from "lodash";
+import { m } from "framer-motion";
 // don't want to use this?
 // have a look at the Quick start guide 
 // for passing in lng and translations on initt
@@ -36,6 +38,7 @@ const options = {
 const resources = {
   en: {
     translation: {
+      "application_chars.validate_date": "Application date should be the same or before you received the tenant screening report (you entered {{ date }} in the previous step)"
     }
   },
   es: {
@@ -356,7 +359,195 @@ const resources = {
         </0>
       `,
       "BY PRESSING THIS BUTTON, I WILLINGLY AGREE TO PARTICIPATE IN THE RESEARCH IT DESCRIBES.": "AL PULSAR ESTE BOTÓN, ACEPTO VOLUNTARIAMENTE PARTICIPAR EN LA INVESTIGACIÓN QUE DESCRIBE.",
-      "I AGREE TO PARTICIPATE": "ACEPTO PARTICIPAR"
+      "I AGREE TO PARTICIPATE": "ACEPTO PARTICIPAR",
+
+      //upload report
+      "Upload Report": "Cargar informe",
+      "Please upload your tenant screening report.": "Cargue su informe de selección de inquilinos.",
+      "upload_report.title_desc": `
+        <0>
+          <0>Si tienes tu informe físico encima:</0> Primero, haga fotos de cada página del informe. Después, sube todas las fotos aquí.
+        </0>
+        <1>
+          <0>Si tiene un archivo PDF que recibió de la empresa de selección de inquilinos:</0> adjunte aquí el archivo PDF.*
+        </1>
+      `,
+      "Choose File...": "Seleccione Archivo...",
+      "Uploaded Files": "Archivos cargados",
+      "No files are attached.": "No se adjunta ningún archivo.",
+      "When approximately did you receive this report?": "¿Cuándo recibió aproximadamente este informe?",
+      "January": "Enero",
+      "February": "Febrero",
+      "March": "Marzo",
+      "April": "Abril",
+      "May": "Mayo",
+      "June": "Junio",
+      "July": "Julio",
+      "August": "Agosto",
+      "September": "Septiembre",
+      "October": "Octubre",
+      "November": "Noviembre",
+      "December": "Diciembre",
+      "Month": "Mes",
+      "Year": "Año",
+      "upload_report.copy_desc": `
+        <0>
+          * Si no tiene su copia del informe de selección de inquilinos, <1>haga clic aquí y solicite una copia de su informe de selección de inquilinos</1>.
+        </0>
+      `,
+      "You send your report through end-to-end encryption. We will remove every identifiable information and store it on a secured server.": "Usted envía su informe mediante cifrado de extremo a extremo. Eliminaremos toda la información identificable y la almacenaremos en un servidor seguro.",
+
+      // tenant demographics
+      "Tenant Demographics": "Datos demográficos de los inquilinos",
+      "Next, we will ask about you.": "A continuación, le preguntaremos por usted.",
+      "To which gender identity do you most identify?": "¿Con qué identidad de género se identifica más?",
+      "Woman": "Mujer",
+      "Man": "Hombre",
+      "Non-binary person": "Persona no binaria",
+      "Prefer not to answer": "Prefiero no contestar",
+      "Do you have lived experience as a trans person (meaning your gender identity does not align with your gender assigned at birth)?": "¿Tienes experiencia de vida como persona trans (es decir, tu identidad de género no coincide con el género asignado al nacer)?",
+      "Yes": "Sí",
+      "No": "No",
+      "Are you of Hispanic or Latino Origin?": "¿Es usted de origen hispano o latino?",
+      "To which race do you most identify?": "¿Con qué raza se identifica más?",
+      "White": "Blanco",
+      "Black / African American": "Negro / afroamericano",
+      "Native American or Alaska Native": "Nativo americano o nativo de Alaska",
+      "Asian or Pacific Islander": "Asiáticos o de las islas del Pacífico",
+      "Other": "Otros",
+      "What is your age?": "¿Cuál es su edad?",
+      "More than 70": "Más del 70",
+      "Do you live with your partner?": "¿Vive con su pareja?",
+      "How many dependents (children) do you live with?": "¿Con cuántas personas a su cargo (hijos) vive?",
+      "No dependents": "Sin personas a cargo",
+      "More than 5": "Más del 5",
+      "How much is your monthly income before tax?": "¿A cuánto ascienden sus ingresos mensuales antes de impuestos?",
+      "This field only accepts numbers.": "Este campo sólo acepta números.",
+
+      //tenant application 
+      "Tenant Application": "Solicitud de arrendamiento",
+      "Now we will ask you about the tenant application.": "Ahora le preguntaremos por la solicitud de inquilino.",
+      "When approximately did you apply?": "¿Cuándo lo solicitó aproximadamente?",
+      "Month field is required.": "El campo Mes es obligatorio.",
+      "Year field is required.": "El campo Año es obligatorio.",
+      "application_chars.validate_date": "La fecha de solicitud debe ser la misma o anterior a la fecha en que recibió el informe de selección de inquilinos (introdujo {{ date }} en el paso anterior).",
+      "What was the rental decision?": "¿Cuál fue la decisión del alquiler?",
+      "Accepted": "Aceptado",
+      "Denied": "Denegado",
+      "If you were accepted, how much was the security deposit? If there was no security deposit, please enter 0.": "Si le aceptaron, ¿a cuánto ascendía la fianza? Si no hubo fianza, introduzca 0.",
+      "How much was the rent of the property?": "¿A cuánto ascendía el alquiler de la vivienda?",
+      "How many bedrooms were there?": "¿Cuántas habitaciones había?",
+      "Studio": "Estudio",
+      "1 Bedroom": "1 habitación",
+      "2 Bedrooms": "2 habitaciones",
+      "3 Bedrooms": "3 habitaciones",
+      "4 Bedrooms": "4 habitaciones",
+      "More than 5 Bedrooms": "Más de 5 habitaciones",
+      "What was the house type?": "¿Cuál era el tipo de casa?",
+      "Detached Single Family Housing": "Viviendas unifamiliares aisladas",
+      "Townhouse": "Casa adosada",
+      "Multifamily Housing": "Viviendas multifamiliares",
+      "Manufactured Housing (i.e. Mobile Homes)": "Viviendas prefabricadas (es decir, casas móviles)",
+      "Do you have any types of housing vouchers?": "¿Tiene algún tipo de bono de vivienda?",
+      "* Vouchers include Housing Choice Vouchers (Section 8), Veterans Affairs Supportive Housing (VASH), as well as city-level vouchers like CityFHEPS in NYC.": "* Los vales incluyen vales de elección de vivienda (Sección 8), viviendas de apoyo para veteranos (VASH), así como vales municipales como CityFHEPS en NYC.",
+      "What percentage of your income do you pay under your housing voucher?": "¿Qué porcentaje de sus ingresos paga en virtud de su bono de vivienda?",
+      "application_chars.hcv_desc": `
+        Por ejemplo, los Vales de Elección de Vivienda exigen que pague el <1>30%</1> de sus ingresos en concepto de alquiler.
+      `,
+      "This field only accepts percentages (0-100).": "Este campo sólo acepta porcentajes (0-100).",
+      "Enter the name of the landlord or the property management company.": "Introduzca el nombre del propietario o de la empresa de gestión inmobiliaria.",
+      "Is the landlord individual or a company?": "¿El arrendador es un particular o una empresa?",
+      "Individual": "Individual",
+      "Company": "Empresa",
+      "Enter the property address *you applied*.": "Introduzca la dirección del inmueble *que solicitó*.",
+      "Choose State...": "Elige Estado...",
+      "This field allows only zip code (e.g., XXXXX or XXXXX-YYYY)": "Este campo sólo permite el código postal (por ejemplo, XXXXX o XXXXX-YYYY)",
+      "Please describe your experience with a landlord or property management company that uses tenant screening services.": "Describa su experiencia con un propietario o una empresa de gestión inmobiliaria que utilice servicios de selección de inquilinos.",
+      "Type your experience...": "Escriba su experiencia...",
+      "Would you be willing to participate in an interview with us to discuss your experience further, if we are interested in learning more?": "¿Estaría dispuesto a participar en una entrevista con nosotros para hablar más a fondo de su experiencia, si nos interesa saber más?",
+      "Email address for gift card": "Dirección de correo electrónico para la tarjeta regalo",
+      "Finally, enter your information for gift card delivery.": "Por último, introduzca sus datos para la entrega de la tarjeta regalo.",
+      "What is your email address?": "¿Cuál es su dirección de correo electrónico?",
+      "e.g., john@gmail.com": "Por ejemplo, mariana@gmail.com",
+      "Confirm your email address.": "Confirme su dirección de correo electrónico.",
+      "Required. It is important to enter your correct and current email address because we will send a Visa gift card and a copy of your consent form to this email address.": "Obligatorio. Es importante que introduzca su dirección de correo electrónico correcta y actual porque le enviaremos una tarjeta regalo Visa y una copia de su formulario de consentimiento a esta dirección de correo electrónico.",
+      "Done": "Hecho",
+
+      // Last step landing page
+      "Thank you": "Gracias",
+      "Thank you very much! We will send a gift card as soon as we check your submission is completed.": "Muchas gracias. Le enviaremos una tarjeta regalo en cuanto comprobemos que su envío se ha completado.",
+      "submissions.final_desc": `
+        <0>
+          <0>Confirme su dirección de correo electrónico:</0> Hemos recibido y procesado su informe de selección de inquilinos. Mientras tanto, le rogamos que confirme su dirección de correo electrónico a través del mensaje que acabamos de enviarle.
+        </0>
+        <1>
+          <0>¿Y ahora qué?</0> Recibirás una tarjeta regalo Visa de 50 $ por correo electrónico. Please anticipate its arrival in your inbox within 7 days. Kindly note that we review each submission individually, and in the event that your tenant screening report is illegible due to a blurry photograph, we may request that you re-upload the report for clarity.
+          <br/><br/>
+          Una vez que hayamos confirmado que la solicitud es válida, le enviaremos la tarjeta regalo a su dirección de correo electrónico ({{displayEmail}}). Dentro del correo electrónico de la tarjeta regalo, tendrá la opción de elegir entre recibir una tarjeta regalo digital o una física.
+        </1>
+        <2>
+          <0>¿Cómo puedo comprobar el estado de mi envío?</0> Para comprobar el estado de su envío, utilice el siguiente <2>enlace</2>. Se le pedirá que introduzca su dirección de correo electrónico y, a continuación, le enviaremos un enlace seguro para recuperar el estado de su presentación.
+        </2>
+        <3>
+          <0>¿Cómo puedo ponerme en contacto con ustedes?</0> Envíe un correo electrónico a <2>opentss@mit.edu</2>. Le responderemos en cuanto recibamos su mensaje.
+        </3>
+      `,
+      "Go to First Page": "Ir a la primera página",
+
+      // check submission status
+      "Check your submission": "Compruebe su envío",
+      "Check your submission status here.": "Compruebe aquí el estado de su envío.",
+      "Please provide us with your email address so that we may send you a secure link to browse the status of your submission.": "Indíquenos su dirección de correo electrónico para que podamos enviarle un enlace seguro para consultar el estado de su envío.",
+      "This field only allows email address (e.g., john@gmail.com)": "Este campo sólo permite la dirección de correo electrónico (por ejemplo, mariana@gmail.com)",
+      "Submit": "Enviar",
+      "Thank you! We just sent an email with a secure link.": "Gracias. Acabamos de enviarle un correo electrónico con un enlace seguro.",
+      "Please check your inbox — You can have access to the submission status through the secure link in the email. The link will be expired after 1 day.": "Por favor, compruebe su bandeja de entrada - Puede acceder al estado del envío a través del enlace seguro del correo electrónico. El enlace caducará al cabo de 1 día.",
+      "We couldn't find your submissions.": "No hemos podido encontrar sus envíos.",
+      "Please try again with different email.": "Por favor, inténtelo de nuevo con otro correo electrónico.",
+      "Error Occurred.": "Se ha producido un error.",
+      "Please try again.": "Por favor, inténtelo de nuevo.",
+
+      // retrieve submission
+      "submitted": "Presentado:<br/>En curso",
+      "Reward Granted": "Recompensa concedida",
+      "Retrieve Submission": "Recuperar la presentación",
+      "Your submission": "Su presentación",
+      "Here is your submission.": "Aquí está su presentación.",
+      "Submitted Date": "Fecha de envío",
+      "Status": "Estado",
+      "Consent Form": "Formulario de consentimiento",
+      "Re-upload Report": "Volver a cargar el informe",
+      "View Consent Form": "Ver el formulario de consentimiento",
+      "Re-upload": "Volver a cargar",
+
+
+      // view consent form
+      "view_consent_form.consent_desc": "A continuación encontrará el formulario de consentimiento informado en el que aceptó participar en {{date}}. Si tiene alguna pregunta sobre la investigación, escríbanos a <3>opentss@mit.edu</3>",
+
+      //reupload form
+      "Please reupload your tenant screening report.": "Por favor, vuelva a subir su informe de selección de inquilinos.",
+      "We may ask you to reupload because either 1) the report is not legible or 2) there is an unexpected error so we couldn't properly obtain your report.": "Es posible que le pidamos que vuelva a cargarlo porque 1) el informe no es legible o 2) hay un error inesperado por el que no hemos podido obtener correctamente su informe.",
+      "Your report is successfully submitted. After we check your newly submitted report, we will issue an e-gift card to your email.": "Su informe se ha enviado correctamente. Una vez comprobado su informe, le enviaremos una tarjeta electrónica de regalo a su correo electrónico.",
+      "There is an unexpected error.": "Se ha producido un error inesperado.",
+      "reupload_report.error_contact": "Por favor, inténtelo de nuevo más tarde o póngase en contacto con <1>opentss@mit.edu</1>.",
+
+      //lookup tool
+      "Lookup tool": "Herramienta de búsqueda",
+      "Tenant Screening Services Lookup Tool": "Herramienta de búsqueda de servicios de selección de inquilinos",
+      "Search": "Buscar en",
+      "These tools are updated based on the tenant screening report collection and sample reports they provided to their website.": "Estas herramientas se actualizan en función de la recopilación de informes de selección de inquilinos y de los informes de muestra que facilitan en su sitio web.",
+      "List of companies": "Lista de empresas",
+      "scoring_system": "Puntuación<br/>Sistema",
+      "data_collect": "Datos <br/> que recogen",
+      "report_collected": "Informe<br/>Recogido",
+
+      //company show
+      "resells reports to": "revende informes a",
+      "Sample report available": "Informe de muestra disponible",
+      "Sample report unavailable": "Ejemplo de informe no disponible",
+      "Admin interface available": "Interfaz de administración disponible",
+      "Admin interface unavailable": "Interfaz de administración no disponible",
+      "reports collected": "informes recopilados"
     }
   }
 };

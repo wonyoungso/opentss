@@ -12,11 +12,13 @@ import FormHelperText from "@mui/joy/FormHelperText";
 import Button from "@mui/joy/Button";
 import Input from "@mui/joy/Input";
 import { ArrowBack } from "@mui/icons-material";
+import { useTranslation, Trans } from "react-i18next";
 
 const SubmissionsRetrieve = () => {
 
   const { setMenuOpen } = useContext(store);
   const navigate = useNavigate();
+  const { t } = useTranslation();
   let { locale } = useParams();
   const { register, reset, handleSubmit, formState: { isValid, isDirty, errors } } = useForm({ 
     mode: "onChange"
@@ -67,22 +69,22 @@ const SubmissionsRetrieve = () => {
       return (
         <>
           <h2 className="font-bold text-4xl">
-            Check your submission status here.
+            { t("Check your submission status here.") }
           </h2> 
 
           <p className="py-3">
-            Please provide us with your email address so that we may send you a secure link to browse the status of your submission.
+            { t("Please provide us with your email address so that we may send you a secure link to browse the status of your submission.") }
           </p>
 
           <form onSubmit={handleSubmit(onSubmit)}>
             <FormControl>
-              <FormLabel>Email</FormLabel>
+              <FormLabel>{ t("Email") }</FormLabel>
               <Input placeholder="e.g., john@doe.com" color={errors["email"] ? "danger" : "primary"}
                 {
                   ...register("email", 
                     { 
-                      required: {value: true, message: "This field is required." },
-                      pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: "This field only allows email address (e.g., john@doe.com)"}
+                      required: {value: true, message:  t("This field is required.") },
+                      pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: t("This field only allows email address (e.g., john@gmail.com)")}
                     }
                   )
                 }  />
@@ -91,14 +93,14 @@ const SubmissionsRetrieve = () => {
                 {
                   errors["email"] ? 
                   <span className="text-red">{errors["email"].message}</span> : 
-                  <>Required. </>
+                  t("Required.")
                 }
               </FormHelperText>
             </FormControl>
             <div className="py-3">
             </div>
             <FormControl>
-              <Button disabled={!isValid} loading={submitStatus === 1} type="submit">Submit</Button>
+              <Button disabled={!isValid} loading={submitStatus === 1} type="submit">{ t("Submit") }</Button>
             </FormControl>
           </form>
         </>
@@ -107,11 +109,11 @@ const SubmissionsRetrieve = () => {
       return (
         <>
           <h2 className="font-bold text-4xl">
-            Thank you! We just sent an email with a secure link.
+            { t("Thank you! We just sent an email with a secure link.") }
           </h2> 
 
           <p className="py-3">
-            Please check your inbox — You can have access to the submission status through the secure link in the email. The link will be expired after 1 day.
+            { t("Please check your inbox — You can have access to the submission status through the secure link in the email. The link will be expired after 1 day.") }
           </p>
         </>
       );
@@ -119,28 +121,28 @@ const SubmissionsRetrieve = () => {
       return (
         <>
           <h2 className="font-bold text-4xl">
-            We couldn't find your submissions.
+            { t("We couldn't find your submissions.") }
           </h2> 
 
           <p className="py-3">
-            Please try again with different email.
+            { t("Please try again with different email.") }
           </p>
 
-          <button onClick={() => { reset(); setSubmitStatus(0); }}><ArrowBack /> Back</button>
+          <button onClick={() => { reset(); setSubmitStatus(0); }}><ArrowBack /> { t("Back") }</button>
         </>
       );
     } else if (submitStatus === 3) {
       return (
         <>
           <h2 className="font-bold text-4xl">
-            Error Occured.
+            { t("Error Occurred.") }
           </h2> 
 
           <p className="py-3">
-            Please try again.
+            { t("Please try again.") }
           </p>
 
-          <button onClick={() => { reset(); setSubmitStatus(0); }}><ArrowBack /> Back</button>
+          <button onClick={() => { reset(); setSubmitStatus(0); }}><ArrowBack /> { t("Back") }</button>
         </>
       );
     }
@@ -151,7 +153,7 @@ const SubmissionsRetrieve = () => {
       <div className="container mx-auto px-5">
         <div className="lg:grid lg:grid-cols-6 lg:gap-5">
           <div>
-            Check your submission
+            { t("Check your submission") }
           </div>
           <div className="lg:col-span-3">
             {
