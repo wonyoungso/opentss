@@ -101,7 +101,22 @@ const Welcome = () => {
         <motion.div viewport={{ once: true }} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{
           staggerChildren: 0.5
         }} className="lg:grid lg:grid-cols-6 lg:gap-5 py-5 items-start">
+          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="">
+            { t("Download Flyer") }
+          </motion.div>
+          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="col-span-5 lg:flex lg:gap-2">
+              <motion.button whileTap={{ scale: 0.98 }} whileHover={{ scale: 1.01 }} transition={{
+                duration: 0.1
+                }} className="flex justify-center items-center gap-2 mt-2 mb-2 lg:mt-0 lg:mb-5 bg-yellow py-2 px-10 rounded-md font-bold text-black text-sm lg:text-lg" onClick={() => { window.open('/flyer-en.pdf', '_blank'); } }>
+              <Article fontSize="18" /> { t("Download Flyer (English)")}
+            </motion.button>
 
+            <motion.button whileTap={{ scale: 0.98 }} whileHover={{ scale: 1.01 }} transition={{
+                duration: 0.1
+                }} className="flex justify-center items-center gap-2 mb-5 bg-yellow py-2 px-10 rounded-md font-bold text-black text-sm lg:text-lg" onClick={() => { window.open('/flyer-es.pdf', '_blank'); } }>
+              <Article fontSize="18" /> { t("Descargar folleto (Español)")}
+            </motion.button>
+          </motion.div>
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="">
             { t("About") }
           </motion.div>
