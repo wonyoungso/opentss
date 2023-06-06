@@ -547,7 +547,9 @@ const resources = {
       "Sample report unavailable": "Ejemplo de informe no disponible",
       "Admin interface available": "Interfaz de administración disponible",
       "Admin interface unavailable": "Interfaz de administración no disponible",
-      "reports collected": "informes recopilados"
+      "reports collected": "informes recopilados",
+
+      // how tss works
     }
   }
 };

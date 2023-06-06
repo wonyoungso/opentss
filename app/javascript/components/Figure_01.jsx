@@ -1,5 +1,4 @@
 import React from "react";
-import { motion } from "framer-motion";
 
 function Figure_01() {
   return (
@@ -10,18 +9,18 @@ function Figure_01() {
       fill="none"
       viewBox="0 0 349 786"
     >
-      <motion.g>
-        <motion.circle viewport={{ once: true }} initial={{ opacity: 0, translateY: -20 }} whileInView={{ opacity: 1, translateY: 0 }} transition={{
+      <g>
+        <circle viewport={{ once: true }} initial={{ opacity: 0, translateY: -20 }} whileInView={{ opacity: 1, translateY: 0 }} transition={{
                 duration: 0.25,
                 delay: 0.3
-              }} cx="174.5" cy="201.5" r="174.5" fill="#282400"></motion.circle>
-        <motion.circle viewport={{ once: true }} initial={{ opacity: 0, translateY: 20 }} whileInView={{ opacity: 1, translateY: 0 }} transition={{
+              }} cx="174.5" cy="201.5" r="174.5" fill="#282400"></circle>
+        <circle viewport={{ once: true }} initial={{ opacity: 0, translateY: 20 }} whileInView={{ opacity: 1, translateY: 0 }} transition={{
                 duration: 0.25,
                 delay: 0.5
-              }} cx="174.5" cy="574.5" r="174.5" fill="#282400"></motion.circle>
+              }} cx="174.5" cy="574.5" r="174.5" fill="#282400"></circle>
         
 
-        <motion.g viewport={{ once: true }} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{
+        <g viewport={{ once: true }} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{
                 duration: 0.25,
                 delay: 2.0
               }} stroke="#DCE0F8" strokeDasharray="2 2">
@@ -35,8 +34,8 @@ function Figure_01() {
           <path d="M89 585l170-450"></path>
           <path d="M245 554L72 121"></path>
           <path d="M251 512L78 79"></path>
-        </motion.g>
-        <motion.g viewport={{ once: true }} initial={{ opacity: 0, translateY: 20 }} whileInView={{ opacity: 1, translateY: 0 }} transition={{
+        </g>
+        <g viewport={{ once: true }} initial={{ opacity: 0, translateY: 20 }} whileInView={{ opacity: 1, translateY: 0 }} transition={{
                 duration: 0.25,
                 delay: 1.2
               }}>
@@ -190,8 +189,8 @@ function Figure_01() {
               </tspan>
             </text>
           </g>
-        </motion.g>
-        <motion.g viewport={{ once: true }} initial={{ opacity: 0, translateY: -20 }} whileInView={{ opacity: 1, translateY: 0 }} transition={{
+        </g>
+        <g viewport={{ once: true }} initial={{ opacity: 0, translateY: -20 }} whileInView={{ opacity: 1, translateY: 0 }} transition={{
                 duration: 0.25,
                 delay: 0.8
               }}>
@@ -386,8 +385,8 @@ function Figure_01() {
               </tspan>
             </text>
           </g>
-        </motion.g>
-      </motion.g>
+        </g>
+      </g>
     </svg>
   );
 }
