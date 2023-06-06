@@ -81,7 +81,7 @@ const Welcome = () => {
           duration: 0.25,
           delay: 0.4
         }} className="cursor-pointer border border-x-0 border-y-0 border-b transition-colors border-b-white-op-50 hover:bg-white-op-10">
-          <div className="lg:grid lg:grid-cols-6 lg:gap-5 lg:min-h-[100px] py-3 items-start" onClick={e => navigate(`/${locale}/submissions/new`)}>
+          <div className="lg:grid lg:grid-cols-6 lg:gap-5 lg:min-h-[100px] py-3 items-start" onClick={e => navigate(`/${locale}/submissions`)}>
             <div className="col-span-2 text-lg leading-6">
 
               <Trans i18nKey="step 3">
