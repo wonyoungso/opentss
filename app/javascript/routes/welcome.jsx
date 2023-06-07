@@ -113,9 +113,16 @@ const Welcome = () => {
 
             <motion.button whileTap={{ scale: 0.98 }} whileHover={{ scale: 1.01 }} transition={{
                 duration: 0.1
-                }} className="flex justify-center items-center gap-2 mb-5 bg-yellow py-2 px-10 rounded-md font-bold text-black text-sm lg:text-lg" onClick={() => { window.open('/flyer-es.pdf', '_blank'); } }>
+                }} className="flex justify-center items-center gap-2 mb-2 lg:mb-5 bg-yellow py-2 px-10 rounded-md font-bold text-black text-sm lg:text-lg" onClick={() => { window.open('/flyer-es.pdf', '_blank'); } }>
               <Article fontSize="18" /> { t("Descargar folleto (Español)")}
             </motion.button>
+
+            <motion.button whileTap={{ scale: 0.98 }} whileHover={{ scale: 1.01 }} transition={{
+                duration: 0.1
+                }} className="flex justify-center items-center gap-2 mb-2 lg:mb-5 bg-yellow py-2 px-10 rounded-md font-bold text-black text-sm lg:text-lg" onClick={() => { window.open('/flyer-cn.pdf', '_blank'); } }>
+              <Article fontSize="18" /> { t("下载传单 (中国)")}
+            </motion.button>
+            
           </motion.div>
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="">
             { t("About") }

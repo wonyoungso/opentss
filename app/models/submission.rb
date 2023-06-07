@@ -59,7 +59,7 @@ class Submission < ApplicationRecord
   validates :property_address_state, :presence => true
   validates :property_address_zipcode, :presence => true
   validates :interview_possible, :presence => true
-  validates :email, :presence => true#, :uniqueness => true
+  validates :email, :presence => true, :uniqueness => true
   validates :report_date_month, :presence => true
   validates :report_date_year, :presence => true
   validates :rent_apply_date_month, :presence => true
