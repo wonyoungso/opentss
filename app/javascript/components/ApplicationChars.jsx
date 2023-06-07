@@ -37,18 +37,25 @@ const ApplicationChars = () => {
     window.scrollTo(0, 0);
     console.log("press goback");
 
-    let security_deposit;
+    // let security_deposit, minimum_rent;
 
-    if (watch("accepted") === "accepted") {
-      security_deposit = watch("security_deposit");
-    } else {
-      security_deposit = "-1";
-    }
+    // if (watch("accepted") === "accepted") {
+    //   security_deposit = watch("security_deposit");
+    // } else {
+    //   security_deposit = "-1";
+    // }
+
+
+    // if (watch("voucher") === "no") {
+    //   minimum_rent = watch("minimum_rent");
+    // } else {
+    //   minimum_rent = "-1";
+    // }
 
     setSubmission({
       ...submission,
       accepted: watch("accepted"),
-      security_deposit: security_deposit,
+      security_deposit: watch("security_deposit"),
       rent: watch("rent"),
       bedrooms: watch("bedrooms"),
       house_type: watch("house_type"),
@@ -72,13 +79,21 @@ const ApplicationChars = () => {
   const onSubmit = (data) => {
     window.scrollTo(0, 0);
 
-    let security_deposit;
+    let security_deposit, minimum_rent;
 
     if (data.accepted === "accepted") {
       security_deposit = data.security_deposit;
     } else {
       security_deposit = "-1";
     }
+
+
+    if (watch("voucher") === "no") {
+      minimum_rent = "-1";
+    } else {
+      minimum_rent = watch("minimum_rent");
+    }
+
     
     setSubmission({
       ...submission,
@@ -88,7 +103,7 @@ const ApplicationChars = () => {
       bedrooms: data.bedrooms,
       house_type: data.house_type,
       voucher: data.voucher,
-      minimum_rent: data.minimum_rent,
+      minimum_rent: minimum_rent,
       landlord_name: data.landlord_name,
       landlord_scale: data.landlord_scale,
       property_address: data.property_address,
@@ -173,11 +188,13 @@ const ApplicationChars = () => {
                             const applicationDate = moment(`${watch("rent_apply_date_month")} ${watch("rent_apply_date_year")}`, "MMMM YYYY")
                             const reportDate = moment(`${submission.report_date_month} ${submission.report_date_year}`, "MMMM YYYY")
                             
+                            const diff_days = reportDate.diff(applicationDate, "days");
+
                             _.delay(() => {
                               trigger("rent_apply_date_year");
                             }, 200);
 
-                            return applicationDate.isSameOrBefore(reportDate) || t("application_chars.validate_date", { date: reportDate.format("MMMM YYYY")})
+                            return (diff_days >= 0 && diff_days <= 365) || t("application_chars.validate_date", { date: reportDate.format("MMMM YYYY")})
                           }
                         }
                       }}

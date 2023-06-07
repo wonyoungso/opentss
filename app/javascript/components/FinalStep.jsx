@@ -102,6 +102,16 @@ const FinalStep = () => {
     return () => {
 
       setHeaderMode("normal");
+      if (submitStatus === 2) {
+        setSubmissionStep(1);
+        setRevisitedSubmission({
+          1: false,
+          2: false,
+          3: false, 
+          4: false,
+          5: false
+        })
+      }
     };
   }, []);
 

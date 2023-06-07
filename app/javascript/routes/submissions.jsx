@@ -16,9 +16,11 @@ const SubmissionsNew = () => {
   const navigate = useNavigate();
   let { locale } = useParams();
   const { t } = useTranslation();
+  const { setSubmissionStep } = useContext(store);
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    setSubmissionStep(1);
     document.title = "Submit Your Report | OpenTSS: Countering Tenant Screening";
     document.body.className = "bg-white-bg text-dark-blue";
     setMenuOpen(false);

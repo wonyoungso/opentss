@@ -38,7 +38,7 @@ const options = {
 const resources = {
   en: {
     translation: {
-      "application_chars.validate_date": "Application date should be the same or before you received the tenant screening report (you entered {{ date }} in the previous step)"
+      "application_chars.validate_date": "The application date should be the same or precede the date of receiving the tenant screening report by less than 1 year. (you entered {{ date }} in the previous step)"
     }
   },
   es: {
@@ -430,7 +430,7 @@ const resources = {
       "When approximately did you apply?": "¿Cuándo lo solicitó aproximadamente?",
       "Month field is required.": "El campo Mes es obligatorio.",
       "Year field is required.": "El campo Año es obligatorio.",
-      "application_chars.validate_date": "La fecha de solicitud debe ser la misma o anterior a la fecha en que recibió el informe de selección de inquilinos (introdujo {{ date }} en el paso anterior).",
+      "application_chars.validate_date": "La fecha de solicitud debe ser la misma o anterior a la fecha de recepción del informe de selección de inquilinos en menos de 1 año. (ha introducido {{ date }} en el paso anterior).",
       "What was the rental decision?": "¿Cuál fue la decisión del alquiler?",
       "Accepted": "Aceptado",
       "Denied": "Denegado",
