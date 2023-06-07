@@ -1,5 +1,5 @@
 require 'tremendous'
-if rails.env.development?
+if Rails.env.development?
   access_token = Rails.application.credentials.dig(:tremendous, :sandbox_access_token)
   api_url = Rails.application.credentials.dig(:tremendous, :sandbox_api_url)
 else
