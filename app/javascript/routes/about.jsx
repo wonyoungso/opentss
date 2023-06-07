@@ -157,6 +157,7 @@ const About = () => {
         renderEs() :
         renderEn()
       }
+      <div className="py-10"></div>
     </>
   );
 };
