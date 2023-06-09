@@ -7,7 +7,7 @@ class SubmissionMailer < ApplicationMailer
     @locale = params[:locale]
     
     I18n.with_locale(@locale) do 
-      mail(to: @submission.email, bcc: "opentss@mit.edu" subject: I18n.t("submission_mailer.submission_complete_email.subject"))
+      mail(to: @submission.email, bcc: "opentss@mit.edu", subject: I18n.t("submission_mailer.submission_complete_email.subject"))
     end
   end
   
