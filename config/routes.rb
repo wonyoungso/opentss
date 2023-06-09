@@ -5,6 +5,10 @@ class WhiteList
                    {
                      start_ip: '18.0.0.0',
                      end_ip:   '18.31.255.255'
+                   },
+                   {
+                     start_ip: '10.29.0.0',
+                      end_ip: '10.29.255.255'
                    }
                  ]
   end
