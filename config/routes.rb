@@ -13,7 +13,7 @@ class WhiteList
 
     return true if Rails.env.development? 
     remote_ip_address = IPAddr.new(request.remote_ip).to_i
-
+    puts request.remote_ip
     @ip_ranges.each do |ip_range|
       low  = IPAddr.new(ip_range[:start_ip]).to_i
       high = IPAddr.new(ip_range[:end_ip]).to_i
