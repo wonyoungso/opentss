@@ -1,7 +1,34 @@
+require "ipaddr"
+class WhiteList
+  def initialize
+    @ip_ranges = [
+                   {
+                     start_ip: '18.0.0.0',
+                     end_ip:   '18.31.255.255'
+                   }
+                 ]
+  end
+
+  def matches?(request)
+
+    return true if Rails.env.development? 
+    remote_ip_address = IPAddr.new(request.remote_ip).to_i
+
+    @ip_ranges.each do |ip_range|
+      low  = IPAddr.new(ip_range[:start_ip]).to_i
+      high = IPAddr.new(ip_range[:end_ip]).to_i
+      return true if (low..high)===remote_ip_address
+    end
+
+    return false
+  end
+
+end
 Rails.application.routes.draw do
-  devise_for :users
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  constraints WhiteList.new do
+    devise_for :users
+    mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  end
 
   namespace :api do 
     get "/confirm-email/:token", to: "confirm_email#confirm", as: "confirm_email"
@@ -57,5 +84,5 @@ Rails.application.routes.draw do
 
   root to: redirect("/#{I18n.default_locale}", status: 302), as: :root
   get '/*path', to: redirect("/#{I18n.default_locale}/%{path}"),
-    constraints: lambda { |req| req.path.exclude? 'rails/active_storage' }
+    constraints: lambda { |req| req.path.exclude? 'rails/active_storage' and req.path.exclude? 'admin' }
 end
