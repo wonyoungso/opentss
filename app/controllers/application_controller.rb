@@ -6,6 +6,8 @@ class ApplicationController < ActionController::Base
 
 
   def switch_locale(&action)
+    @og_description = "OpenTSS aims to develop a crowdsourcing tool and/or campaign to audit tenant screening services and reveal the patterns of their inner algorithms, data structures, and representations, by collecting tenant screening reports, as well as denied renters’ experiences."
+
     begin
       if I18n.available_locales.include?(params[:locale].to_sym)
         @locale = params[:locale]

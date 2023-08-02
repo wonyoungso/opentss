@@ -9,15 +9,15 @@
     <%= vite_javascript_tag 'application.jsx' %>
 
     <meta property="og:site_name" content="OpenTSS: Countering Tenant Screening"/>
-    <meta property="og:description" content="OpenTSS aims to develop a crowdsourcing tool and/or campaign to audit tenant screening services and reveal the patterns of their inner algorithms, data structures, and representations, by collecting tenant screening reports, as well as denied renters’ experiences. "/>
+    <meta property="og:description" content="<%= @og_description %>"/>
     <meta property="og:url" content="https://open-tss.net" />
-    <meta property="og:title" content="OpenTSS: Countering Tenant Screening"/>
-    <meta property="og:image" content="https://open-tss.net"/> 
+    <meta property="og:title" content="<%= @og_title %>OpenTSS: Countering Tenant Screening"/>
+    <meta property="og:image" content="https://open-tss.net/og.png"/> 
    
     <!-- Twitter Card data -->
     <meta name="twitter:site" content="OpenTSS: Countering Tenant Screening" />
-    <meta name="twitter:title" content="OpenTSS: Countering Tenant Screening" />
-    <meta name="twitter:description" content="OpenTSS aims to develop a crowdsourcing tool and/or campaign to audit tenant screening services and reveal the patterns of their inner algorithms, data structures, and representations, by collecting tenant screening reports, as well as denied renters’ experiences. " />
+    <meta name="twitter:title" content="<%= @og_title %>OpenTSS: Countering Tenant Screening" />
+    <meta name="twitter:description" content="<%= @og_scription %>" />
     <meta name="twitter:image:src" content="https://open-tss.net/og.png" />
     <meta name="twitter:url" content="https://open-tss.net" />
     <meta name="twitter:card" content="summary_large_image" />
