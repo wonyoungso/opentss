@@ -63,10 +63,11 @@ export default function Hero(){
   const [heroImagesFinal, setHeroImagesFinal] = useState(heroImages);
   const { t } = useTranslation();
   const { locale } = useParams();
+  const [imageIdx, setImageIdx] = useState(0);
 
   useEffect(() => {
-
-  }, [heroImagesFinal]);
+    setInterval
+  }, [imageIdx]);
 
   return (  
     <>
@@ -105,7 +106,22 @@ export default function Hero(){
           </div>
           <div className="lg:col-span-3">
             <div className="flex align-center">
-              image
+              {
+                _.map(heroImagesFinal, (heroImage, idx) => {
+                  return (
+                    <motion.div   
+      
+                      className="absolute width-100 transition-opacity" style={{opacity: idx === 0 ? 100 : 0 }} key={heroImage.id}>
+                      <div>
+                        <img src={heroImage.img_url} alt={ heroImage.description } />
+                      </div>
+                      <div className="text-sm text-white-op-50 mt-1">
+                        { heroImage.description}
+                      </div>
+                    </motion.div>
+                  )
+                })
+              }
             </div>
           </div>
         </div>
