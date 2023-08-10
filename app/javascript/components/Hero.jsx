@@ -11,6 +11,7 @@ import transunion_01 from "../assets/transunion_01.png";
 import tenantreports_scorecard from "../assets/figure-03_02.png";
 import ntn_score from "../assets/ntn_score.png"
 import { motion } from "framer-motion";
+import { Article, Favorite, SettingsPhone } from "@mui/icons-material";
 
 const heroImages = [
   {
@@ -65,73 +66,49 @@ export default function Hero(){
 
   useEffect(() => {
 
-    if (heroImagesFinal.length <= 30) {
-
-      _.delay(() => {
-
-        let newHeroImagesFinal = [...heroImagesFinal];
-        let newImage = _.cloneDeep(heroImages[_.random(0, heroImages.length - 1)]);
-        newImage.id = _.uniqueId("heroimages-");
-        newHeroImagesFinal.push(newImage);
-        // newHeroImagesFinal.pop();
-        setHeroImagesFinal(
-          newHeroImagesFinal
-        )
-      }, 3000);
-    }
   }, [heroImagesFinal]);
 
   return (  
     <>
-      <div className="container mx-auto px-5">
-        <div className="mt-5"></div>
-        <Trans i18nKey="have you ever been screened by...">
-          Have you ever <br/> been screened by...
-        </Trans>
-      </div>
-      <div className="my-5 overflow-hidden">
-        <motion.div className="h-[400px] flex items-end pb-5" style={{width: 10000, animation: "slide 30s linear infinite alternate" }}>
-          
-          {
-            _.map(heroImagesFinal, heroImage => {
-              return (
-                <motion.div   
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 1.02 }}
-  
-                  className="mr-5 last:mr-0" style={{width: heroImage.width}} key={heroImage.id}>
-                  <div>
-                    <img src={heroImage.img_url} alt="SafeRent Score" />
-                  </div>
-                  <div className="text-sm text-white-op-50 mt-1">
-                    { heroImage.description}
-                  </div>
-                </motion.div>
-              )
-            })
-          }
-          
-        </motion.div>
-      </div>  
+      
 
       <div className="container mx-auto px-5">
-        <div className="mt-5"></div>
+        <div className="mt-8"></div>
         
-        <div className="font-bold text-6xl md:text-7xl lg:text-9xl leading-none pb-8">
-          <Trans i18nKey="tenant screening services title">
-            <motion.span className={`block lg:inline-block relative text-${locale === "en" ? "yellow" : "white"}`} initial={{ 
-              opacity: 0, top: 20
-            }} animate={{ opacity: 1, top: 0, transition: { duration: 0.3, delay: 0.2} }}>tenant</motion.span>
-            <span className="hidden lg:inline">&nbsp;</span>
-            <motion.span className={`block lg:inline-block relative text-yellow`} initial={{ 
-              opacity: 0, top: 20
-            }} animate={{ opacity: 1, top: 0, transition: { duration: 0.3, delay: 0.3} }}>screening</motion.span>
-            <motion.span className={`block lg:inline-block relative text-${locale === "en" ? "white" : "yellow"}`} initial={{ 
-              opacity: 0, top: 20
-            }} animate={{ opacity: 1, top: 0, transition: { duration: 0.3, delay: 0.4} }}>services?</motion.span>
-          </Trans>
-        </div>
+        <h1 className="text-5xl lg:text-7xl">
+          Unfairly denied housing<br/>
+          due to <span className="font-bold text-yellow">tenant screening?</span>
+        </h1>
+        <p className="pt-5 text-2xl font-bold lg:text-4xl">
+          OpenTSS collects tenant screening reports <br/>
+          to hold tenant screening algorithms accountable.
+        </p>
 
+        <div className="lg:grid lg:grid-cols-6 lg:gap-5 pt-5 pb-5">
+          <div className="lg:col-span-3">
+
+            <motion.button whileTap={{ scale: 0.98 }} whileHover={{ scale: 1.01 }} transition={{
+              duration: 0.1
+              }} className="flex justify-center items-center gap-2 my-0.5 bg-yellow py-2 px-10 rounded-md font-bold text-black text-sm lg:text-lg" onClick={() => { navigate(`/${locale}/request-copy`)} }>
+              <SettingsPhone fontSize="18" /> Request Copy of Tenant Screening Report
+            </motion.button>
+            <div className="pt-2"></div>
+            <motion.button whileTap={{ scale: 0.98 }} whileHover={{ scale: 1.01 }} transition={{
+              duration: 0.1
+              }} className="flex justify-center items-center gap-2  my-0.5 bg-yellow py-2 px-10 rounded-md font-bold text-black text-sm lg:text-lg" onClick={() => { navigate(`/${locale}/request-copy`)} }>
+              <Favorite fontSize="18" /> Donate Tenant Screening Report
+            </motion.button>
+
+            <p className="pt-5 lg:pr-36">
+              <a href="https://dusp.mit.edu/news/how-tenant-screening-processes-influence-biased-rental-housing-exclusion" target="_blank" rel="noreferer" className="underline">Research papers</a> and <a href="https://www.wired.com/story/algorithms-allegedly-penalized-black-renters-the-us-government-is-watching/" target="_blank" rel="noreferer" className="underline">news articles</a> have highlighted that tenant screening reports, and the algorithms they are based on, are biased and discriminatory, and there is no regulation governing how they work. Tenant screening services utilize credit score databases, eviction records, and criminal records from third-party data brokers to produce reports that landlords use to inform their decisions about who to rent to.
+            </p>
+          </div>
+          <div className="lg:col-span-3">
+            <div className="flex align-center">
+              image
+            </div>
+          </div>
+        </div>
       </div>
     </>
   )
