@@ -210,11 +210,11 @@ export default function Hero(){
           
         </div>
 
-        <div className="py-5 scale-110 lg:scale-125 flex justify-center">
-          <div className="pt-5 lg:hidden">
+        <div className="py-5 flex justify-center">
+          <div className="pt-5 scale-110 lg:hidden">
             <ProcessDiagramMobile />
           </div>
-          <div className="hidden lg:block">
+          <div className="hidden lg:scale-125 lg:block">
             <ProcessDiagram />
           </div>
         </div>
