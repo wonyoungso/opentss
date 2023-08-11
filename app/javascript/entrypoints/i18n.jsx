@@ -43,6 +43,12 @@ const resources = {
   },
   es: {
     translation: {
+      "Report": "Informe",
+      "Tenant": "Inquilino",
+      "You will get paid $50.": "Te pagarán $50.",
+      "Call to Action:": "Llamada a la acción:",
+      "We need your help!": "Necesitamos tu ayuda",
+      "Request Copy of Tenant Screening Report": "Solicitar copia del informe de selección de inquilinos",
       "have you ever been screened by...": "¿Le han examinado <br/> alguna vez...",
       "tenant screening services title": "<0>servicios</0><1> </1><2>de selección</2><3>de inquilinos?</3>",
       "title welcome": "OpenTSS: <br/> Contrarrestar la selección<br/> de inquilinos",

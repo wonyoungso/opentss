@@ -32,15 +32,11 @@ const Welcome = () => {
       <Hero />
 
       <div className="container mx-auto px-5">
-        <h2>
-          <Trans i18nKey="title welcome">
-            OpenTSS: <br/> 
-            Countering Tenant<br/> 
-            Screening
-          </Trans>
-        </h2>
 
         <div className="h-10"></div>
+
+
+        {/* Folder start  */}
         <motion.div viewport={{ once: true }} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{
           duration: 0.25,
           delay: 0.2
@@ -97,7 +93,11 @@ const Welcome = () => {
             </div>
           </div>
         </motion.div>
+        {/* Folder end  */}
+
         <div className="h-5"></div>
+
+        {/* Download Flyer start */}
         <motion.div viewport={{ once: true }} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{
           staggerChildren: 0.5
         }} className="lg:grid lg:grid-cols-6 lg:gap-5 py-5 items-start">
@@ -124,83 +124,10 @@ const Welcome = () => {
             </motion.button>
             
           </motion.div>
-          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="">
-            { t("About") }
-          </motion.div>
-          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="col-span-4 text-4xl">
-            <Trans i18nKey="about title">
-              <span className="font-bold">We are collecting tenant screening reports</span> to reveal the patterns of tenant screening services’ inner algorithms, data structures, and representations.
-            </Trans>
-          </motion.div>
-          <div>
-
-          </div>
-          <div>
-
-          </div>
-
-          <div className="pt-4 lg:pt-0 col-span-3">
-            <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="text-gray">
-              <Trans i18nKey="about desc para 1">
-                Tenant screening services utilize credit score databases, eviction records, and criminal records from third-party data brokers to produce reports that landlords use to inform their decisions about who to rent to. Many research and news articles have pointed out that tenant screening reports and their inner algorithm has the discriminatory and racialized impact, and there is no regulated structure for its algorithmic and modeling processes.
-              </Trans>
-            </motion.p> 
-
-            <motion.button whileTap={{ scale: 0.98 }} whileHover={{ scale: 1.01 }} transition={{
-                duration: 0.1
-                }} className="flex justify-center items-center gap-2 my-5 bg-yellow py-2 px-10 rounded-md font-bold text-black text-sm lg:text-lg" onClick={() => { navigate(`/${locale}/how-tss-works`)} }>
-              <Article fontSize="18" /> { t("See How Tenant Screening Works")}
-            </motion.button>
-
-            <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}  className="text-gray"> 
-              <Trans i18nKey="about desc para 2">
-                However, tenant screening services and their inner algorithms and data collection processes are proprietary, <span className="font-bold text-white">it is only possible to audit them externally.</span> The results of the project will be used to advocate for regulations on tenant screening services and to <span className="font-bold text-white">hold tenant screening algorithms accountable under fair housing principles.</span>
-              </Trans>
-            </motion.p>
-          </div>
-
         </motion.div>
-
-        <motion.div viewport={{ once: true }} transition={{
-          duration: 0.25,
-          delay: 0.2
-        }} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="lg:grid lg:grid-cols-6 lg:gap-5 py-5 items-start">
-
-          <div className="">
-            <Trans i18nKey="Crowdsourcing Tenant Screening Reports">
-              Crowdsourcing<br/>
-              Tenant Screening Reports  
-            </Trans>
-          </div>
-          <div className="col-span-4 text-4xl">
-            <Trans i18nKey="crowdsourcing title">
-              We are looking for <span className="font-bold">tenants who were screened by tenant screening services.</span> <span className="font-bold underline decoration-1">Both accepted and denied tenants</span> are eligible to participate.
-            </Trans>
-          </div>
-          <div>
-
-          </div>
-          <div>
-
-          </div>
-
-          <div className="pt-4 lg:pt-0 col-span-3">
-            <p className="text-gray">
-
-              <Trans i18nKey="crowdsourcing desc">
-                <span className="font-bold text-white">Both denied *and* accepted tenants</span> are encouraged to participate! This research hope to study a valuable opportunity to compare the conditions under which tenant screening services algorithmically recommend and to landlords make their final decisions.
-              </Trans>
-            </p> 
-
-            <motion.button whileTap={{ scale: 0.98 }} whileHover={{ scale: 1.01 }} transition={{
-                duration: 0.1
-                }}  className="flex justify-center items-center gap-2 my-5 bg-yellow py-2 px-10 rounded-md font-bold text-black text-sm lg:text-lg" onClick={() => { navigate(`/${locale}/submissions`)} }>
-              <Favorite fontSize="18" /> { t("Donate Tenant Screening Report") }
-            </motion.button>
-          </div>
-
-        </motion.div>
-
+        {/* Download Flyer end */}
+        
+        {/* Participate start */}
         <motion.div viewport={{ once: true }} transition={{
           duration: 0.25,
           delay: 0.2
@@ -237,7 +164,9 @@ const Welcome = () => {
           </div>
 
         </motion.div>
-
+        {/* Participate end */}
+        
+        {/* Request copy start */}
         <motion.div viewport={{ once: true }} transition={{
           duration: 0.25,
           delay: 0.2
@@ -274,7 +203,52 @@ const Welcome = () => {
           </div>
 
         </motion.div>
+        {/* Request copy end */}
 
+
+        {/* About start */}
+        <motion.div viewport={{ once: true }} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{
+          staggerChildren: 0.5
+        }} className="lg:grid lg:grid-cols-6 lg:gap-5 py-5 items-start">
+          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="">
+            { t("About") }
+          </motion.div>
+          <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="col-span-4 text-4xl">
+            <Trans i18nKey="about title">
+              <span className="font-bold">We are collecting tenant screening reports</span> to reveal the patterns of tenant screening services’ inner algorithms, data structures, and representations.
+            </Trans>
+          </motion.div>
+          <div>
+
+          </div>
+          <div>
+
+          </div>
+
+          <div className="pt-4 lg:pt-0 col-span-3">
+            <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="text-gray">
+              <Trans i18nKey="about desc para 1">
+                Tenant screening services utilize credit score databases, eviction records, and criminal records from third-party data brokers to produce reports that landlords use to inform their decisions about who to rent to. Many research and news articles have pointed out that tenant screening reports and their inner algorithm has the discriminatory and racialized impact, and there is no regulated structure for its algorithmic and modeling processes.
+              </Trans>
+            </motion.p> 
+
+            <motion.button whileTap={{ scale: 0.98 }} whileHover={{ scale: 1.01 }} transition={{
+                duration: 0.1
+                }} className="flex justify-center items-center gap-2 my-5 bg-yellow py-2 px-10 rounded-md font-bold text-black text-sm lg:text-lg" onClick={() => { navigate(`/${locale}/how-tss-works`)} }>
+              <Article fontSize="18" /> { t("See How Tenant Screening Works")}
+            </motion.button>
+
+            <motion.p initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}  className="text-gray"> 
+              <Trans i18nKey="about desc para 2">
+                However, tenant screening services and their inner algorithms and data collection processes are proprietary, <span className="font-bold text-white">it is only possible to audit them externally.</span> The results of the project will be used to advocate for regulations on tenant screening services and to <span className="font-bold text-white">hold tenant screening algorithms accountable under fair housing principles.</span>
+              </Trans>
+            </motion.p>
+          </div>
+
+        </motion.div>
+        {/* About end  */}
+
+        {/* FAQ start */}
         <motion.div viewport={{ once: true }} transition={{
           duration: 0.25,
           delay: 0.2
@@ -324,7 +298,7 @@ const Welcome = () => {
           </div>
 
         </motion.div>
-
+        {/* FAQ end */}
 
 
       </div>
