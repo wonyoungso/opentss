@@ -36,6 +36,9 @@ module.exports = {
       'sans': ["Sohne", "sans-serif"],
     },
     extend: {
+      transitionDuration: {
+        '2000': '2000ms',
+      }
     },
   },
   corePlugins: {
