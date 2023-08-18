@@ -125,7 +125,9 @@ export default function Hero(){
               }} className="flex justify-center items-center gap-2  my-0.5 bg-yellow py-2 px-10 rounded-md font-bold text-black text-sm lg:text-lg" onClick={() => { navigate(`/${locale}/submissions`)} }>
               <Favorite fontSize="18" /> { t("Donate Tenant Screening Report") }
             </motion.button>
-
+            <p className="font-bold text-yellow">
+            { t("You will get paid $50.") } 
+            </p>
             <p className="pt-5 lg:pr-36">
               {
                 locale === "es" ? 
