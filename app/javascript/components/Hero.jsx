@@ -154,7 +154,7 @@ export default function Hero(){
                 return (
                   <div   
   
-                    className="absolute transition-opacity duration-1000" style={{ width: "calc(100% - 40px)", opacity: idx === imageIdx ? 100 : 0 }} key={heroImage.id}>
+                    className="absolute transition-opacity w-[calc(100%-40px)] lg:w-[400px] duration-1000" style={{opacity: idx === imageIdx ? 100 : 0 }} key={heroImage.id}>
                     <div>
                       <img src={heroImage.img_url} alt="tss images" className="rounded-2xl" />
                     </div>
