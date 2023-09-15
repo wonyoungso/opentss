@@ -216,7 +216,7 @@ const ProcessDiagram = (props) => {
       </g>
       <defs>
         <filter id="filter0_d_407_76" x="431.049" y="124.049" width="54.8516" height="61.6758" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
-        <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+        <feFlood floodOpacity="0" result="BackgroundImageFix"/>
         <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
         <feOffset dx="1.5" dy="1.5"/>
         <feComposite in2="hardAlpha" operator="out"/>
@@ -225,7 +225,7 @@ const ProcessDiagram = (props) => {
         <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_407_76" result="shape"/>
         </filter>
         <filter id="filter1_d_407_76" x="218" y="246" width="56.5" height="32.5" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
-        <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+        <feFlood floodOpacity="0" result="BackgroundImageFix"/>
         <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
         <feOffset dx="1.5" dy="1.5"/>
         <feComposite in2="hardAlpha" operator="out"/>

@@ -11,7 +11,7 @@ import transunion_01 from "../assets/transunion_01.png";
 import tenantreports_scorecard from "../assets/scorecard.png";
 import ntn_score from "../assets/ntn_score.png"
 import { motion } from "framer-motion";
-import { Article, Favorite, SettingsPhone } from "@mui/icons-material";
+import { Article, Favorite, SettingsPhone, DateRange } from "@mui/icons-material";
 import ProcessDiagram from "./ProcessDiagram";
 import ProcessDiagramMobile from "./ProcessDiagramMobile";
 
@@ -128,6 +128,13 @@ export default function Hero(){
             <p className="font-bold text-yellow">
             { t("You will get paid $50.") } 
             </p>
+
+            <div className="pt-4"></div>
+            <motion.button whileTap={{ scale: 0.98 }} whileHover={{ scale: 1.01 }} transition={{
+              duration: 0.1
+              }} className="flex justify-center items-center gap-2  my-0.5 bg-yellow py-2 px-10 rounded-md font-bold text-black text-sm lg:text-lg" onClick={() => { location.href="https://calendly.com/wonyoungso/opentss-tutorial?month=2023-09" } }>
+              <DateRange fontSize="18" /> { t("Schedule a tutorial session") }
+            </motion.button>
             <p className="pt-5 lg:pr-36">
               {
                 locale === "es" ? 
@@ -147,7 +154,7 @@ export default function Hero(){
                 return (
                   <div   
   
-                    className="absolute transition-opacity duration-1000" style={{transform: `rotate(${heroImage.rotation}deg)`, width: heroImage.width, opacity: idx === imageIdx ? 100 : 0 }} key={heroImage.id}>
+                    className="absolute transition-opacity duration-1000" style={{ width: "calc(100% - 40px)", opacity: idx === imageIdx ? 100 : 0 }} key={heroImage.id}>
                     <div>
                       <img src={heroImage.img_url} alt="tss images" className="rounded-2xl" />
                     </div>
@@ -213,7 +220,7 @@ export default function Hero(){
         </div>
 
         <div className="py-5 flex justify-center">
-          <div className="pt-5 scale-110 lg:hidden">
+          <div className="pt-5 lg:hidden">
             <ProcessDiagramMobile />
           </div>
           <div className="hidden lg:scale-125 lg:block">
