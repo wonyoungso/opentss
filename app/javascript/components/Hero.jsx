@@ -132,8 +132,19 @@ export default function Hero(){
             <div className="pt-4"></div>
             <motion.button whileTap={{ scale: 0.98 }} whileHover={{ scale: 1.01 }} transition={{
               duration: 0.1
-              }} className="flex justify-center items-center gap-2  my-0.5 bg-yellow py-2 px-10 rounded-md font-bold text-black text-sm lg:text-lg" onClick={() => { location.href="https://calendly.com/wonyoungso/opentss-tutorial?month=2023-09" } }>
+              }} className="flex justify-center items-center gap-2  my-0.5 bg-yellow py-2 px-10 rounded-md font-bold text-black text-sm lg:text-lg" onClick={() => { 
+                window.open('https://calendly.com/wonyoungso/opentss-tutorial', '_blank');
+              } }>
               <DateRange fontSize="18" /> { t("Schedule a tutorial session") }
+            </motion.button>
+            <div className="pt-2"></div>
+            <motion.button whileTap={{ scale: 0.98 }} whileHover={{ scale: 1.01 }} transition={{
+              duration: 0.1
+              }} className="flex justify-center items-center gap-2  my-0.5 bg-yellow py-2 px-10 rounded-md font-bold text-black text-sm lg:text-lg" onClick={() => {  
+
+                window.open("https://chat.whatsapp.com/In9rjwpBFEX0INTVbTGB8O", '_blank');
+              } }>
+              <DateRange fontSize="18" /> { t("Join Whatsapp Group") }
             </motion.button>
             <p className="pt-5 lg:pr-36">
               {
