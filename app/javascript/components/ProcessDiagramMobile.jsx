@@ -159,15 +159,15 @@ const ProcessDiagramMobile = (props) => {
 
       <g id="step_4_balloon" className="transition-opacity duration-500 delay-200" style={{ opacity: step === 4 ? 1 : 0 }}>
         <path id="Rectangle 7_4" d="M72 293.5H262C264.485 293.5 266.5 295.515 266.5 298V340C266.5 342.485 264.485 344.5 262 344.5H173.391H167H160.609H72C69.5147 344.5 67.5 342.485 67.5 340V298C67.5 295.515 69.5147 293.5 72 293.5Z" fill="white" stroke="white"/>
-        <text id="Step 4. We email you the $50 gift card." fill="#2C2E38" fontFamily="Sohne" fontSize="18" letterSpacing="0em">
+        <text id="Step 4. We email you the $100 gift card." fill="#2C2E38" fontFamily="Sohne" fontSize="18" letterSpacing="0em">
           {
             locale === "es" ? 
             <>
               <tspan x="76.0225" y="313.642">Paso 4. Te enviamos por correo</tspan>
-              <tspan x="76.0225" y="331.642">electrónico la tarjeta regalo de $50</tspan>  
+              <tspan x="76.0225" y="331.642">electrónico la tarjeta regalo de $100</tspan>  
             </> :
             <>
-              <tspan x="76.0225" y="313.642">Step 4. We email you the $50 </tspan>
+              <tspan x="76.0225" y="313.642">Step 4. We email you the $100 </tspan>
               <tspan x="76.0225" y="331.642">gift card.</tspan>  
             </>
           }
@@ -200,7 +200,7 @@ const ProcessDiagramMobile = (props) => {
             <path id="path17" d="M137.687 252.158L134.037 252.158L134 252.334C136.847 253.057 138.732 254.8 139.507 256.894L138.713 252.89C138.583 252.334 138.181 252.176 137.687 252.158Z" fill="white"/>
           </g>
         </g>
-        <text id="$50" transform="translate(115 236)" fill="white" fontFamily="Sohne" fontSize="14" letterSpacing="0em"><tspan x="0" y="12.336">$50</tspan></text>
+        <text id="$100" transform="translate(115 236)" fill="white" fontFamily="Sohne" fontSize="14" letterSpacing="0em"><tspan x="0" y="12.336">$100</tspan></text>
       </g>
 
     

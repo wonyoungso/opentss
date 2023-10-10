@@ -126,7 +126,7 @@ export default function Hero(){
               <Favorite fontSize="18" /> { t("Donate Tenant Screening Report") }
             </motion.button>
             <p className="font-bold text-yellow">
-            { t("You will get paid $50.") } 
+            { t("You will get paid $100.") } 
             </p>
 
             <div className="pt-4"></div>
@@ -180,13 +180,13 @@ export default function Hero(){
               Done tanto su rechazados <br className="hidden lg:inline" />
               y aceptados informes <br className="hidden lg:inline" />
               de selección de inquilinos <br className="hidden lg:inline" />
-              y <span className="text-yellow">le pagamos $50</span>
+              y <span className="text-yellow">le pagamos $100</span>
             </> :
             <>
               Donate both your <br className="hidden lg:inline" />
               denied and accepted <br className="hidden lg:inline" />
               tenants screening reports <br className="hidden lg:inline" />
-              and <span className="text-yellow">get paid $50</span>
+              and <span className="text-yellow">get paid $100</span>
             </>
           }
 
@@ -201,7 +201,7 @@ export default function Hero(){
           <Favorite fontSize="18" /> { t("Donate Tenant Screening Report") }
         </motion.button>
         <p className="font-bold text-yellow">
-        { t("You will get paid $50.") } 
+        { t("You will get paid $100.") } 
         </p>
 
         <div className="pt-16 text-2xl font-bold lg:text-4xl">
