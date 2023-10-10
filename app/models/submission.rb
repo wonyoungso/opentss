@@ -149,7 +149,7 @@ class Submission < ApplicationRecord
       },
       rewards: [{
         value: {
-          denomination: 50,
+          denomination: 100,
           currency_code: 'USD'
         },
         campaign_id: campaign_id,

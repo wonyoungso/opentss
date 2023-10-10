@@ -86,7 +86,7 @@ const Welcome = () => {
               
             </div>
             <div className="col-span-2 text-white-op-50 pt-2 lg:pt-0 leading-5 lg:leading-6">
-              { t("Donate your report for our research. We will compensate $50 for your contribution.") }
+              { t("Donate your report for our research. We will compensate $100 for your contribution.") }
             </div>
             <div className="col-span-2 pt-3 lg:pt-1">
               <img src={arrow_right} alt="right arrow" className="lg:block lg:ml-auto" />

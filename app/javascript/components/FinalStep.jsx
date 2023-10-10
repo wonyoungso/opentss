@@ -344,7 +344,7 @@ const FinalStep = () => {
               </div>
 
               <div className="py-3">
-                <span className="font-bold">What's next?</span> You will be receiving a $50 Visa gift card via email. Please anticipate its arrival in your inbox within 7 days. Kindly note that we review each submission individually, and in the event that your tenant screening report is illegible due to a blurry photograph, we may request that you re-upload the report for clarity.
+                <span className="font-bold">What's next?</span> You will be receiving a $100 Visa gift card via email. Please anticipate its arrival in your inbox within 7 days. Kindly note that we review each submission individually, and in the event that your tenant screening report is illegible due to a blurry photograph, we may request that you re-upload the report for clarity.
                 <br/><br/>
                 Once we have confirmed the submission is valid, we will promptly send the gift card to your email address ({displayEmail}). Within the gift card email, you will have the option to choose between receiving a digital gift card or a physical one. 
               </div>

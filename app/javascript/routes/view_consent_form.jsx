@@ -164,7 +164,7 @@ const ViewConsentForm = () => {
             <Trans i18nKey="consent.payment">
               <p className="mb-5 text-white-op-70">
                 <span className="font-bold text-dark-blue">PAYMENT FOR PARTICIPATION</span><br/>
-                Every tenant who participates in the crowdsourcing tool and submits a tenant screening report will be compensated $50. Tenants who are interviewed will be compensated $25. Compensation will be paid out via Visa gift cards.
+                Every tenant who participates in the crowdsourcing tool and submits a tenant screening report will be compensated $100. Tenants who are interviewed will be compensated $25. Compensation will be paid out via Visa gift cards.
               </p>
             </Trans>
 

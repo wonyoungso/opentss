@@ -45,7 +45,7 @@ const resources = {
     translation: {
       "Report": "Informe",
       "Tenant": "Inquilino",
-      "You will get paid $50.": "Te pagarán $50.",
+      "You will get paid $100.": "Te pagarán $100.",
       "Call to Action:": "Llamada a la acción:",
       "We need your help!": "Necesitamos tu ayuda",
       "Request Copy of Tenant Screening Report": "Solicitar copia del informe de selección de inquilinos",
@@ -65,7 +65,7 @@ const resources = {
       "step 2": "Paso 2. Solicite una copia de su <1>informe de selección de inquilinos</1>",
       "We provide a tool to facilitate the straightforward process of requesting a copy of your tenant screening report.": "Ponemos a su disposición una herramienta que le facilitará el sencillo proceso de solicitar una copia de su informe de selección de inquilinos.",
       "step 3": "Paso 3. Done su informe <1>de selección de inquilinos</1> para investigación",
-      "Donate your report for our research. We will compensate $50 for your contribution.": "Done su informe para nuestra investigación. Le compensaremos con 50 dólares por su contribución.",
+      "Donate your report for our research. We will compensate $100 for your contribution.": "Done su informe para nuestra investigación. Le compensaremos con 50 dólares por su contribución.",
       "About": "Acerca de",
       "about title": "<0>Estamos recopilando informes de selección de inquilinos para desvelar los patrones</0> de los algoritmos internos, las estructuras de datos y las representaciones de los servicios de selección de inquilinos.",
       "about desc para 1": "Los servicios de selección de inquilinos utilizan bases de datos de puntuación crediticia, registros de desahucios y antecedentes penales de intermediarios de datos externos para elaborar informes que los propietarios utilizan para decidir a quién alquilan. Numerosas investigaciones y artículos de prensa han señalado que los informes de selección de inquilinos y su algoritmo interno tienen un impacto discriminatorio y racializado, y que no existe una estructura regulada para sus procesos algorítmicos y de modelización.",
@@ -226,7 +226,7 @@ const resources = {
 
       // submissions
       "Donate Tenant Screening Report": "Donar el informe de selección de inquilinos",
-      "Donate your tenant screening report securely, and get a $50 gift card.": "Done su informe de selección de inquilinos de forma segura y reciba una tarjeta regalo de 50 $.",
+      "Donate your tenant screening report securely, and get a $100 gift card.": "Done su informe de selección de inquilinos de forma segura y reciba una tarjeta regalo de 100 $.",
       "Start Here!": "Comience aquí!",
       "By collecting these denied reports from tenants, this project hopes to better understand the patterns of denying tenants based on such algorithms and expose the discriminatory impact of employing tenant screening services.": "Mediante la recopilación de estos informes denegados de los inquilinos, este proyecto espera comprender mejor las pautas de denegación de inquilinos basadas en dichos algoritmos y exponer el impacto discriminatorio del empleo de servicios de selección de inquilinos.",
       "In this submission, you will provide your copy of tenant screening reports, and we will additionally ask you about you and the rental property you applied for, such as your age, gender, race, income, zip code, number of children, and rent and property types, among others.": "En esta presentación, usted proporcionará su copia de los informes de selección de inquilinos, y además le preguntaremos sobre usted y la propiedad de alquiler que solicitó, como su edad, sexo, raza, ingresos, código postal, número de hijos, y alquiler y tipos de propiedad, entre otros.",
@@ -237,7 +237,7 @@ const resources = {
       "submissions.copy_desc_02": "<0>Tiene derecho a solicitar su copia del informe a los servicios de selección de inquilinos,</0> en la mayoría de los casos de forma gratuita (en cada periodo de 12 meses o cuando se le haya denegado y lo solicite en un plazo de 60 días). Le proporcionamos una herramienta para que pueda solicitar fácilmente su copia del informe. Con ella, puede enviar la carta a los servicios de selección de inquilinos.",
       "If you have your copy of tenant screening report, please make sure you have the following:": "Si tiene su copia del informe de selección de inquilinos, asegúrese de que tiene lo siguiente:",
       "submissions.submit_desc_01": "Asegúrese de tener listos los archivos digitales (por ejemplo, PDF, JPG, PNG) del informe de selección de inquilinos. <1>Escanee o haga fotos del informe de selección de inquilinos si lo tiene en papel. Compruebe que los informes son legibles.</1>",
-      "submissions.submit_desc_02": "Asegúrese de tener una dirección de correo electrónico. <1>Es para recibir tu compensación. Cuando comprobemos que el envío es válido, le enviaremos una tarjeta electrónica de regalo (50 $) a su dirección de correo electrónico.</1>",
+      "submissions.submit_desc_02": "Asegúrese de tener una dirección de correo electrónico. <1>Es para recibir tu compensación. Cuando comprobemos que el envío es válido, le enviaremos una tarjeta electrónica de regalo (100 $) a su dirección de correo electrónico.</1>",
       "submissions.submit_desc_03": "Además, le haremos algunas preguntas sobre usted, como su edad, sexo, raza, ingresos, código postal, número de hijos y las condiciones de la vivienda de alquiler que solicitó, como el alquiler, el número de habitaciones y la escala de propietarios (número de unidades). <1>Toda la información que nos envíe será encriptada, de modo que sólo nosotros podamos verla. Además, eliminaremos su información sensible del informe.</1>",
       "submissions.submit_desc_04": "<0>¿Qué hará OpenTSS con mis datos?</0><1>En primer lugar, nos interesa conocer el impacto discriminatorio de las prácticas de selección de inquilinos por grupos protegidos (por ejemplo, raza, sexo, fuente de ingresos).</1><2>Analizaremos los datos de selección de inquilinos para ver si existe algún impacto discriminatorio por motivos de raza, sexo, situación familiar o fuente de ingresos, y también analizaremos los mecanismos de puntuación o los procesos de toma de decisiones. Publicaremos los resultados en este sitio web de forma agregada.</2><3>También nos interesa el impacto de la recomendación algorítmica realizada por los servicios de selección de inquilinos en la toma de decisiones de los propietarios.</3><4>Esperamos medir el impacto discriminatorio del sistema de puntuación algorítmica en las prácticas de selección de inquilinos.</4><5></5><6>¿Cómo protegerán mis datos?</6><7>Usted envía su informe mediante cifrado de extremo a extremo. Eliminaremos toda la información identificable y la guardaremos en un almacenamiento cifrado y seguro.</7><8>Sólo nos interesan los datos de sus informes de selección de inquilinos, no su nombre, su SSN ni su dirección. Después de enviar su informe, eliminaremos sus datos identificativos del informe y los almacenaremos en nuestro servidor. Le pediremos información demográfica adicional para poder analizar el informe de selección de inquilinos con mayor precisión, para determinar cómo las empresas de selección de inquilinos tratan de forma diferente los distintos perfiles. El informe y los datos se transferirán con un cifrado de extremo a extremo y se almacenarán en nuestro servidor. Los datos sólo se utilizarán para analizar los algoritmos de selección de inquilinos. No se transmitirán a terceros ni se venderán.</8><9></9><10>¿Puedo donar varios informes de selección de inquilinos?</10><11>Lamentablemente, no. Compensamos por persona.</11>",
       
@@ -319,7 +319,7 @@ const resources = {
       "consent.payment": `
         <0> 
           <0>PAGO POR PARTICIPAR</0><1></1>
-          Cada inquilino que participe en la herramienta de crowdsourcing y envíe un informe de selección de inquilinos recibirá una compensación de 50 $. Los inquilinos entrevistados recibirán una compensación de 25 dólares. Las compensaciones se abonarán mediante tarjetas regalo Visa.
+          Cada inquilino que participe en la herramienta de crowdsourcing y envíe un informe de selección de inquilinos recibirá una compensación de 100 $. Los inquilinos entrevistados recibirán una compensación de 25 dólares. Las compensaciones se abonarán mediante tarjetas regalo Visa.
         </0>
       `,
       "consent.privacy": `
@@ -487,7 +487,7 @@ const resources = {
           <0>Confirme su dirección de correo electrónico:</0> Hemos recibido y procesado su informe de selección de inquilinos. Mientras tanto, le rogamos que confirme su dirección de correo electrónico a través del mensaje que acabamos de enviarle.
         </0>
         <1>
-          <0>¿Y ahora qué?</0> Recibirás una tarjeta regalo Visa de 50 $ por correo electrónico. Please anticipate its arrival in your inbox within 7 days. Kindly note that we review each submission individually, and in the event that your tenant screening report is illegible due to a blurry photograph, we may request that you re-upload the report for clarity.
+          <0>¿Y ahora qué?</0> Recibirás una tarjeta regalo Visa de 100 $ por correo electrónico. Please anticipate its arrival in your inbox within 7 days. Kindly note that we review each submission individually, and in the event that your tenant screening report is illegible due to a blurry photograph, we may request that you re-upload the report for clarity.
           <br/><br/>
           Una vez que hayamos confirmado que la solicitud es válida, le enviaremos la tarjeta regalo a su dirección de correo electrónico ({{displayEmail}}). Dentro del correo electrónico de la tarjeta regalo, tendrá la opción de elegir entre recibir una tarjeta regalo digital o una física.
         </1>
