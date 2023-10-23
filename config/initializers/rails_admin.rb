@@ -74,6 +74,10 @@ RailsAdmin.config do |config|
     edit do 
       field :reports
       field :status
+
+      configure :reports do
+        hide
+      end
     end
 
     show do 
