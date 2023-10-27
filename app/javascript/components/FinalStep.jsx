@@ -188,6 +188,9 @@ const FinalStep = () => {
                 </FormControl>
               </div>
             
+              <div className="py-2">
+                <p className="text-red font-bold">By clicking "Done," you acknowledge that your submission contains real and factual information, that the tenant screening report is not an adverse action letter, and that the tenant screening report is not fabricated. You are also informed that you will not receive a reward if you submit a fabricated report.</p>
+              </div>
 
               <div className="h-48"></div>
 
@@ -283,6 +286,12 @@ const FinalStep = () => {
                     }
                   </FormHelperText>
                 </FormControl>
+              </div>
+
+
+
+              <div className="py-2">
+                <p className="text-red font-bold">By clicking "Done," you acknowledge that your submission contains real and factual information, that the tenant screening report is not an adverse action letter, and that the tenant screening report is not fabricated. You are also informed that you will not receive a reward if you submit a fabricated report.</p>
               </div>
               {
                 submissionErrors ?
