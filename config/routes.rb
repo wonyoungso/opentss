@@ -2,15 +2,15 @@ require "ipaddr"
 class WhiteList
   def initialize
     @ip_ranges = [
-                   {
-                     start_ip: '18.0.0.0',
-                     end_ip:   '18.31.255.255'
-                   },
-                   {
-                     start_ip: '10.29.0.0',
-                      end_ip: '10.29.255.255'
-                   }
-                 ]
+      {
+        start_ip: '18.0.0.0',
+        end_ip:   '18.31.255.255'
+      },
+      {
+        start_ip: '10.29.0.0',
+        end_ip: '10.29.255.255'
+      }
+    ]
   end
 
   def matches?(request)
@@ -36,6 +36,9 @@ Rails.application.routes.draw do
 
   namespace :api do 
     get "/confirm-email/:token", to: "confirm_email#confirm", as: "confirm_email"
+    
+    resources :configurations 
+
     resources :submissions do 
       collection do 
         post "query_email"

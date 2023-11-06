@@ -101,7 +101,7 @@ const UploadReport = () => {
                 <span className="font-bold">If you have your physical report on you:</span> First, take photos of each page of the report. Then, upload all the photos here.
               </p>
               <p className="pt-3">
-                <span className="font-bold">If you have a PDF report that you received from the tenant screening company:</span> please attach the PDF file here. <span className="font-bold">DO NOT UPLOAD ADVERSE ACTION LETTER.</span>
+                <span className="font-bold">If you have a PDF report that you received from the tenant screening company:</span> please attach the PDF file here. <span className="font-bold text-red">Please check your document is not an adverse action letter. DO NOT UPLOAD ADVERSE ACTION LETTER. We'll review it to ensure it's a valid submission (e.g., not fabricated or a wrong document). We might request your identification for verification purposes. Please note that we may not grant a reward if there is any evidence of fabrication. </span>
               </p>
             </Trans>
             

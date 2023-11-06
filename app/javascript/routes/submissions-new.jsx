@@ -9,14 +9,16 @@ import ApplicationChars from "../components/ApplicationChars";
 import FinalStep from "../components/FinalStep";
 import { ArrowBack } from "@mui/icons-material";
 import { useTranslation, Trans } from "react-i18next";
-import { useNavigate, useParams } from "react-router-dom";
+import {useNavigate, useLoaderData, useParams, useSearchParams} from 'react-router-dom';
 
 const SubmissionsNew = () => {
 
   const { setMenuOpen, submissionStep } = useContext(store);
 
+  const { responseJson } = useLoaderData();
   const navigate = useNavigate();
   let { locale } = useParams();
+
   useEffect(() => {
     window.scrollTo(0, 0);
     document.title = "Submit Your Report | OpenTSS: Countering Tenant Screening";
@@ -47,24 +49,28 @@ const SubmissionsNew = () => {
   return (
     <>
       <Header bg="bright" mode="focus" />
-      {/* {
-        renderStep()
-      } */}
-      <div className="container mx-auto px-5">
-        <div className="lg:grid lg:grid-cols-6 lg:gap-5">
-          <div>
+      {
+        responseJson.publish_survey ?
 
-          <button onClick={goBack}><ArrowBack /> { t("Back") }</button><br/><br/>
-          </div>
-          <div className="lg:col-span-3">
-            <h2 className="font-bold text-4xl">
-              Stay Tuned for the Workshops!
-            </h2>
-            <div className="pt-3"></div>
-            We are sorry to inform you that we have closed down the report donation. But we will open the submission form in the workshops anticipated. Please stay tuned! 
+        renderStep() :
+        <div className="container mx-auto px-5">
+          <div className="lg:grid lg:grid-cols-6 lg:gap-5">
+            <div>
+
+            <button onClick={goBack}><ArrowBack /> { t("Back") }</button><br/><br/>
+            </div>
+            <div className="lg:col-span-3">
+              <h2 className="font-bold text-4xl">
+                Stay Tuned for the Workshops!
+              </h2>
+              <div className="pt-3"></div>
+              We are sorry to inform you that we have closed down the report donation. But we will open the submission form in the workshops anticipated. Please stay tuned! 
+            </div>
           </div>
         </div>
-      </div>
+      
+      }
+      
       
     </>
   );

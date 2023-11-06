@@ -189,7 +189,7 @@ const FinalStep = () => {
               </div>
             
               <div className="py-2">
-                <p className="text-red font-bold">By clicking "Done," you acknowledge that your submission contains real and factual information, that the tenant screening report is not an adverse action letter, and that the tenant screening report is not fabricated. You are also informed that you will not receive a reward if you submit a fabricated report.</p>
+                <p className="text-red font-bold">By clicking "Done," you acknowledge that your submission contains real and factual information, that the tenant screening report is not an adverse action letter, and that the tenant screening report is not fabricated. You are also informed that you will not receive a reward if you submit a fabricated report. We may request your identification for verification purposes. Please note that we may not grant a reward if there is any evidence of fabrication. </p>
               </div>
 
               <div className="h-48"></div>

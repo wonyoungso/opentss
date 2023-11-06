@@ -55,6 +55,10 @@ const SubmissionsNew = () => {
             <p className="mb-10">
               { t("In this submission, you will provide your copy of tenant screening reports, and we will additionally ask you about you and the rental property you applied for, such as your age, gender, race, income, zip code, number of children, and rent and property types, among others.") }
            </p>
+
+            <p className="mb-10">
+              <span className="font-bold">After your submission, we'll review it to ensure it's a valid submission (e.g., not fabricated or a wrong document). We might request your identification for verification purposes. Please note that we may not grant a reward if there is any evidence of fabrication.</span>
+            </p>
             <div className="pb-5"></div>
             <FormControl>
               <Button onClick={goToNextStep} size="lg">

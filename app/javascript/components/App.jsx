@@ -137,6 +137,11 @@ const router = createBrowserRouter([
   {
     path: "/:locale/submissions/new",
     element: <SubmissionsNew />,
+    loader: async ({ request, params }) => {
+      const response = await fetch(`/api/configurations.json`);
+      const responseJson = await response.json();
+      return { responseJson };
+    },
     errorElement: <ErrorPage />
   },
   {

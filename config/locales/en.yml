@@ -54,7 +54,7 @@ en:
       p_01: "Thank you very much! We have received and processed your tenant screening report. In the meantime, please confirm your email address."
       confirm_email: "Confirm email address"
       whats_next: "What's next?"
-      p_02: "You will be receiving a $100 Visa gift card via email. Please anticipate its arrival in your inbox within 7 days. Kindly note that we review each submission individually, and in the event that your tenant screening report is not valid (e.g., illegible due to a blurry photograph or uploading a wrong document), we may request that you re-upload the report."
+      p_02: "You will be receiving a $100 Visa gift card via email. Please anticipate its arrival in your inbox within 7 days. Kindly note that we review each submission individually. After your submission, we'll review it to ensure it's a valid submission (e.g., not fabricated or a wrong document). In the event that your tenant screening report is not valid (e.g., illegible due to a blurry photograph or uploading a wrong document), we may request that you re-upload the report. We might request your identification for verification purposes. Please note that we may not grant a reward if there is any evidence of fabrication."
       p_03: "Once we have confirmed the submission is valid, we will promptly send the gift card to your email address (%{email}). Within the gift card email, you will have the option to choose between receiving a digital gift card or a physical one."
       check_submission: "How can I check the status of my submission?"
       p_04: "To check the status of your submission, use the following"
