@@ -355,11 +355,13 @@ const FinalStep = () => {
               <div className="py-3">
                 <span className="font-bold">What's next?</span> You will be receiving a $100 Visa gift card via email. Please anticipate its arrival in your inbox within 7 days. Kindly note that we review each submission individually, and in the event that your tenant screening report is illegible due to a blurry photograph, we may request that you re-upload the report for clarity.
                 <br/><br/>
+                <span className="font-bold text-red">After your submission, we'll review it to ensure it's a valid submission (e.g., not fabricated or a wrong document). We may request that you re-upload the report. We might request your identification for verification purposes. Please note that we may not grant a reward if there is any evidence of fabrication. </span>
+                <br/><br/>
                 Once we have confirmed the submission is valid, we will promptly send the gift card to your email address ({displayEmail}). Within the gift card email, you will have the option to choose between receiving a digital gift card or a physical one. 
               </div>
 
               <div className="py-3">
-                <span className="font-bold">How can I check the status of my submission?</span> To check the status of your submission, use the following <Link to="/submissions/retrieve" className="underline">link</Link>. You will be prompted to enter your email address, and then we will send a secure link to retrieve the status of your submission.
+                <span className="font-bold">How can I check the status of my submission?</span> To check the status of your submission, use the following <Link to="/en/submissions/retrieve" className="underline">link</Link>. You will be prompted to enter your email address, and then we will send a secure link to retrieve the status of your submission.
               </div>
 
 
