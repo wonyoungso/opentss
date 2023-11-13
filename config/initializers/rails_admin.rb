@@ -73,6 +73,7 @@ RailsAdmin.config do |config|
     end
     edit do 
       field :reports
+      field :house_type
       field :status
     end
 
