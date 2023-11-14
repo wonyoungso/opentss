@@ -430,7 +430,7 @@ const ApplicationChars = () => {
                           <Radio color="neutral" value="single_family" label={ t("Detached Single Family Housing") } />
                           <Radio color="neutral" value="townhouse" label={ t("Townhouse") } />
                           <Radio color="neutral" value="multifamily" label={ t("Multifamily Housing") } />
-                          <Radio color="neutral" value="manufactured" label={ t("Manufactured Housing (i.e. Mobile Homes)") } />
+                          {/* <Radio color="neutral" value="manufactured" label={ t("Manufactured Housing (i.e. Mobile Homes)") } /> */}
                           <Radio color="neutral" value="other" label={ t("Other") } />
                         </RadioGroup>
                       )

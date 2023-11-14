@@ -71,12 +71,6 @@ RailsAdmin.config do |config|
       field :status
       field :reward_granted_at
     end
-    edit do 
-      field :reports
-      field :house_type
-      field :status
-    end
-
   end
 
   config.model 'Description' do 
