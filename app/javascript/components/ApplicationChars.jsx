@@ -690,7 +690,7 @@ const ApplicationChars = () => {
                     {
                       errors["experience_freeform"] ? 
                       <span className="text-red">{errors["experience_freeform"].message}</span> : 
-                      t("Optional.")
+                      t("Required.")
                     }
                   </FormHelperText>
                 </FormControl>
