@@ -178,12 +178,12 @@ export default function Hero(){
             }
           </div>
         </div>
-
+{/* 
         <div className="pt-16 text-2xl font-bold lg:text-4xl">
           <span className="text-yellow">{ t("Call to Action:") }</span><br/>
           { t("We need your help!") }
-        </div>
-        <div className="font-bold pt-5 text-5xl lg:text-7xl">
+        </div> */}
+        {/* <div className="font-bold pt-5 text-5xl lg:text-7xl">
           
           {
             locale === "es" ? 
@@ -213,8 +213,8 @@ export default function Hero(){
         </motion.button>
         <p className="font-bold text-yellow">
         { t("You will get paid $100.") } 
-        </p>
-
+        </p> */}
+{/* 
         <div className="pt-16 text-2xl font-bold lg:text-4xl">
           {
             locale === "es" ? 
@@ -237,7 +237,7 @@ export default function Hero(){
           <div className="hidden lg:scale-125 lg:block">
             <ProcessDiagram />
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   )

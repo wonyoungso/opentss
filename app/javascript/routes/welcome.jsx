@@ -73,7 +73,7 @@ const Welcome = () => {
             </div>
           </div>
         </motion.div>
-        <motion.div viewport={{ once: true }} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{
+        {/* <motion.div viewport={{ once: true }} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{
           duration: 0.25,
           delay: 0.4
         }} className="cursor-pointer border border-x-0 border-y-0 border-b transition-colors border-b-white-op-50 hover:bg-white-op-10">
@@ -92,7 +92,7 @@ const Welcome = () => {
               <img src={arrow_right} alt="right arrow" className="lg:block lg:ml-auto" />
             </div>
           </div>
-        </motion.div>
+        </motion.div> */}
         {/* Folder end  */}
 
         <div className="h-5"></div>
