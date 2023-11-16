@@ -35,7 +35,7 @@ const ApplicationChars = () => {
 
   const goBack = () => {
     window.scrollTo(0, 0);
-    console.log("press goback");
+    consolelog("press goback");
 
     // let security_deposit, minimum_rent;
 
@@ -682,9 +682,14 @@ const ApplicationChars = () => {
 
                 <FormControl>
                   <Textarea minRows={4} placeholder={ t("Type your experience...") } color={errors["experience_freeform"] ? "danger" : "primary"}
+               
                     {
-                      ...register("experience_freeform")
-                    } />
+                      ...register("experience_freeform",
+                        { required: {value: true, message: t("This field is required.")} }
+                      )
+                    }
+
+                    />
 
                   <FormHelperText>
                     {

@@ -128,7 +128,7 @@ const Welcome = () => {
         {/* Download Flyer end */}
         
         {/* Participate start */}
-        <motion.div viewport={{ once: true }} transition={{
+        {/* <motion.div viewport={{ once: true }} transition={{
           duration: 0.25,
           delay: 0.2
         }} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="lg:grid lg:grid-cols-6 lg:gap-5 py-5 items-start">
@@ -163,7 +163,7 @@ const Welcome = () => {
 
           </div>
 
-        </motion.div>
+        </motion.div> */}
         {/* Participate end */}
         
         {/* Request copy start */}

@@ -125,7 +125,7 @@ export default function Header(props) {
                     </Trans>
                   </Link>
                 </div>
-
+{/* 
                 <div className="mt-5">
                   <Link to={`/${locale}/submissions`} className="text-lg leading-none">
 
@@ -135,7 +135,7 @@ export default function Header(props) {
                     </Trans>
                   </Link>
                 </div>
-                
+                 */}
 
               </div>
               <div className="col-span-2 lg:col-span-3">
@@ -198,10 +198,10 @@ export default function Header(props) {
                   <Link to={`/${locale}/request-copy`} className="hidden lg:block">
                     { t("Request Copy") }
                   </Link>
-
+{/* 
                   <Link to={`/${locale}/submissions`} className="hidden lg:block">
                     { t("Donate Your Report") }
-                  </Link>
+                  </Link> */}
                 </>
               }
               
