@@ -120,14 +120,14 @@ export default function Hero(){
               <SettingsPhone fontSize="18" /> { t("Request Copy of Tenant Screening Report")}
             </motion.button>
             <div className="pt-2"></div>
-            <motion.button whileTap={{ scale: 0.98 }} whileHover={{ scale: 1.01 }} transition={{
+            {/* <motion.button whileTap={{ scale: 0.98 }} whileHover={{ scale: 1.01 }} transition={{
               duration: 0.1
               }} className="flex justify-center items-center gap-2  my-0.5 bg-yellow py-2 px-10 rounded-md font-bold text-black text-sm lg:text-lg" onClick={() => { navigate(`/${locale}/submissions`)} }>
               <Favorite fontSize="18" /> { t("Donate Tenant Screening Report") }
             </motion.button>
             <p className="font-bold text-yellow">
             { t("You will get paid $100.") } 
-            </p>
+            </p> */}
 
             <div className="pt-4"></div>
             <motion.button whileTap={{ scale: 0.98 }} whileHover={{ scale: 1.01 }} transition={{
