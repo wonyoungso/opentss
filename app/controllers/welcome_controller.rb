@@ -35,6 +35,13 @@ class WelcomeController < ApplicationController
 
   end
 
+  def screening_criteria
+    @title = "Screening Criteria: Will You Qualify? | OpenTSS: Countering Tenant Screening"
+    render layout: 'application', template: "welcome/index"
+  
+  end
+
+
 
 
   def admin_home

@@ -84,6 +84,7 @@ Rails.application.routes.draw do
     get "/request-copy/new", to: "welcome#request_copy_new", as: "request-copy-new"
     get "/request-copy/custom-form/:company_name", to: "welcome#request_result", as: "request-copy-custom"
     get "/request-copy/:type/:arg", to: "welcome#request_result", as: "request-copy-result"
+    get "/screening-criteria", to: "welcome#screening_criteria", as: "screening-criteria"
 
     get "/about", to: "welcome#about", as: "about"
 
@@ -95,5 +96,5 @@ Rails.application.routes.draw do
 
   root to: redirect("/#{I18n.default_locale}", status: 302), as: :root
   get '/*path', to: redirect("/#{I18n.default_locale}/%{path}"),
-    constraints: lambda { |req| req.path.exclude? 'rails/active_storage' and req.path.exclude? 'admin' }
+    constraints: lambda { |req| req.path.exclude? 'rails/active_storage' and req.path.exclude? 'admin' and req.path.exclude? "" }
 end

@@ -20,6 +20,7 @@ import ReuploadReport from "../routes/reupload-report";
 import Submissions from '../routes/submissions';
 import SubmissionsNew from "../routes/submissions-new";
 import ConfirmEmail from "../routes/confirm-email";
+import ScreeningCriteria from "../routes/screening-criteria";
 import About from '../routes/about';
 import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
 import ViewConsentForm from "../routes/view_consent_form";
@@ -164,6 +165,16 @@ const router = createBrowserRouter([
     element: <CompaniesShow />,
     loader: async ({ request, params }) => {
       const response = await fetch(`/api/companies/${params.id}.json`);
+      const response_json = await response.json();
+      return response_json;
+    },
+    errorElement: <ErrorPage />
+  },
+  {
+    path: "/:locale/screening-criteria",
+    element: <ScreeningCriteria />,
+    loader: async ({ request, params }) => {
+      const response = await fetch(`http://localhost:8080/api/screening_documents.json`);
       const response_json = await response.json();
       return response_json;
     },

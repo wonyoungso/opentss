@@ -20,6 +20,7 @@ module.exports = {
       'white-op-10': '#99999922',
       'white-op-30': '#99999955',
       'light-blue': '#DCE0F8',
+      'sat-blue': "#3632DC",
       'black': '#000000',
       'dark-blue': '#202B62',
       'dark-blue-op-20': '#202B6222',
@@ -29,7 +30,11 @@ module.exports = {
       'denied': '#FF7721',
       'bright-blue': '#EEF1FB',
       'gray': '#BBBBBB',
+      'dark-gray': '#888888',
+      'gray-border': 'rgba(0, 0, 0, 0.2)',
       'yellow': '#f8c330',
+      'accepted': 'rgba(88, 86, 234, 0.2)',
+      'denied': 'rgba(150, 150, 150, 0.2)',
       'very-dark-blue': '#000928'
     },
     fontFamily: {

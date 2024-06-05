@@ -137,6 +137,15 @@ export default function Header(props) {
                 </div>
                  */}
 
+                <div className="mt-5">
+                <Link to={`/${locale}/screening-criteria`} className="text-lg leading-none">
+
+                  <Trans i18nKey="Menu donate report">
+                    { t("Screening Criteria: Will You Qualify?") }
+                  </Trans>
+                </Link>
+              </div>
+
               </div>
               <div className="col-span-2 lg:col-span-3">
                 <div>     
@@ -202,6 +211,10 @@ export default function Header(props) {
                   <Link to={`/${locale}/submissions`} className="hidden lg:block">
                     { t("Donate Your Report") }
                   </Link> */}
+
+                  <Link to={`/${locale}/screening-criteria`} className="hidden lg:block">
+                    { t("Screening Criteria: Will You Qualify?") }
+                  </Link> 
                 </>
               }
               

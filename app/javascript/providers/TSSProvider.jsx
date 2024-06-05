@@ -1,11 +1,13 @@
 import React, {createContext, useReducer} from 'react';
 import defaultSubmission from "./default_submission";
+import defaultCriteria from "./default_criteria";
 
 const initialState = {
   windowWidth: 1024,
   windowHeight: 768,
   submissionStep: 1,
   submission: defaultSubmission,
+  criteria: defaultCriteria,
   menuOpen: false,
   revisitedSubmission: {
     1: false,
@@ -22,6 +24,8 @@ const actions = {
   SET_MENU_OPEN: "SET_MENU_OPEN",
   SET_SUBMISSION_STEP: "SET_SUBMISSION_STEP",
   SET_SUBMISSION: "SET_SUBMISSION",
+  SET_CRITERIA: "SET_CRITERIA",
+  RESET_CRITERIA: "RESET_CRITERIA",
   SET_REVISITED_SUBMISSION: "SET_REVISITED_SUBMISSSION",
   RESET_SUBMISSION: "RESET_SUBMISSION",
   SET_HEADER_MODE: "SET_HEADER_MODE"
@@ -46,6 +50,16 @@ const reducer = (state, action) => {
         ...state,
         submissionStep: action.submissionStep
       }
+    case actions.SET_CRITERIA:
+      return {
+        ...state,
+        criteria: action.criteria
+      }
+    case actions.RESET_CRITERIA:
+      return {
+        ...state,
+        criteria: {...defaultCriteria},
+      }
     case actions.SET_SUBMISSION:
       return {
         ...state,
@@ -56,6 +70,7 @@ const reducer = (state, action) => {
         ...state,
         revisitedSubmission: action.revisitedSubmission
       }
+    
     case actions.RESET_SUBMISSION:
       return {
         ...state,
@@ -90,6 +105,7 @@ const TSSProvider = ({ children }) => {
     menuOpen: state.menuOpen,
     submission: state.submission,
     submissionStep: state.submissionStep,
+    criteria: state.criteria,
     revisitedSubmission: state.revisitedSubmission,
     headerMode: state.headerMode,
     setWindowDimension: (value) => {
@@ -109,6 +125,18 @@ const TSSProvider = ({ children }) => {
       dispatch({
         type: actions.SET_SUBMISSION_STEP,
         submissionStep: submissionStep
+      })
+    },
+    setCriteria: (criteria) => {
+      dispatch({
+        type: actions.SET_CRITERIA,
+        criteria: criteria
+      })
+    },
+
+    resetCriteria: () => {
+      dispatch({
+        type: actions.RESET_CRITERIA
       })
     },
     setSubmission: (submission) => {
