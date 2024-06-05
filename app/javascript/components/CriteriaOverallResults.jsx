@@ -1,6 +1,7 @@
 import * as React from "react";
-import { useContext, useEffect, useState, Fragment } from "react";
+import { useContext, useEffect, useState, useRef } from "react";
 import _ from 'lodash';
+import { store } from "../providers/TSSProvider";
 import ScreeningDocument from "./ScreeningDocument";
 import RentToIncomeRatioCriterion from "./RentToIncomeRatioCriterion";
 import RentToNetIncomeRatioCriterion from "./RentToNetIncomeRatioCriterion";
@@ -198,9 +199,10 @@ const calculateOverallPerc = (criteria, screening_documents) => {
 
  
 const CriteriaOverallResults = (props) => {
-
-  const [selectedScreeningDocument, setSelectedScreeningDocument] = useState(null);
   const [popupPosition, setPopupPosition] = useState({ x: 0, y: 0 });
+
+  const {selectedScreeningDocument, setSelectedScreeningDocument } = useContext(store);
+
 
   const { acceptanceRate, processedScreeningDocuments } = calculateOverallPerc(props.criteria, props.screening_documents)
     

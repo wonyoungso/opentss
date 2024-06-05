@@ -25,7 +25,7 @@ const ScreeningCriteria = () => {
 
   const containerRef = useRef(null);
   const spring = useSpring(0, { damping: 300, stiffness: 200 });
-  const { setMenuOpen, setCriteria, resetCriteria, criteria } = useContext(store);
+  const { setMenuOpen, setCriteria, criteria, setSelectedScreeningDocument } = useContext(store);
   const { screening_documents } = useLoaderData();
   let [visibleResult, setVisibleResult] = useState(false);
 
@@ -83,7 +83,7 @@ const ScreeningCriteria = () => {
 
     setVisibleResult(true);
     reset();
-
+    setSelectedScreeningDocument(null);
     _.delay(() => {
       window.scrollTo(0, document.getElementById("scroll").offsetTop - 50)
     }, 400)
@@ -106,6 +106,7 @@ const ScreeningCriteria = () => {
     setVisibleResult(true);
     reset();
 
+    setSelectedScreeningDocument(null);
     
     _.delay(() => {
       window.scrollTo(0, document.getElementById("scroll").offsetTop - 50)

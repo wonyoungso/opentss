@@ -16,7 +16,8 @@ const initialState = {
     4: false,
     5: false
   },
-  headerMode: "normal"
+  headerMode: "normal",
+  selectedScreeningDocument: null
 }
 
 const actions = {
@@ -25,6 +26,7 @@ const actions = {
   SET_SUBMISSION_STEP: "SET_SUBMISSION_STEP",
   SET_SUBMISSION: "SET_SUBMISSION",
   SET_CRITERIA: "SET_CRITERIA",
+  SET_SELECTED_SCREENING_DOCUMENT: "SET_SELECTED_SCREENING_DOCUMENT",
   RESET_CRITERIA: "RESET_CRITERIA",
   SET_REVISITED_SUBMISSION: "SET_REVISITED_SUBMISSSION",
   RESET_SUBMISSION: "RESET_SUBMISSION",
@@ -49,6 +51,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         submissionStep: action.submissionStep
+      }
+    case actions.SET_SELECTED_SCREENING_DOCUMENT:
+      return {
+        ...state,
+        selectedScreeningDocument: action.selectedScreeningDocument
       }
     case actions.SET_CRITERIA:
       return {
@@ -106,6 +113,7 @@ const TSSProvider = ({ children }) => {
     submission: state.submission,
     submissionStep: state.submissionStep,
     criteria: state.criteria,
+    selectedScreeningDocument: state.selectedScreeningDocument,
     revisitedSubmission: state.revisitedSubmission,
     headerMode: state.headerMode,
     setWindowDimension: (value) => {
@@ -131,6 +139,12 @@ const TSSProvider = ({ children }) => {
       dispatch({
         type: actions.SET_CRITERIA,
         criteria: criteria
+      })
+    },
+    setSelectedScreeningDocument: (selectedScreeningDocument) => {
+      dispatch({
+        type: actions.SET_SELECTED_SCREENING_DOCUMENT,
+        selectedScreeningDocument: selectedScreeningDocument
       })
     },
 

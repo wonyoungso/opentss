@@ -174,7 +174,10 @@ const router = createBrowserRouter([
     path: "/:locale/screening-criteria",
     element: <ScreeningCriteria />,
     loader: async ({ request, params }) => {
-      const response = await fetch(`https://screening-documents.open-tss.net/api/screening_documents.json`);
+      const response = await fetch(
+        // `http://localhost:8080/api/screening_documents.json`
+        `https://screening-documents.open-tss.net/api/screening_documents.json`
+      );
       const response_json = await response.json();
       return response_json;
     },
